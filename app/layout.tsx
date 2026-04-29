@@ -17,7 +17,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "CaseClosed | Intake Management for PI Firms",
+  title: "Delipat | Intake Management for PI Firms",
   description: "Done-for-you intake management for personal injury firms losing cases to slow response and inconsistent follow-up.",
 };
 
