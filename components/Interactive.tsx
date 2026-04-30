@@ -30,56 +30,128 @@ function useAnimatedNumber(target: number, duration = 900) {
   return value;
 }
 
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function useElementScrollProgress() {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    let frame = 0;
+    const update = () => {
+      const rect = node.getBoundingClientRect();
+      const viewport = window.innerHeight || document.documentElement.clientHeight;
+      const raw = (viewport - rect.top) / (viewport * 0.58 + rect.height * 0.34);
+      setProgress(clamp(raw, 0, 1));
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return { ref, progress };
+}
+
 export function HeroRevenueCard() {
   const revenue = useAnimatedNumber(850000, 1200);
+  const { ref, progress } = useElementScrollProgress();
+  const scale = 0.92 + progress * 0.08;
+  const radius = 28 - progress * 10;
+  const translateY = 20 - progress * 20;
+  const rotateX = 2.4 - progress * 2.4;
+  const cardLift = progress * 18;
 
   return (
-    <div className="relative mx-auto w-full max-w-[520px]">
-      <div className="absolute -left-5 top-12 z-10 hidden rounded-2xl border border-[#0A1628]/10 bg-white/90 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block">
-        <p className="text-xs font-semibold text-[#4A5568]">New lead received</p>
-        <p className="mt-1 text-sm font-bold text-[#0A1628]">18 seconds ago</p>
+    <div ref={ref} className="relative mx-auto w-full max-w-[1140px] px-0 md:px-8" style={{ perspective: "1400px" }}>
+      <div
+        className="pointer-events-none absolute -left-2 top-[18%] z-10 hidden rounded-2xl border border-[#0A1628]/10 bg-white/92 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block lg:-left-5"
+        style={{ transform: `translate3d(${-10 - cardLift * 0.28}px, ${10 - cardLift}px, 0)` }}
+      >
+        <p className="text-xs font-semibold text-[#4A5568]">Revenue at Risk</p>
+        <p className="mt-1 text-sm font-bold text-[#0A1628]">{formatMoney(revenue)}</p>
       </div>
-      <div className="absolute -right-4 bottom-24 z-10 hidden rounded-2xl border border-red-200 bg-white/90 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block">
-        <p className="text-xs font-semibold text-red-500">Follow-up overdue</p>
-        <p className="mt-1 text-sm font-bold text-[#0A1628]">3 leads waiting</p>
+      <div
+        className="pointer-events-none absolute -right-1 top-[26%] z-10 hidden rounded-2xl border border-emerald-200 bg-white/92 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block lg:-right-3"
+        style={{ transform: `translate3d(${10 + cardLift * 0.22}px, ${14 - cardLift * 0.8}px, 0)` }}
+      >
+        <p className="text-xs font-semibold text-emerald-600">Avg Response Time</p>
+        <p className="mt-1 text-sm font-bold text-[#0A1628]">48 seconds</p>
       </div>
-      <div className="absolute -bottom-4 left-16 z-10 hidden rounded-2xl border border-[#C9A84C]/30 bg-white/90 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block">
-        <p className="text-xs font-semibold text-[#9A7B24]">Signed elsewhere risk</p>
-        <p className="mt-1 text-sm font-bold text-[#0A1628]">High-value inquiry</p>
+      <div
+        className="pointer-events-none absolute -bottom-2 left-[13%] z-10 hidden rounded-2xl border border-red-200 bg-white/92 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block"
+        style={{ transform: `translate3d(${-cardLift * 0.18}px, ${16 - cardLift * 0.64}px, 0)` }}
+      >
+        <p className="text-xs font-semibold text-red-500">Missed Leads</p>
+        <p className="mt-1 text-sm font-bold text-[#0A1628]">17 need action</p>
+      </div>
+      <div
+        className="pointer-events-none absolute -bottom-4 right-[11%] z-10 hidden rounded-2xl border border-[#C9A84C]/30 bg-white/92 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block"
+        style={{ transform: `translate3d(${cardLift * 0.2}px, ${18 - cardLift * 0.72}px, 0)` }}
+      >
+        <p className="text-xs font-semibold text-[#9A7B24]">Follow-up Active</p>
+        <p className="mt-1 text-sm font-bold text-[#0A1628]">12-touch sequence</p>
       </div>
 
-      <div className="overflow-hidden rounded-[28px] border border-[#0A1628]/10 bg-white/76 shadow-[0_30px_90px_rgba(10,22,40,0.14)] backdrop-blur-xl">
-        <div className="flex items-center justify-between border-b border-[#0A1628]/10 px-6 py-5">
+      <div
+        className="hero-dashboard-preview overflow-hidden border border-[#0A1628]/10 bg-white/80 backdrop-blur-xl transition-[box-shadow] duration-300"
+        style={{
+          borderRadius: `${radius}px`,
+          opacity: 0.95 + progress * 0.05,
+          transform: `translate3d(0, ${translateY}px, 0) scale(${scale}) rotateX(${rotateX}deg)`,
+          transformOrigin: "top center",
+          boxShadow: `0 ${26 + progress * 14}px ${72 + progress * 28}px rgba(10,22,40,${0.11 + progress * 0.05})`,
+        }}
+      >
+        <div className="flex flex-col gap-5 border-b border-[#0A1628]/10 px-5 py-5 sm:flex-row sm:items-center sm:justify-between md:px-8 md:py-6">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#C9A84C]">Dashboard Preview</p>
-            <h3 className="mt-1 font-heading text-2xl font-semibold text-[#0A1628]">Revenue at Risk</h3>
+            <h3 className="mt-1 font-heading text-2xl font-semibold tracking-[-0.02em] text-[#0A1628] md:text-3xl">Intake command center</h3>
           </div>
-          <div className="flex gap-1.5">
-            <span className="size-2.5 rounded-full bg-red-300" />
-            <span className="size-2.5 rounded-full bg-[#C9A84C]/70" />
-            <span className="size-2.5 rounded-full bg-emerald-300" />
+          <div className="flex items-center justify-between gap-4 sm:justify-end">
+            <span className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">Live recovery</span>
+            <div className="flex gap-1.5">
+              <span className="size-2.5 rounded-full bg-red-300" />
+              <span className="size-2.5 rounded-full bg-[#C9A84C]/70" />
+              <span className="size-2.5 rounded-full bg-emerald-300" />
+            </div>
           </div>
         </div>
 
-        <div className="grid gap-4 p-6 sm:grid-cols-2">
+        <div className="grid gap-4 p-5 sm:grid-cols-2 lg:grid-cols-4 md:p-8">
           {[
             ["Leads this month", "84"],
             ["Avg response time", "3h 42m"],
             ["Missed opportunities", "17"],
             ["Estimated revenue at risk", formatMoney(revenue)],
           ].map(([label, value], index) => (
-            <div key={label} className={`rounded-2xl border p-5 ${index === 3 ? "sm:col-span-2 border-[#C9A84C]/30 bg-[#C9A84C]/10" : "border-[#0A1628]/10 bg-[#FAFAFA]"}`}>
+            <div key={label} className={`rounded-2xl border p-5 ${index === 3 ? "border-[#C9A84C]/30 bg-[#C9A84C]/10 lg:col-span-1" : "border-[#0A1628]/10 bg-[#FAFAFA]"}`}>
               <p className="text-sm font-medium text-[#4A5568]">{label}</p>
-              <p className="mt-2 font-heading text-3xl font-bold tracking-[-0.04em] text-[#0A1628]">{value}</p>
+              <p className="mt-2 font-heading text-3xl font-bold tracking-[-0.04em] text-[#0A1628] md:text-4xl">{value}</p>
             </div>
           ))}
         </div>
 
-        <div className="px-6 pb-6">
-          <div className="rounded-2xl border border-[#0A1628]/10 bg-[#0A1628] p-5 text-white">
-            <div className="flex items-end justify-between gap-3">
-              {[48, 78, 64, 90, 38, 82, 56].map((height, index) => (
-                <span key={index} className="w-full rounded-t-lg bg-gradient-to-t from-[#C9A84C] to-[#F3DE91]" style={{ height }} />
+        <div className="grid gap-4 px-5 pb-5 lg:grid-cols-[1.25fr_0.75fr] md:px-8 md:pb-8">
+          <div className="rounded-2xl border border-[#0A1628]/10 bg-[#0A1628] p-5 text-white md:p-6">
+            <div className="flex h-[220px] items-end justify-between gap-3 sm:h-[260px]">
+              {[48, 78, 64, 90, 38, 82, 56, 72, 88].map((height, index) => (
+                <span key={index} className="w-full rounded-t-lg bg-gradient-to-t from-[#C9A84C] to-[#F3DE91]" style={{ height: `${height}%` }} />
               ))}
             </div>
             <div className="mt-4 flex items-center justify-between text-xs text-white/65">
@@ -87,6 +159,18 @@ export function HeroRevenueCard() {
               <span>Contacted</span>
               <span>Lost risk</span>
             </div>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            {[
+              ["New lead received", "18 seconds ago"],
+              ["Follow-up overdue", "3 leads waiting"],
+              ["Signed elsewhere risk", "High-value inquiry"],
+            ].map(([label, value]) => (
+              <div key={label} className="rounded-2xl border border-[#0A1628]/10 bg-[#FAFAFA] p-5">
+                <p className="text-sm font-semibold text-[#4A5568]">{label}</p>
+                <p className="mt-2 font-heading text-xl font-bold tracking-[-0.02em] text-[#0A1628]">{value}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
