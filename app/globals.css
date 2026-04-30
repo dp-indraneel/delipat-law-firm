@@ -18,12 +18,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   scroll-padding-top: 96px;
 }
 
 body {
   margin: 0;
+  overflow-x: hidden;
   color: var(--foreground);
   background: var(--background);
   line-height: 1.7;

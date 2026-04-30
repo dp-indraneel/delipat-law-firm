@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Poppins } from "next/font/google";
+import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -27,8 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${montserrat.variable} h-full scroll-smooth antialiased`}>
-      <body className="min-h-full bg-[#FAFAFA] font-body">{children}</body>
+    <html lang="en" className={`${poppins.variable} ${montserrat.variable} h-full antialiased`}>
+      <body className="min-h-full bg-[#FAFAFA] font-body">
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }

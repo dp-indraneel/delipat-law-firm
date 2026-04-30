@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { motion, useMotionTemplate, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 
 function formatMoney(value: number) {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
@@ -30,92 +31,85 @@ function useAnimatedNumber(target: number, duration = 900) {
   return value;
 }
 
-function clamp(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max);
-}
-
-function useElementScrollProgress() {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
-    let frame = 0;
-    const update = () => {
-      const rect = node.getBoundingClientRect();
-      const viewport = window.innerHeight || document.documentElement.clientHeight;
-      const raw = (viewport - rect.top) / (viewport * 0.58 + rect.height * 0.34);
-      setProgress(clamp(raw, 0, 1));
-    };
-
-    const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return { ref, progress };
-}
-
 export function HeroRevenueCard() {
   const revenue = useAnimatedNumber(850000, 1200);
-  const { ref, progress } = useElementScrollProgress();
-  const scale = 0.92 + progress * 0.08;
-  const radius = 28 - progress * 10;
-  const translateY = 20 - progress * 20;
-  const rotateX = 2.4 - progress * 2.4;
-  const cardLift = progress * 18;
+  const targetRef = useRef<HTMLDivElement | null>(null);
+  const reduceMotion = useReducedMotion();
+  const springConfig = { stiffness: 55, damping: 26, mass: 0.9 };
+
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start end", "end start"],
+  });
+
+  const rawScale = useTransform(scrollYProgress, [0, 0.85], reduceMotion ? [1, 1] : [0.96, 1]);
+  const rawY = useTransform(scrollYProgress, [0, 0.85], reduceMotion ? [0, 0] : [24, 0]);
+  const rawRadius = useTransform(scrollYProgress, [0, 0.85], [28, 20]);
+  const rawOpacity = useTransform(scrollYProgress, [0, 0.85], [0.98, 1]);
+  const rawLift = useTransform(scrollYProgress, [0, 0.85], reduceMotion ? [0, 0] : [0, 10]);
+  const rawShadowY = useTransform(scrollYProgress, [0, 0.85], [16, 20]);
+  const rawShadowBlur = useTransform(scrollYProgress, [0, 0.85], [45, 60]);
+  const rawShadowAlpha = useTransform(scrollYProgress, [0, 0.85], [0.045, 0.06]);
+
+  const scale = useSpring(rawScale, springConfig);
+  const y = useSpring(rawY, springConfig);
+  const borderRadius = useSpring(rawRadius, springConfig);
+  const opacity = useSpring(rawOpacity, springConfig);
+  const cardLift = useSpring(rawLift, springConfig);
+  const shadowY = useSpring(rawShadowY, springConfig);
+  const shadowBlur = useSpring(rawShadowBlur, springConfig);
+  const shadowAlpha = useSpring(rawShadowAlpha, springConfig);
+  const boxShadow = useMotionTemplate`0 ${shadowY}px ${shadowBlur}px rgba(0, 0, 0, ${shadowAlpha})`;
+  const revenueX = useTransform(cardLift, (value) => -10 - value * 0.28);
+  const revenueY = useTransform(cardLift, (value) => 10 - value);
+  const responseX = useTransform(cardLift, (value) => 10 + value * 0.22);
+  const responseY = useTransform(cardLift, (value) => 14 - value * 0.8);
+  const missedX = useTransform(cardLift, (value) => -value * 0.18);
+  const missedY = useTransform(cardLift, (value) => 16 - value * 0.64);
+  const followUpX = useTransform(cardLift, (value) => value * 0.2);
+  const followUpY = useTransform(cardLift, (value) => 18 - value * 0.72);
 
   return (
-    <div ref={ref} className="relative mx-auto w-full max-w-[1140px] px-0 md:px-8" style={{ perspective: "1400px" }}>
-      <div
-        className="pointer-events-none absolute -left-2 top-[18%] z-10 hidden rounded-2xl border border-[#0A1628]/10 bg-white/92 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block lg:-left-5"
-        style={{ transform: `translate3d(${-10 - cardLift * 0.28}px, ${10 - cardLift}px, 0)` }}
+    <div ref={targetRef} className="relative mx-auto w-full overflow-visible py-2" style={{ perspective: "1400px" }}>
+      <motion.div
+        className="pointer-events-none absolute left-2 top-[18%] z-10 hidden rounded-2xl border border-black/[0.08] bg-white/92 px-4 py-3 shadow-[0_14px_40px_rgba(0,0,0,0.06)] backdrop-blur md:block lg:left-5"
+        style={{ x: revenueX, y: revenueY }}
       >
         <p className="text-xs font-semibold text-[#4A5568]">Revenue at Risk</p>
         <p className="mt-1 text-sm font-bold text-[#0A1628]">{formatMoney(revenue)}</p>
-      </div>
-      <div
-        className="pointer-events-none absolute -right-1 top-[26%] z-10 hidden rounded-2xl border border-emerald-200 bg-white/92 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block lg:-right-3"
-        style={{ transform: `translate3d(${10 + cardLift * 0.22}px, ${14 - cardLift * 0.8}px, 0)` }}
+      </motion.div>
+      <motion.div
+        className="pointer-events-none absolute right-1 top-[26%] z-10 hidden rounded-2xl border border-emerald-200/80 bg-white/92 px-4 py-3 shadow-[0_14px_40px_rgba(0,0,0,0.06)] backdrop-blur md:block lg:right-3"
+        style={{ x: responseX, y: responseY }}
       >
         <p className="text-xs font-semibold text-emerald-600">Avg Response Time</p>
         <p className="mt-1 text-sm font-bold text-[#0A1628]">48 seconds</p>
-      </div>
-      <div
-        className="pointer-events-none absolute -bottom-2 left-[13%] z-10 hidden rounded-2xl border border-red-200 bg-white/92 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block"
-        style={{ transform: `translate3d(${-cardLift * 0.18}px, ${16 - cardLift * 0.64}px, 0)` }}
+      </motion.div>
+      <motion.div
+        className="pointer-events-none absolute -bottom-2 left-[13%] z-10 hidden rounded-2xl border border-red-200/80 bg-white/92 px-4 py-3 shadow-[0_14px_40px_rgba(0,0,0,0.06)] backdrop-blur md:block"
+        style={{ x: missedX, y: missedY }}
       >
         <p className="text-xs font-semibold text-red-500">Missed Leads</p>
         <p className="mt-1 text-sm font-bold text-[#0A1628]">17 need action</p>
-      </div>
-      <div
-        className="pointer-events-none absolute -bottom-4 right-[11%] z-10 hidden rounded-2xl border border-[#C9A84C]/30 bg-white/92 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block"
-        style={{ transform: `translate3d(${cardLift * 0.2}px, ${18 - cardLift * 0.72}px, 0)` }}
+      </motion.div>
+      <motion.div
+        className="pointer-events-none absolute -bottom-4 right-[11%] z-10 hidden rounded-2xl border border-[#C9A84C]/25 bg-white/92 px-4 py-3 shadow-[0_14px_40px_rgba(0,0,0,0.06)] backdrop-blur md:block"
+        style={{ x: followUpX, y: followUpY }}
       >
         <p className="text-xs font-semibold text-[#9A7B24]">Follow-up Active</p>
         <p className="mt-1 text-sm font-bold text-[#0A1628]">12-touch sequence</p>
-      </div>
+      </motion.div>
 
-      <div
-        className="hero-dashboard-preview overflow-hidden border border-[#0A1628]/10 bg-white/80 backdrop-blur-xl transition-[box-shadow] duration-300"
+      <motion.div
+        className="hero-dashboard-preview mx-auto max-h-[780px] w-[94vw] max-w-7xl overflow-hidden border border-black/[0.08] bg-white"
         style={{
-          borderRadius: `${radius}px`,
-          opacity: 0.95 + progress * 0.05,
-          transform: `translate3d(0, ${translateY}px, 0) scale(${scale}) rotateX(${rotateX}deg)`,
+          scale,
+          y,
+          borderRadius,
+          opacity,
           transformOrigin: "top center",
-          boxShadow: `0 ${26 + progress * 14}px ${72 + progress * 28}px rgba(10,22,40,${0.11 + progress * 0.05})`,
+          boxShadow,
+          willChange: "transform, opacity, border-radius, box-shadow",
         }}
       >
         <div className="flex flex-col gap-5 border-b border-[#0A1628]/10 px-5 py-5 sm:flex-row sm:items-center sm:justify-between md:px-8 md:py-6">
@@ -173,7 +167,7 @@ export function HeroRevenueCard() {
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
