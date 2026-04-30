@@ -42,14 +42,14 @@ export function HeroRevenueCard() {
     offset: ["start end", "end start"],
   });
 
-  const rawScale = useTransform(scrollYProgress, [0, 0.85], reduceMotion ? [1, 1] : [0.96, 1]);
+  const rawScale = useTransform(scrollYProgress, [0, 0.85], reduceMotion ? [1, 1] : [0.9, 1]);
   const rawY = useTransform(scrollYProgress, [0, 0.85], reduceMotion ? [0, 0] : [24, 0]);
   const rawRadius = useTransform(scrollYProgress, [0, 0.85], [28, 20]);
   const rawOpacity = useTransform(scrollYProgress, [0, 0.85], [0.98, 1]);
   const rawLift = useTransform(scrollYProgress, [0, 0.85], reduceMotion ? [0, 0] : [0, 10]);
-  const rawShadowY = useTransform(scrollYProgress, [0, 0.85], [16, 20]);
-  const rawShadowBlur = useTransform(scrollYProgress, [0, 0.85], [45, 60]);
-  const rawShadowAlpha = useTransform(scrollYProgress, [0, 0.85], [0.045, 0.06]);
+  const rawShadowY = useTransform(scrollYProgress, [0, 0.85], [12, 18]);
+  const rawShadowBlur = useTransform(scrollYProgress, [0, 0.85], [30, 50]);
+  const rawShadowAlpha = useTransform(scrollYProgress, [0, 0.85], [0.025, 0.04]);
 
   const scale = useSpring(rawScale, springConfig);
   const y = useSpring(rawY, springConfig);
@@ -72,28 +72,28 @@ export function HeroRevenueCard() {
   return (
     <div ref={targetRef} className="relative mx-auto w-full overflow-visible py-2" style={{ perspective: "1400px" }}>
       <motion.div
-        className="pointer-events-none absolute left-2 top-[18%] z-10 hidden rounded-2xl border border-black/[0.08] bg-white/92 px-4 py-3 shadow-[0_14px_40px_rgba(0,0,0,0.06)] backdrop-blur md:block lg:left-5"
+        className="pointer-events-none absolute left-2 top-[18%] z-10 hidden rounded-2xl border border-black/[0.08] bg-white/92 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block lg:left-5"
         style={{ x: revenueX, y: revenueY }}
       >
         <p className="text-xs font-semibold text-[#4A5568]">Revenue at Risk</p>
         <p className="mt-1 text-sm font-bold text-[#0A1628]">{formatMoney(revenue)}</p>
       </motion.div>
       <motion.div
-        className="pointer-events-none absolute right-1 top-[26%] z-10 hidden rounded-2xl border border-emerald-200/80 bg-white/92 px-4 py-3 shadow-[0_14px_40px_rgba(0,0,0,0.06)] backdrop-blur md:block lg:right-3"
+        className="pointer-events-none absolute right-1 top-[26%] z-10 hidden rounded-2xl border border-emerald-200/70 bg-white/92 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block lg:right-3"
         style={{ x: responseX, y: responseY }}
       >
         <p className="text-xs font-semibold text-emerald-600">Avg Response Time</p>
         <p className="mt-1 text-sm font-bold text-[#0A1628]">48 seconds</p>
       </motion.div>
       <motion.div
-        className="pointer-events-none absolute -bottom-2 left-[13%] z-10 hidden rounded-2xl border border-red-200/80 bg-white/92 px-4 py-3 shadow-[0_14px_40px_rgba(0,0,0,0.06)] backdrop-blur md:block"
+        className="pointer-events-none absolute -bottom-2 left-[13%] z-10 hidden rounded-2xl border border-red-200/70 bg-white/92 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block"
         style={{ x: missedX, y: missedY }}
       >
         <p className="text-xs font-semibold text-red-500">Missed Leads</p>
         <p className="mt-1 text-sm font-bold text-[#0A1628]">17 need action</p>
       </motion.div>
       <motion.div
-        className="pointer-events-none absolute -bottom-4 right-[11%] z-10 hidden rounded-2xl border border-[#C9A84C]/25 bg-white/92 px-4 py-3 shadow-[0_14px_40px_rgba(0,0,0,0.06)] backdrop-blur md:block"
+        className="pointer-events-none absolute -bottom-4 right-[11%] z-10 hidden rounded-2xl border border-[#C9A84C]/25 bg-white/92 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block"
         style={{ x: followUpX, y: followUpY }}
       >
         <p className="text-xs font-semibold text-[#9A7B24]">Follow-up Active</p>
@@ -112,7 +112,7 @@ export function HeroRevenueCard() {
           willChange: "transform, opacity, border-radius, box-shadow",
         }}
       >
-        <div className="flex flex-col gap-5 border-b border-[#0A1628]/10 px-5 py-5 sm:flex-row sm:items-center sm:justify-between md:px-8 md:py-6">
+        <div className="flex flex-col gap-5 border-b border-black/[0.08] px-5 py-5 sm:flex-row sm:items-center sm:justify-between md:px-8 md:py-6">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#C9A84C]">Dashboard Preview</p>
             <h3 className="mt-1 font-heading text-2xl font-semibold tracking-[-0.02em] text-[#0A1628] md:text-3xl">Intake command center</h3>
@@ -134,7 +134,7 @@ export function HeroRevenueCard() {
             ["Missed opportunities", "17"],
             ["Estimated revenue at risk", formatMoney(revenue)],
           ].map(([label, value], index) => (
-            <div key={label} className={`rounded-2xl border p-5 ${index === 3 ? "border-[#C9A84C]/30 bg-[#C9A84C]/10 lg:col-span-1" : "border-[#0A1628]/10 bg-[#FAFAFA]"}`}>
+            <div key={label} className={`rounded-2xl border p-5 ${index === 3 ? "border-[#C9A84C]/25 bg-[#C9A84C]/10 lg:col-span-1" : "border-black/[0.08] bg-[#FAFAFA]"}`}>
               <p className="text-sm font-medium text-[#4A5568]">{label}</p>
               <p className="mt-2 font-heading text-3xl font-bold tracking-[-0.04em] text-[#0A1628] md:text-4xl">{value}</p>
             </div>
@@ -142,7 +142,7 @@ export function HeroRevenueCard() {
         </div>
 
         <div className="grid gap-4 px-5 pb-5 lg:grid-cols-[1.25fr_0.75fr] md:px-8 md:pb-8">
-          <div className="rounded-2xl border border-[#0A1628]/10 bg-[#0A1628] p-5 text-white md:p-6">
+          <div className="rounded-2xl border border-black/[0.08] bg-[#0A1628] p-5 text-white md:p-6">
             <div className="flex h-[220px] items-end justify-between gap-3 sm:h-[260px]">
               {[48, 78, 64, 90, 38, 82, 56, 72, 88].map((height, index) => (
                 <span key={index} className="w-full rounded-t-lg bg-gradient-to-t from-[#C9A84C] to-[#F3DE91]" style={{ height: `${height}%` }} />
@@ -160,7 +160,7 @@ export function HeroRevenueCard() {
               ["Follow-up overdue", "3 leads waiting"],
               ["Signed elsewhere risk", "High-value inquiry"],
             ].map(([label, value]) => (
-              <div key={label} className="rounded-2xl border border-[#0A1628]/10 bg-[#FAFAFA] p-5">
+              <div key={label} className="rounded-2xl border border-black/[0.08] bg-[#FAFAFA] p-5">
                 <p className="text-sm font-semibold text-[#4A5568]">{label}</p>
                 <p className="mt-2 font-heading text-xl font-bold tracking-[-0.02em] text-[#0A1628]">{value}</p>
               </div>
@@ -193,7 +193,7 @@ export default function MathCalculator() {
 
   return (
     <div className="grid items-stretch gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-      <div className="rounded-[28px] border border-white/12 bg-white/[0.08] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur md:p-8">
+      <div className="rounded-[28px] border border-white/12 bg-white/[0.08] p-6 shadow-[0_12px_35px_rgba(0,0,0,0.035)] backdrop-blur md:p-8">
         <div className="rounded-2xl border border-[#C9A84C]/30 bg-[#C9A84C]/10 p-5">
           <p className="text-sm font-semibold text-[#F3DE91]">You're likely losing</p>
           <p className="mt-2 font-heading text-4xl font-bold tracking-[-0.05em] text-white md:text-6xl">{formatMoney(animatedRisk)}</p>
@@ -208,7 +208,7 @@ export default function MathCalculator() {
           <Slider label="Estimated leakage rate" min={10} max={30} value={leakageRate} suffix="%" onChange={setLeakageRate} />
         </div>
 
-        <a href="#final-cta" className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#C9A84C] px-6 py-4 text-sm font-bold text-[#0A1628] shadow-[0_18px_50px_rgba(201,168,76,0.28)] transition hover:-translate-y-0.5 hover:bg-[#DDBD64] sm:w-auto">
+        <a href="#final-cta" className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#C9A84C] px-6 py-4 text-sm font-bold text-[#0A1628] shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition hover:-translate-y-0.5 hover:bg-[#DDBD64] sm:w-auto">
           Stop Losing Cases - Get a Free Audit
         </a>
       </div>

@@ -11,7 +11,7 @@ type ChatMessage = {
 const conversation: Omit<ChatMessage, "id">[] = [
   {
     side: "ai",
-    text: "Hi, this is CaseClosed intake. Are you safe right now, and were you injured in the accident?",
+    text: "Hi, this is Delipat intake. Are you safe right now, and were you injured in the accident?",
   },
   {
     side: "user",
@@ -86,27 +86,27 @@ export default function AIIntakePhone() {
 
   return (
     <div className="relative mx-auto flex w-full max-w-[520px] justify-center py-6">
-      <div className="absolute left-0 top-16 hidden rounded-2xl border border-[#0A1628]/10 bg-white/90 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block">
+      <div className="absolute left-0 top-16 hidden rounded-2xl border border-black/[0.08] bg-white/90 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block">
         <p className="text-xs font-semibold text-[#4A5568]">Response triggered</p>
         <p className="mt-1 text-sm font-bold text-[#0A1628]">48s</p>
       </div>
-      <div className="absolute right-0 top-36 hidden rounded-2xl border border-[#C9A84C]/30 bg-white/90 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block">
+      <div className="absolute right-0 top-36 hidden rounded-2xl border border-[#C9A84C]/25 bg-white/90 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block">
         <p className="text-xs font-semibold text-[#9A7B24]">Lead stage</p>
         <p className="mt-1 text-sm font-bold text-[#0A1628]">Qualified</p>
       </div>
-      <div className="absolute bottom-14 left-4 hidden rounded-2xl border border-emerald-200 bg-white/90 px-4 py-3 shadow-[0_18px_45px_rgba(10,22,40,0.12)] backdrop-blur md:block">
+      <div className="absolute bottom-14 left-4 hidden rounded-2xl border border-emerald-200/70 bg-white/90 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block">
         <p className="text-xs font-semibold text-emerald-700">Follow-up owner</p>
         <p className="mt-1 text-sm font-bold text-[#0A1628]">Assigned</p>
       </div>
 
-      <div className="relative h-[600px] w-full max-w-[345px] rounded-[42px] border border-[#0A1628]/10 bg-[#0A1628] p-3 shadow-[0_36px_100px_rgba(10,22,40,0.22)] md:h-[620px] lg:h-[760px]">
+      <div className="relative h-[600px] w-full max-w-[345px] rounded-[42px] border border-black/[0.08] bg-[#0A1628] p-3 shadow-[0_12px_35px_rgba(0,0,0,0.035)] md:h-[620px] lg:h-[760px]">
         <div className="absolute left-1/2 top-3 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-[#0A1628]" />
         <div className="flex h-full flex-col overflow-hidden rounded-[32px] bg-[#F8F8F6]">
-          <div className="shrink-0 border-b border-[#0A1628]/10 bg-white/92 px-5 pb-4 pt-8">
+          <div className="shrink-0 border-b border-black/[0.08] bg-white/92 px-5 pb-4 pt-8">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#9A7B24]">AI Intake Flow</p>
             <div className="mt-3 flex items-center justify-between">
               <div>
-                <h3 className="font-heading text-xl font-semibold tracking-[-0.02em] text-[#0A1628]">CaseClosed AI</h3>
+                <h3 className="font-heading text-xl font-semibold tracking-[-0.02em] text-[#0A1628]">Delipat AI</h3>
                 <p className="mt-1 flex items-center gap-2 text-xs font-semibold text-emerald-700"><span className="size-2 rounded-full bg-emerald-500" />Online now</p>
               </div>
               <div className="grid size-10 place-items-center rounded-2xl bg-[#C9A84C]/14 text-sm font-bold text-[#9A7B24]">AI</div>
@@ -117,7 +117,7 @@ export default function AIIntakePhone() {
             <div className="flex min-h-0 flex-1 flex-col justify-end gap-2 overflow-hidden">
               {visibleMessages.map((message) => (
                 <div key={message.id} className={`chat-entry flex ${message.side === "user" ? "justify-end" : "justify-start"}`}>
-                  <div className={`max-w-[86%] rounded-[18px] px-3.5 py-2.5 text-[13px] leading-[1.48] shadow-sm lg:text-sm lg:leading-[1.55] ${message.side === "user" ? "rounded-br-md bg-[#0A1628] text-white" : "rounded-bl-md border border-[#0A1628]/8 bg-white text-[#0A1628]"}`}>
+                  <div className={`max-w-[86%] rounded-[18px] px-3.5 py-2.5 text-[13px] leading-[1.48] shadow-[0_6px_18px_rgba(0,0,0,0.025)] lg:text-sm lg:leading-[1.55] ${message.side === "user" ? "rounded-br-md bg-[#0A1628] text-white" : "rounded-bl-md border border-black/[0.06] bg-white text-[#0A1628]"}`}>
                     {message.text}
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export default function AIIntakePhone() {
 
               {isTyping && (
                 <div className="chat-entry flex justify-start">
-                  <div className="flex items-center gap-1 rounded-full border border-[#0A1628]/8 bg-white px-4 py-3 shadow-sm">
+                  <div className="flex items-center gap-1 rounded-full border border-black/[0.06] bg-white px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)]">
                     <span className="typing-dot" />
                     <span className="typing-dot [animation-delay:0.16s]" />
                     <span className="typing-dot [animation-delay:0.32s]" />

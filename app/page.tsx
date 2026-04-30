@@ -48,7 +48,7 @@ export default function Home() {
       <Hero />
       <RealityCheck />
       <InvisibleLeak />
-  {/* <MathSection />
+      {/* <MathSection />
       <Reframe />
       <Solution />
       <HowItWorks />
@@ -85,10 +85,10 @@ function Hero() {
             Most PI firms lose high-value cases before intake even begins. We fix that.
           </p>
           <div className="hero-reveal hero-reveal-4 mx-auto mt-9 flex max-w-[460px] flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
-            <a href="#calculator" className="inline-flex items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_18px_45px_rgba(10,22,40,0.18)] transition hover:-translate-y-0.5 hover:bg-[#172941]">
+            <a href="#calculator" className="inline-flex items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition hover:-translate-y-0.5 hover:bg-[#172941]">
               See What You're Losing
             </a>
-            <a href="#process" className="inline-flex items-center justify-center rounded-full border border-[#0A1628]/10 bg-white px-7 py-4 text-sm font-bold text-[#0A1628] shadow-sm transition hover:-translate-y-0.5 hover:border-[#C9A84C]/50">
+            <a href="#process" className="inline-flex items-center justify-center rounded-full border border-black/[0.08] bg-white px-7 py-4 text-sm font-bold text-[#0A1628] shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition hover:-translate-y-0.5 hover:border-[#C9A84C]/50">
               How It Works
             </a>
           </div>
@@ -112,7 +112,7 @@ function RealityCheck() {
           <p className={`mt-6 max-w-xl ${bodyText}`}>
             Every week, PI firm owners tell us the same story: the ads are working, the leads are coming in, but the follow-up is inconsistent and nobody has a clear answer on what happened next.
           </p>
-          <RevealBlock delay={0.08} className="mt-9 grid grid-cols-3 gap-3 rounded-[24px] border border-[#0A1628]/10 bg-white/80 p-3 shadow-[0_16px_45px_rgba(0,0,0,0.045)] backdrop-blur">
+          <RevealBlock delay={0.08} className="mt-9 grid grid-cols-3 gap-3 rounded-[24px] border border-black/[0.08] bg-white/80 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.03)] backdrop-blur">
             {[["90+", "Leads reviewed"], ["48h", "Audit turnaround"], ["5-12", "Follow-up touches"]].map(([value, label]) => (
               <div key={label} className="rounded-2xl bg-[#FAFAFA] p-4">
                 <p className="font-heading text-2xl font-bold tracking-[-0.025em] text-[#0A1628] md:text-3xl">{value}</p>
@@ -122,17 +122,17 @@ function RealityCheck() {
           </RevealBlock>
         </RevealBlock>
 
-        <div className="relative mx-auto w-full max-w-[620px] rounded-[32px] border border-[#0A1628]/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(245,245,245,0.78))] p-4 shadow-[0_16px_45px_rgba(0,0,0,0.045)] md:p-6">
+        <div className="relative mx-auto w-full max-w-[620px] rounded-[32px] border border-black/[0.08] bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(245,245,245,0.78))] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.03)] md:p-6">
           <div className="absolute -right-8 -top-8 -z-10 size-40 rounded-full bg-[#C9A84C]/20 blur-3xl" />
           {customerNotes.map((note, index) => (
             <RevealBlock key={note.quote} delay={index * 0.08}>
               <article
-                className={`relative rounded-[24px] border border-[#0A1628]/10 bg-white p-5 shadow-[0_14px_38px_rgba(0,0,0,0.04)] ${index === 1 ? "mt-[-10px] ml-0 md:ml-10" : ""} ${index === 2 ? "mt-[-10px] ml-0 md:ml-20" : ""}`}
+                className={`relative rounded-[24px] border border-black/[0.08] bg-white p-5 shadow-[0_6px_18px_rgba(0,0,0,0.025)] ${index === 1 ? "mt-[-10px] ml-0 md:ml-10" : ""} ${index === 2 ? "mt-[-10px] ml-0 md:ml-20" : ""}`}
               >
                 <div className="absolute inset-y-5 left-0 w-1 rounded-r-full bg-[#C9A84C]" />
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="grid size-11 place-items-center rounded-full border border-[#C9A84C]/25 bg-[#C9A84C]/10 text-xs font-bold text-[#9A7B24]">CC</div>
+                    <div className="grid size-11 place-items-center rounded-full border border-[#C9A84C]/25 bg-[#C9A84C]/10 text-xs font-bold text-[#9A7B24]">D</div>
                     <div>
                       <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#9A7B24]">{note.tag}</p>
                       <p className="mt-1 text-sm font-semibold text-[#4A5568]">{note.role}</p>
@@ -144,7 +144,7 @@ function RealityCheck() {
               </article>
             </RevealBlock>
           ))}
-          <RevealBlock delay={0.24} className="mt-4 rounded-[22px] border border-[#C9A84C]/30 bg-[#C9A84C]/10 p-5 shadow-inner">
+          <RevealBlock delay={0.24} className="mt-4 rounded-[22px] border border-[#C9A84C]/25 bg-[#C9A84C]/10 p-5 shadow-[inset_0_1px_8px_rgba(0,0,0,0.025)]">
             <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#9A7B24]">Pattern detected</p>
             <p className="mt-2 text-[16px] leading-[1.65] tracking-[-0.005em] text-[#0A1628]">Response delay, no follow-up owner, no closed-loop reporting.</p>
           </RevealBlock>
@@ -213,12 +213,12 @@ function Solution() {
       <Container className="grid items-center gap-12 lg:grid-cols-[0.98fr_1.02fr]">
         <div>
           <RevealBlock>
-            <Eyebrow>What CaseClosed Does</Eyebrow>
+            <Eyebrow>What Delipat Does</Eyebrow>
             <h2 className={sectionHeading}>We make sure every lead is responded to, followed up, and tracked - until they sign or you know why they didn't.</h2>
           </RevealBlock>
           <div className="mt-8 space-y-4">
             {features.map(([title, body], index) => (
-              <RevealBlock key={title} delay={index * 0.08} className="rounded-2xl border border-[#0A1628]/10 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-[#C9A84C]/40">
+              <RevealBlock key={title} delay={index * 0.08} className="rounded-2xl border border-black/[0.08] bg-white p-5 shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition hover:-translate-y-1 hover:border-[#C9A84C]/40">
                 <h3 className="font-heading text-xl font-semibold tracking-[-0.02em]">{title}</h3>
                 <p className={`mt-2 ${bodyText}`}>{body}</p>
               </RevealBlock>
@@ -236,7 +236,7 @@ function Solution() {
 function IntakeDashboard() {
   const metrics = [["Response Rate", "97%"], ["Avg Response Time", "48s"], ["Leads Contacted", "100%"], ["Conversion Lift", "+34%"]];
   return (
-    <div className="rounded-[28px] border border-[#0A1628]/10 bg-white p-6 shadow-[0_28px_80px_rgba(10,22,40,0.1)] md:p-8">
+    <div className="rounded-[28px] border border-black/[0.08] bg-white p-6 shadow-[0_12px_35px_rgba(0,0,0,0.035)] md:p-8">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9A7B24]">Lead Recovery System</p>
@@ -246,7 +246,7 @@ function IntakeDashboard() {
       </div>
       <div className="mt-7 grid gap-4 sm:grid-cols-2">
         {metrics.map(([label, value]) => (
-          <div key={label} className="rounded-2xl border border-[#0A1628]/10 bg-[#FAFAFA] p-5">
+          <div key={label} className="rounded-2xl border border-black/[0.08] bg-[#FAFAFA] p-5">
             <p className="text-sm text-[#4A5568]">{label}</p>
             <p className="mt-2 font-heading text-3xl font-bold tracking-[-0.03em] md:text-4xl">{value}</p>
           </div>
@@ -277,7 +277,7 @@ function HowItWorks() {
         </RevealBlock>
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {steps.map(([title, body], index) => (
-            <RevealBlock key={title} delay={index * 0.08} className="group rounded-[24px] border border-[#0A1628]/10 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#C9A84C] hover:shadow-[0_16px_45px_rgba(0,0,0,0.055)]">
+            <RevealBlock key={title} delay={index * 0.08} className="group rounded-[24px] border border-black/[0.08] bg-white p-6 shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition duration-300 hover:-translate-y-1 hover:border-[#C9A84C] hover:shadow-[0_10px_30px_rgba(0,0,0,0.03)]">
               <p className="font-heading text-4xl font-bold tracking-[-0.035em] text-[#C9A84C]/70">0{index + 1}</p>
               <div className="my-6 grid size-12 place-items-center rounded-2xl bg-[#0A1628] text-white transition group-hover:bg-[#C9A84C] group-hover:text-[#0A1628]">{index + 1}</div>
               <h3 className="font-heading text-xl font-semibold tracking-[-0.02em]">{title}</h3>
@@ -301,7 +301,7 @@ function Proof() {
         </RevealBlock>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {stats.map(([value, text], index) => (
-            <RevealBlock key={value} delay={index * 0.08} className="relative overflow-hidden rounded-[26px] border border-[#0A1628]/10 bg-white p-7 shadow-[0_16px_45px_rgba(0,0,0,0.045)]">
+            <RevealBlock key={value} delay={index * 0.08} className="relative overflow-hidden rounded-[26px] border border-black/[0.08] bg-white p-7 shadow-[0_10px_30px_rgba(0,0,0,0.03)]">
               <div className="absolute inset-x-6 bottom-6 flex h-24 items-end gap-2 opacity-15">
                 {[34, 62, 48, 82, 54].map((h, bar) => <span key={bar} className="flex-1 rounded-t-lg bg-[#C9A84C]" style={{ height: `${Math.min(96, h + index * 8)}%` }} />)}
               </div>
@@ -324,7 +324,7 @@ function WhoItsFor() {
       <Container>
         <RevealBlock className="max-w-3xl">
           <Eyebrow dark>Is This You?</Eyebrow>
-          <h2 className={darkSectionHeading}>CaseClosed is built for one kind of firm.</h2>
+          <h2 className={darkSectionHeading}>Delipat is built for one kind of firm.</h2>
         </RevealBlock>
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <RevealBlock delay={0.08}><FitCard title="Good fit" items={good} positive /></RevealBlock>
@@ -359,10 +359,10 @@ function FinalCTA() {
     <AnimatedSection id="final-cta" className="relative isolate py-[70px] md:py-[120px]">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_30%,rgba(201,168,76,0.24),transparent_38%)]" />
       <Container>
-        <RevealBlock className="mx-auto max-w-4xl rounded-[32px] border border-[#0A1628]/10 bg-white/80 p-8 text-center shadow-[0_16px_45px_rgba(0,0,0,0.045)] backdrop-blur md:p-14">
+        <RevealBlock className="mx-auto max-w-4xl rounded-[32px] border border-black/[0.08] bg-white/80 p-8 text-center shadow-[0_10px_30px_rgba(0,0,0,0.03)] backdrop-blur md:p-14">
           <h2 className="font-heading text-[34px] font-bold leading-[1.16] tracking-[-0.025em] md:text-[48px] lg:text-[56px]">The Case You Didn't Call Back Was a $50,000 Fee.</h2>
           <p className={`mx-auto mt-6 max-w-2xl text-lg ${bodyText}`}>You've already paid for those leads. Let's make sure you're not giving them to your competitors.</p>
-          <a href="mailto:hello@caseclosed.ai?subject=Free%20Intake%20Audit" className="mt-9 inline-flex w-full items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_18px_45px_rgba(10,22,40,0.18)] transition hover:-translate-y-0.5 sm:w-auto">See How Many Cases You're Losing Every Month</a>
+          <a href="mailto:hello@delipat.ai?subject=Free%20Intake%20Audit" className="mt-9 inline-flex w-full items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition hover:-translate-y-0.5 sm:w-auto">See How Many Cases You're Losing Every Month</a>
           <p className="mt-5 text-sm font-medium tracking-[-0.005em] text-[#4A5568]">Free audit · No pitch · Results in 48 hours</p>
         </RevealBlock>
       </Container>
@@ -372,27 +372,27 @@ function FinalCTA() {
 
 function Footer() {
   return (
-    <footer className="border-t border-[#0A1628]/10 bg-white py-14">
+    <footer className="border-t border-black/[0.08] bg-white py-14">
       <Container>
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_0.8fr_1fr]">
           <div>
-            <Image src="/logo.png" alt="CaseClosed logo" width={190} height={43} className="h-auto w-[175px]" />
-            <p className={`mt-5 max-w-sm ${bodyText}`}>CaseClosed helps PI firms capture and convert every lead they pay for.</p>
+            <Image src="/logo.png" alt="Delipat logo" width={190} height={43} className="h-auto w-[175px]" />
+            <p className={`mt-5 max-w-sm ${bodyText}`}>Delipat helps PI firms capture and convert every lead they pay for.</p>
           </div>
           <FooterColumn title="Product" links={["Intake Audit", "Lead Response", "Follow-Up System", "Reporting"]} />
           <FooterColumn title="Company" links={["How It Works", "Pricing", "Contact", "Book Audit"]} />
           <div>
             <p className="font-heading text-lg font-semibold tracking-[-0.02em]">Contact</p>
             <div className="mt-4 space-y-3 text-[#4A5568]">
-              <p>hello@caseclosed.ai</p>
+              <p>hello@delipat.ai</p>
               <p>(555) 018-2049</p>
               <p>LinkedIn</p>
               <p>X / Twitter</p>
             </div>
           </div>
         </div>
-        <div className="mt-12 flex flex-col gap-4 border-t border-[#0A1628]/10 pt-7 text-sm text-[#4A5568] sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 CaseClosed. All rights reserved.</p>
+        <div className="mt-12 flex flex-col gap-4 border-t border-black/[0.08] pt-7 text-sm text-[#4A5568] sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 Delipat. All rights reserved.</p>
           <div className="flex gap-5"><a href="#top" className="hover:text-[#0A1628]">Privacy Policy</a><a href="#top" className="hover:text-[#0A1628]">Terms</a></div>
         </div>
       </Container>
