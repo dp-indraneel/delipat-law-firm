@@ -164,7 +164,7 @@ function InvisibleLeak() {
         <div>
           <RevealBlock>
           <Eyebrow>Where Your Revenue Actually Goes</Eyebrow>
-          <h2 className={sectionHeading}>You're not losing cases at the top of the funnel. You're losing them in the silence after.</h2>
+          <h2 className={sectionHeading}>You're not losing cases at the top of the funnel.</h2>
           </RevealBlock>
           <div className={`mt-7 max-w-xl space-y-5 ${bodyText}`}>
             <RevealBlock delay={0.08}><p>Paid acquisition gets the lead to your door. Intake decides whether that lead becomes a signed case.</p></RevealBlock>

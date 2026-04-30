@@ -99,15 +99,15 @@ export default function AIIntakePhone() {
         <p className="mt-1 text-sm font-bold text-[#0A1628]">Assigned</p>
       </div>
 
-      <div className="relative h-[600px] w-full max-w-[345px] rounded-[42px] border border-black/[0.08] bg-[#0A1628] p-3 shadow-[0_12px_35px_rgba(0,0,0,0.035)] md:h-[620px] lg:h-[760px]">
+      <div className="relative h-[600px] w-full max-w-[345px] rounded-[42px] border border-black/[0.08] bg-[#0A1628] p-3 shadow-[0_12px_35px_rgba(0,0,0,0.035)] md:h-[620px]">
         <div className="absolute left-1/2 top-3 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-[#0A1628]" />
         <div className="flex h-full flex-col overflow-hidden rounded-[32px] bg-[#F8F8F6]">
-          <div className="shrink-0 border-b border-black/[0.08] bg-white/92 px-5 pb-4 pt-8">
+          <div className="shrink-0 border-b border-black/[0.08] bg-white/92 px-5 pb-2 pt-8">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#9A7B24]">AI Intake Flow</p>
-            <div className="mt-3 flex items-center justify-between">
+            <div className="mt-2 flex items-center justify-between">
               <div>
-                <h3 className="font-heading text-xl font-semibold tracking-[-0.02em] text-[#0A1628]">Delipat AI</h3>
-                <p className="mt-1 flex items-center gap-2 text-xs font-semibold text-emerald-700"><span className="size-2 rounded-full bg-emerald-500" />Online now</p>
+                <h3 className="font-heading text-lg font-semibold tracking-[-0.02em] text-[#0A1628]">Delipat AI</h3>
+                <p className="mt-0 flex items-center gap-2 text-xs font-semibold text-emerald-700"><span className="size-2 rounded-full bg-emerald-500" />Online now</p>
               </div>
               <div className="grid size-10 place-items-center rounded-2xl bg-[#C9A84C]/14 text-sm font-bold text-[#9A7B24]">AI</div>
             </div>
