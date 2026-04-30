@@ -47,8 +47,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <RealityCheck />
-      {/* <InvisibleLeak />
-      <MathSection />
+      <InvisibleLeak />
+  {/* <MathSection />
       <Reframe />
       <Solution />
       <HowItWorks />
