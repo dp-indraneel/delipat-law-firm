@@ -90,7 +90,7 @@ function Hero() {
 
 function RealityCheck() {
   return (
-    <AnimatedSection id="problem" className="py-[60px] md:py-[100px]">
+    <AnimatedSection id="problem" className="py-[60px] md:py-[100px] bg-[#F5F5F5]">
       <Container>
         <RevealBlock className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9A7B24]">Intake Reality Check</p>
