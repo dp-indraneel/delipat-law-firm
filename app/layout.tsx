@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.variable} ${montserrat.variable} h-full antialiased`}>
-      <body className="min-h-full bg-[#FAFAFA] font-body">
+      <body className="min-h-full bg-[#ffffff] font-body">
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

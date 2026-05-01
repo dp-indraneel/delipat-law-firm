@@ -86,19 +86,6 @@ export default function AIIntakePhone() {
 
   return (
     <div className="relative mx-auto flex w-full max-w-[520px] justify-center py-6">
-      <div className="absolute left-0 top-16 hidden rounded-2xl border border-black/[0.08] bg-white/90 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block">
-        <p className="text-xs font-semibold text-[#4A5568]">Response triggered</p>
-        <p className="mt-1 text-sm font-bold text-[#0A1628]">48s</p>
-      </div>
-      <div className="absolute right-0 top-36 hidden rounded-2xl border border-[#C9A84C]/25 bg-white/90 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block">
-        <p className="text-xs font-semibold text-[#9A7B24]">Lead stage</p>
-        <p className="mt-1 text-sm font-bold text-[#0A1628]">Qualified</p>
-      </div>
-      <div className="absolute bottom-14 left-4 hidden rounded-2xl border border-emerald-200/70 bg-white/90 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block">
-        <p className="text-xs font-semibold text-emerald-700">Follow-up owner</p>
-        <p className="mt-1 text-sm font-bold text-[#0A1628]">Assigned</p>
-      </div>
-
       <div className="relative h-[600px] w-full max-w-[345px] rounded-[42px] border border-black/[0.08] bg-[#0A1628] p-3 shadow-[0_12px_35px_rgba(0,0,0,0.035)] md:h-[620px]">
         <div className="absolute left-1/2 top-3 z-10 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-[#0A1628]" />
         <div className="flex h-full flex-col overflow-hidden rounded-[32px] bg-[#F8F8F6]">

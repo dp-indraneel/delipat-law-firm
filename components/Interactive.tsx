@@ -3,14 +3,15 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useMotionTemplate, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import RevealBlock from "@/components/RevealBlock";
 
 function formatMoney(value: number) {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(value);
 }
 
-function useAnimatedNumber(target: number, duration = 900) {
-  const [value, setValue] = useState(0);
-  const valueRef = useRef(0);
+function useAnimatedNumber(target: number, duration = 900, startAtTarget = false) {
+  const [value, setValue] = useState(startAtTarget ? target : 0);
+  const valueRef = useRef(startAtTarget ? target : 0);
 
   useEffect(() => {
     let frame = 0;
@@ -31,227 +32,338 @@ function useAnimatedNumber(target: number, duration = 900) {
   return value;
 }
 
-export function HeroRevenueCard() {
-  const revenue = useAnimatedNumber(850000, 1200);
-  const targetRef = useRef<HTMLDivElement | null>(null);
-  const reduceMotion = useReducedMotion();
-  const springConfig = { stiffness: 55, damping: 26, mass: 0.9 };
-
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start end", "end start"],
-  });
-
-  const rawScale = useTransform(scrollYProgress, [0, 0.85], reduceMotion ? [1, 1] : [0.9, 1]);
-  const rawY = useTransform(scrollYProgress, [0, 0.85], reduceMotion ? [0, 0] : [24, 0]);
-  const rawRadius = useTransform(scrollYProgress, [0, 0.85], [28, 20]);
-  const rawOpacity = useTransform(scrollYProgress, [0, 0.85], [0.98, 1]);
-  const rawLift = useTransform(scrollYProgress, [0, 0.85], reduceMotion ? [0, 0] : [0, 10]);
-  const rawShadowY = useTransform(scrollYProgress, [0, 0.85], [12, 18]);
-  const rawShadowBlur = useTransform(scrollYProgress, [0, 0.85], [30, 50]);
-  const rawShadowAlpha = useTransform(scrollYProgress, [0, 0.85], [0.025, 0.04]);
-
-  const scale = useSpring(rawScale, springConfig);
-  const y = useSpring(rawY, springConfig);
-  const borderRadius = useSpring(rawRadius, springConfig);
-  const opacity = useSpring(rawOpacity, springConfig);
-  const cardLift = useSpring(rawLift, springConfig);
-  const shadowY = useSpring(rawShadowY, springConfig);
-  const shadowBlur = useSpring(rawShadowBlur, springConfig);
-  const shadowAlpha = useSpring(rawShadowAlpha, springConfig);
-  const boxShadow = useMotionTemplate`0 ${shadowY}px ${shadowBlur}px rgba(0, 0, 0, ${shadowAlpha})`;
-  const revenueX = useTransform(cardLift, (value) => -10 - value * 0.28);
-  const revenueY = useTransform(cardLift, (value) => 10 - value);
-  const responseX = useTransform(cardLift, (value) => 10 + value * 0.22);
-  const responseY = useTransform(cardLift, (value) => 14 - value * 0.8);
-  const missedX = useTransform(cardLift, (value) => -value * 0.18);
-  const missedY = useTransform(cardLift, (value) => 16 - value * 0.64);
-  const followUpX = useTransform(cardLift, (value) => value * 0.2);
-  const followUpY = useTransform(cardLift, (value) => 18 - value * 0.72);
-
-  return (
-    <div ref={targetRef} className="relative mx-auto w-full overflow-visible py-2" style={{ perspective: "1400px" }}>
-      <motion.div
-        className="pointer-events-none absolute left-2 top-[18%] z-10 hidden rounded-2xl border border-black/[0.08] bg-white/92 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block lg:left-5"
-        style={{ x: revenueX, y: revenueY }}
-      >
-        <p className="text-xs font-semibold text-[#4A5568]">Revenue at Risk</p>
-        <p className="mt-1 text-sm font-bold text-[#0A1628]">{formatMoney(revenue)}</p>
-      </motion.div>
-      <motion.div
-        className="pointer-events-none absolute right-1 top-[26%] z-10 hidden rounded-2xl border border-emerald-200/70 bg-white/92 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block lg:right-3"
-        style={{ x: responseX, y: responseY }}
-      >
-        <p className="text-xs font-semibold text-emerald-600">Avg Response Time</p>
-        <p className="mt-1 text-sm font-bold text-[#0A1628]">48 seconds</p>
-      </motion.div>
-      <motion.div
-        className="pointer-events-none absolute -bottom-2 left-[13%] z-10 hidden rounded-2xl border border-red-200/70 bg-white/92 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block"
-        style={{ x: missedX, y: missedY }}
-      >
-        <p className="text-xs font-semibold text-red-500">Missed Leads</p>
-        <p className="mt-1 text-sm font-bold text-[#0A1628]">17 need action</p>
-      </motion.div>
-      <motion.div
-        className="pointer-events-none absolute -bottom-4 right-[11%] z-10 hidden rounded-2xl border border-[#C9A84C]/25 bg-white/92 px-4 py-3 shadow-[0_6px_18px_rgba(0,0,0,0.025)] backdrop-blur md:block"
-        style={{ x: followUpX, y: followUpY }}
-      >
-        <p className="text-xs font-semibold text-[#9A7B24]">Follow-up Active</p>
-        <p className="mt-1 text-sm font-bold text-[#0A1628]">12-touch sequence</p>
-      </motion.div>
-
-      <motion.div
-        className="hero-dashboard-preview mx-auto max-h-[780px] w-[94vw] max-w-7xl overflow-hidden border border-black/[0.08] bg-white"
-        style={{
-          scale,
-          y,
-          borderRadius,
-          opacity,
-          transformOrigin: "top center",
-          boxShadow,
-          willChange: "transform, opacity, border-radius, box-shadow",
-        }}
-      >
-        <div className="flex flex-col gap-5 border-b border-black/[0.08] px-5 py-5 sm:flex-row sm:items-center sm:justify-between md:px-8 md:py-6">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#C9A84C]">Dashboard Preview</p>
-            <h3 className="mt-1 font-heading text-2xl font-semibold tracking-[-0.02em] text-[#0A1628] md:text-3xl">Intake command center</h3>
-          </div>
-          <div className="flex items-center justify-between gap-4 sm:justify-end">
-            <span className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">Live recovery</span>
-            <div className="flex gap-1.5">
-              <span className="size-2.5 rounded-full bg-red-300" />
-              <span className="size-2.5 rounded-full bg-[#C9A84C]/70" />
-              <span className="size-2.5 rounded-full bg-emerald-300" />
-            </div>
-          </div>
-        </div>
-
-        <div className="grid gap-4 p-5 sm:grid-cols-2 lg:grid-cols-4 md:p-8">
-          {[
-            ["Leads this month", "84"],
-            ["Avg response time", "3h 42m"],
-            ["Missed opportunities", "17"],
-            ["Estimated revenue at risk", formatMoney(revenue)],
-          ].map(([label, value], index) => (
-            <div key={label} className={`rounded-2xl border p-5 ${index === 3 ? "border-[#C9A84C]/25 bg-[#C9A84C]/10 lg:col-span-1" : "border-black/[0.08] bg-[#FAFAFA]"}`}>
-              <p className="text-sm font-medium text-[#4A5568]">{label}</p>
-              <p className="mt-2 font-heading text-3xl font-bold tracking-[-0.04em] text-[#0A1628] md:text-4xl">{value}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="grid gap-4 px-5 pb-5 lg:grid-cols-[1.25fr_0.75fr] md:px-8 md:pb-8">
-          <div className="rounded-2xl border border-black/[0.08] bg-[#0A1628] p-5 text-white md:p-6">
-            <div className="flex h-[220px] items-end justify-between gap-3 sm:h-[260px]">
-              {[48, 78, 64, 90, 38, 82, 56, 72, 88].map((height, index) => (
-                <span key={index} className="w-full rounded-t-lg bg-gradient-to-t from-[#C9A84C] to-[#F3DE91]" style={{ height: `${height}%` }} />
-              ))}
-            </div>
-            <div className="mt-4 flex items-center justify-between text-xs text-white/65">
-              <span>Captured</span>
-              <span>Contacted</span>
-              <span>Lost risk</span>
-            </div>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-            {[
-              ["New lead received", "18 seconds ago"],
-              ["Follow-up overdue", "3 leads waiting"],
-              ["Signed elsewhere risk", "High-value inquiry"],
-            ].map(([label, value]) => (
-              <div key={label} className="rounded-2xl border border-black/[0.08] bg-[#FAFAFA] p-5">
-                <p className="text-sm font-semibold text-[#4A5568]">{label}</p>
-                <p className="mt-2 font-heading text-xl font-bold tracking-[-0.02em] text-[#0A1628]">{value}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  );
+function roundTo(value: number, increment: number) {
+  return Math.round(value / increment) * increment;
 }
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function trackCalcEvent(name: string, payload: Record<string, number | string>) {
+  if (typeof window === "undefined") return;
+
+  window.dispatchEvent(new CustomEvent(name, { detail: payload }));
+
+  const maybeDataLayer = window as Window & {
+    dataLayer?: Array<Record<string, number | string>>;
+  };
+  maybeDataLayer.dataLayer?.push({ event: name, ...payload });
+}
+
 
 export default function MathCalculator() {
-  const [costPerLead, setCostPerLead] = useState(225);
+  const calculatorRef = useRef<HTMLDivElement | null>(null);
+  const changedFieldsRef = useRef<Set<string>>(new Set());
+  const engagementTrackedRef = useRef(false);
+  const [costPerLead, setCostPerLead] = useState(250);
   const [monthlyLeads, setMonthlyLeads] = useState(60);
-  const [leakageRate, setLeakageRate] = useState(20);
+  const [leakageRate, setLeakageRate] = useState(18);
+  const [caseFeeInput, setCaseFeeInput] = useState("8000");
 
-  const leakedLeads = useMemo(() => monthlyLeads * (leakageRate / 100), [monthlyLeads, leakageRate]);
-  const wastedAdSpend = useMemo(() => monthlyLeads * costPerLead * (leakageRate / 100), [monthlyLeads, costPerLead, leakageRate]);
-  const potentialFeesLost = useMemo(() => leakedLeads * 50000, [leakedLeads]);
-  const animatedRisk = useAnimatedNumber(potentialFeesLost, 650);
-  const animatedAdSpend = useAnimatedNumber(wastedAdSpend, 650);
-  const animatedFees = useAnimatedNumber(potentialFeesLost, 650);
+  const averageCaseFee = useMemo(() => {
+    const parsed = Number(caseFeeInput);
+    return Number.isFinite(parsed) && parsed > 0 ? clamp(parsed, 2000, 75000) : 8000;
+  }, [caseFeeInput]);
 
-  const bars = [
-    { label: "Leads captured", value: monthlyLeads, height: 94, tone: "bg-white/70" },
-    { label: "Leads contacted", value: Math.round(monthlyLeads - leakedLeads), height: Math.max(24, 94 - leakageRate * 1.8), tone: "bg-[#C9A84C]" },
-    { label: "Leads lost", value: Math.round(leakedLeads), height: Math.max(20, leakageRate * 2.2), tone: "bg-red-400" },
-    { label: "Revenue risk", value: formatMoney(potentialFeesLost), height: Math.min(96, 36 + leakedLeads * 3.2), tone: "bg-gradient-to-t from-red-400 to-[#F3DE91]" },
-  ];
+  const totals = useMemo(() => {
+    const leakedLeadsPerMonth = monthlyLeads * (leakageRate / 100);
+    const monthlyLeakedSpend = leakedLeadsPerMonth * costPerLead;
+    const monthlyLeakedRevenue = leakedLeadsPerMonth * 0.2 * averageCaseFee;
+    const monthlyTotalLeak = monthlyLeakedSpend + monthlyLeakedRevenue;
+
+    return {
+      leakedLeadsPerMonth,
+      monthlyLeakedSpend,
+      monthlyLeakedRevenue,
+      monthlyTotalLeak,
+      headlineTotal: roundTo(monthlyTotalLeak, 1000),
+      annualTotal: roundTo(monthlyTotalLeak * 12, 1000),
+    };
+  }, [averageCaseFee, costPerLead, leakageRate, monthlyLeads]);
+
+  const animatedTotal = useAnimatedNumber(totals.headlineTotal, 260, true);
+
+  useEffect(() => {
+    const node = calculatorRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          trackCalcEvent("calc_viewed", { section: "math" });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const snapshot = (next = {}) => {
+    const values = {
+      cpl: costPerLead,
+      leads: monthlyLeads,
+      leakage: leakageRate,
+      fee: averageCaseFee,
+      ...next,
+    };
+    const leaked = values.leads * (values.leakage / 100);
+    const spend = leaked * values.cpl;
+    const revenue = leaked * 0.2 * values.fee;
+
+    return {
+      ...values,
+      total: spend + revenue,
+    };
+  };
+
+  const trackInputChange = (field: string, value: number, next = {}) => {
+    const current = snapshot(next);
+    changedFieldsRef.current.add(field);
+
+    trackCalcEvent("calc_input_changed", {
+      field,
+      value,
+      current_total: Math.round(current.total),
+    });
+
+    if (!engagementTrackedRef.current && changedFieldsRef.current.size >= 2) {
+      engagementTrackedRef.current = true;
+      trackCalcEvent("calc_meaningful_engagement", {
+        cpl: current.cpl,
+        leads: current.leads,
+        leakage: current.leakage,
+        fee: current.fee,
+        total: Math.round(current.total),
+      });
+    }
+  };
+
+  const updateHiddenFields = () => {
+    const form = document.querySelector<HTMLFormElement>("#audit form, form#audit, form[name='audit']");
+    if (!form) return;
+
+    const values = snapshot();
+    const fields = {
+      calc_cpl: values.cpl,
+      calc_leads: values.leads,
+      calc_leakage: values.leakage,
+      calc_fee: values.fee,
+      calc_total: Math.round(values.total),
+    };
+
+    Object.entries(fields).forEach(([name, value]) => {
+      let input = form.querySelector<HTMLInputElement>(`input[name="${name}"]`);
+      if (!input) {
+        input = document.createElement("input");
+        input.type = "hidden";
+        input.name = name;
+        form.appendChild(input);
+      }
+      input.value = String(value);
+    });
+  };
+
+  const handleCtaClick = () => {
+    updateHiddenFields();
+    trackCalcEvent("calc_cta_clicked", {
+      cpl: costPerLead,
+      leads: monthlyLeads,
+      leakage: leakageRate,
+      fee: averageCaseFee,
+      total: Math.round(totals.monthlyTotalLeak),
+    });
+  };
 
   return (
-    <div className="grid items-stretch gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-      <div className="rounded-[28px] border border-white/12 bg-white/[0.08] p-6 shadow-[0_12px_35px_rgba(0,0,0,0.035)] backdrop-blur md:p-8">
-        <div className="rounded-2xl border border-[#C9A84C]/30 bg-[#C9A84C]/10 p-5">
-          <p className="text-sm font-semibold text-[#F3DE91]">You're likely losing</p>
-          <p className="mt-2 font-heading text-4xl font-bold tracking-[-0.05em] text-white md:text-6xl">{formatMoney(animatedRisk)}</p>
-          <p className="mt-3 text-sm leading-6 text-white/70">
-            That's {formatMoney(animatedAdSpend)} in wasted ad spend, and potentially {formatMoney(animatedFees)} in case fees you'll never collect.
-          </p>
-        </div>
+    <div ref={calculatorRef} className="grid items-start gap-6 lg:grid-cols-2 lg:gap-8">
+      <div className="space-y-4">
+        <RevealBlock delay={0.02}>
+          <CalculatorSlider
+            label="What you pay per lead"
+            helper="Google Ads, LSAs, lead vendors"
+            value={costPerLead}
+            min={5}
+            max={1000}
+            step={1}
+            display={`${formatMoney(costPerLead)} / lead`}
+            onChange={(value) => {
+              setCostPerLead(value);
+              trackInputChange("cpl", value, { cpl: value });
+            }}
+          />
+        </RevealBlock>
 
-        <div className="mt-8 space-y-7">
-          <Slider label="Cost per lead" min={150} max={300} value={costPerLead} prefix="$" onChange={setCostPerLead} />
-          <Slider label="Monthly lead volume" min={20} max={100} value={monthlyLeads} onChange={setMonthlyLeads} />
-          <Slider label="Estimated leakage rate" min={10} max={30} value={leakageRate} suffix="%" onChange={setLeakageRate} />
-        </div>
+        <RevealBlock delay={0.08}>
+          <CalculatorSlider
+            label="Leads you receive each month"
+            helper="Across all paid sources"
+            value={monthlyLeads}
+            min={1}
+            max={300}
+            step={1}
+            display={`${monthlyLeads} leads`}
+            onChange={(value) => {
+              setMonthlyLeads(value);
+              trackInputChange("leads", value, { leads: value });
+            }}
+          />
+        </RevealBlock>
 
-        <a href="#final-cta" className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#C9A84C] px-6 py-4 text-sm font-bold text-[#0A1628] shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition hover:-translate-y-0.5 hover:bg-[#DDBD64] sm:w-auto">
-          Stop Losing Cases - Get a Free Audit
-        </a>
-      </div>
+        <RevealBlock delay={0.14}>
+          <CalculatorSlider
+            label="Leads that go cold"
+            helper="After-hours misses, slow callbacks, dropped follow-up"
+            value={leakageRate}
+            min={0}
+            max={100}
+            step={1}
+            display={`${leakageRate}%`}
+            onChange={(value) => {
+              setLeakageRate(value);
+              trackInputChange("leakage", value, { leakage: value });
+            }}
+          />
+        </RevealBlock>
 
-      <div className="rounded-[28px] border border-white/12 bg-white/[0.06] p-6 backdrop-blur md:p-8">
-        <div className="mb-8 flex items-center justify-between">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#C9A84C]">Revenue Risk Snapshot</p>
-            <h3 className="mt-2 font-heading text-2xl font-semibold text-white">Leakage model</h3>
-          </div>
-          <span className="rounded-full border border-white/10 px-3 py-1 text-xs font-semibold text-white/70">Live</span>
-        </div>
-        <div className="flex h-[330px] items-end gap-4 rounded-2xl border border-white/10 bg-[#07111f] p-5">
-          {bars.map((bar) => (
-            <div key={bar.label} className="flex h-full flex-1 flex-col justify-end gap-3">
-              <div className="flex flex-1 items-end rounded-xl bg-white/[0.03] p-2">
-                <div className={`w-full rounded-t-xl ${bar.tone} transition-all duration-500`} style={{ height: `${bar.height}%` }} />
-              </div>
+        <RevealBlock delay={0.2}>
+          <div className="rounded-2xl border border-white/[0.12] bg-white/[0.08] p-5 shadow-[0_12px_40px_rgba(0,0,0,0.2)] backdrop-blur-md transition duration-300 hover:scale-[1.01] md:p-6">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <p className="text-xs font-semibold text-white">{bar.value}</p>
-                <p className="mt-1 text-[11px] leading-4 text-white/50">{bar.label}</p>
+                <label htmlFor="average-case-fee" className="font-heading text-lg font-semibold text-white/90">Your average case fee</label>
+                <p className="mt-1 text-sm leading-6 text-white/60">Typical attorney fee per signed PI case</p>
+              </div>
+              <div className="flex items-center rounded-full border border-white/[0.14] bg-white/[0.10] p-1">
+                <button
+                  type="button"
+                  aria-label="Decrease average case fee"
+                  className="grid size-9 place-items-center rounded-full text-lg font-semibold text-white transition hover:bg-white/10"
+                  onClick={() => {
+                    const next = clamp(averageCaseFee - 500, 2000, 75000);
+                    setCaseFeeInput(String(next));
+                    trackInputChange("fee", next, { fee: next });
+                  }}
+                >
+                  -
+                </button>
+                <input
+                  id="average-case-fee"
+                  className="h-9 w-28 bg-transparent text-center text-sm font-bold text-white outline-none"
+                  inputMode="numeric"
+                  value={caseFeeInput === "" ? "" : formatMoney(averageCaseFee)}
+                  onChange={(event) => {
+                    const raw = event.target.value.replace(/[^\d]/g, "");
+                    setCaseFeeInput(raw);
+                    const next = raw === "" ? 8000 : clamp(Number(raw), 2000, 75000);
+                    trackInputChange("fee", next, { fee: next });
+                  }}
+                  onBlur={() => {
+                    const parsed = Number(caseFeeInput);
+                    setCaseFeeInput(String(Number.isFinite(parsed) && parsed > 0 ? clamp(parsed, 2000, 75000) : 8000));
+                  }}
+                />
+                <button
+                  type="button"
+                  aria-label="Increase average case fee"
+                  className="grid size-9 place-items-center rounded-full text-lg font-semibold text-white transition hover:bg-white/10"
+                  onClick={() => {
+                    const next = clamp(averageCaseFee + 500, 2000, 75000);
+                    setCaseFeeInput(String(next));
+                    trackInputChange("fee", next, { fee: next });
+                  }}
+                >
+                  +
+                </button>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        </RevealBlock>
       </div>
+
+      <RevealBlock delay={0.12} className="lg:sticky lg:top-28">
+        <div className="rounded-[28px] border border-white/[0.15] bg-white/[0.12] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.25)] backdrop-blur-lg transition duration-300 hover:scale-[1.01] md:p-8">
+          <p className="text-xs font-bold uppercase text-white/80">Intake Leak Estimate</p>
+          <h3 className="mt-4 max-w-xl font-heading text-[24px] font-semibold leading-[1.2] text-white md:text-[30px]">
+            You're losing approximately{" "}
+            <span className="block pt-3 font-heading text-[38px] font-bold leading-none text-[#fcb61f] md:text-[56px] lg:text-[64px]">
+              {formatMoney(animatedTotal)}
+            </span>
+            <span className="mt-3 block text-[24px] md:text-[30px]">every month.</span>
+          </h3>
+
+          <div className="mt-8 space-y-3 border-y border-white/[0.12] py-5">
+            <BreakdownLine value={formatMoney(roundTo(totals.monthlyLeakedSpend, 100))} label="in paid lead spend you can't recover" />
+            <BreakdownLine value={formatMoney(roundTo(totals.monthlyLeakedRevenue, 100))} label="in case fees walking to your competitor" />
+            <BreakdownLine value={formatMoney(totals.annualTotal)} label="over 12 months" strong />
+          </div>
+
+          <a
+            href="#audit"
+            onClick={handleCtaClick}
+            className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#fcb61f] px-7 py-4 text-sm font-bold text-[#0A1628] shadow-[0_10px_30px_rgba(252,182,31,0.25)] transition hover:-translate-y-0.5 hover:bg-[#ffc542]"
+          >
+            See the full breakdown
+          </a>
+          <p className="mt-4 text-center text-sm font-semibold text-white/60">30-minute audit. We map every leak point in your intake. Free.</p>
+          <p className="mt-6 text-xs leading-5 text-white/60">
+            Estimates based on industry-average conversion rates for plaintiff-side personal injury firms. Your actual leak may be higher or lower; the audit will tell you exactly.
+          </p>
+        </div>
+      </RevealBlock>
     </div>
   );
 }
 
-function Slider({ label, min, max, value, prefix = "", suffix = "", onChange }: { label: string; min: number; max: number; value: number; prefix?: string; suffix?: string; onChange: (value: number) => void }) {
+function BreakdownLine({ value, label, strong = false }: { value: string; label: string; strong?: boolean }) {
   return (
-    <label className="block">
-      <span className="flex items-center justify-between gap-4 text-sm font-semibold text-white">
-        <span>{label}</span>
-        <span className="rounded-full bg-white/10 px-3 py-1 text-[#F3DE91]">{prefix}{value}{suffix}</span>
+    <div className="flex flex-col gap-1 rounded-2xl bg-white/[0.07] px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-5">
+      <p className={`font-heading text-xl font-bold text-white ${strong ? "md:text-2xl" : ""}`}>{value}</p>
+      <p className="text-sm leading-6 text-white/80 sm:max-w-[260px] sm:text-right">{label}</p>
+    </div>
+  );
+}
+
+function CalculatorSlider({
+  label,
+  helper,
+  value,
+  min,
+  max,
+  step,
+  display,
+  onChange,
+}: {
+  label: string;
+  helper: string;
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  display: string;
+  onChange: (value: number) => void;
+}) {
+  const progress = ((value - min) / (max - min)) * 100;
+
+  return (
+    <label className="block rounded-2xl border border-white/[0.12] bg-white/[0.08] p-5 shadow-[0_12px_40px_rgba(0,0,0,0.2)] backdrop-blur-md transition duration-300 hover:scale-[1.01] md:p-6">
+      <span className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <span>
+          <span className="block font-heading text-lg font-semibold text-white/90">{label}</span>
+          <span className="mt-1 block text-sm leading-6 text-white/60">{helper}</span>
+        </span>
+        <span className="rounded-full border border-white/[0.14] bg-white/[0.10] px-4 py-2 text-sm font-bold text-white">{display}</span>
       </span>
       <input
-        className="mt-4 w-full accent-[#C9A84C]"
+        className="diagnostic-slider mt-6 w-full"
         type="range"
         min={min}
         max={max}
+        step={step}
         value={value}
+        style={{ background: `linear-gradient(90deg, #fcb61f ${progress}%, rgba(255,255,255,0.2) ${progress}%)` }}
         onChange={(event) => onChange(Number(event.target.value))}
       />
     </label>

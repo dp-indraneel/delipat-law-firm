@@ -2,26 +2,15 @@
 import Image from "next/image";
 import AIIntakePhone from "@/components/AIIntakePhone";
 import Navbar from "@/components/Navbar";
-import MathCalculator, { HeroRevenueCard } from "@/components/Interactive";
+import MathCalculator from "@/components/Interactive";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import RevealBlock from "@/components/RevealBlock";
 
-const customerNotes = [
-  {
-    quote: "We had someone call at 8pm on a Friday. By Monday morning, they'd already hired someone else.",
-    role: "Managing Partner, PI Firm",
-    tag: "After-hours lead",
-  },
-  {
-    quote: "I'm running $35,000 a month in Google Ads and my intake coordinator goes home at 5.",
-    role: "Owner, Growth-Focused PI Firm",
-    tag: "Paid acquisition risk",
-  },
-  {
-    quote: "We had 90 leads come in last month. I asked my team how many we actually spoke to. Nobody knew.",
-    role: "Founding Attorney, PI Firm",
-    tag: "Reporting gap",
-  },
+const intakeRealityQuotes = [
+  "“She called Friday at 9pm. Signed elsewhere by Monday.”",
+  "“Half our paid leads never get a callback.”",
+  "“We’re spending thousands on Google, but can’t trace signed cases.”",
+  "“By the time we follow up, they’ve already hired someone else.”",
 ];
 
 const features = [
@@ -48,8 +37,8 @@ export default function Home() {
       <Hero />
       <RealityCheck />
       <InvisibleLeak />
-      {/* <MathSection />
-      <Reframe />
+      <MathSection />
+      {/* <Reframe />
       <Solution />
       <HowItWorks />
       <Proof />
@@ -94,9 +83,6 @@ function Hero() {
           </div>
           <p className="hero-reveal hero-reveal-4 mt-5 text-sm font-medium tracking-[-0.005em] text-[#4A5568]">Free audit · No pitch · Clear numbers in 48 hours</p>
         </div>
-        <div className="hero-reveal hero-reveal-5 mt-12 md:mt-16">
-          <HeroRevenueCard />
-        </div>
       </div>
     </section>
   );
@@ -105,49 +91,26 @@ function Hero() {
 function RealityCheck() {
   return (
     <AnimatedSection id="problem" className="py-[60px] md:py-[100px]">
-      <Container className="grid items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
-        <RevealBlock>
-          <Eyebrow>What We Hear Every Week</Eyebrow>
-          <h2 className={sectionHeading}>These are not marketing problems. They are intake gaps.</h2>
-          <p className={`mt-6 max-w-xl ${bodyText}`}>
-            Every week, PI firm owners tell us the same story: the ads are working, the leads are coming in, but the follow-up is inconsistent and nobody has a clear answer on what happened next.
+      <Container>
+        <RevealBlock className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9A7B24]">Intake Reality Check</p>
+          <h2 className={sectionHeading}>What We Hear Every Week</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 tracking-[-0.005em] text-[#4A5568] md:text-[16px]">
+            Real patterns from PI firms losing cases before intake even starts.
           </p>
-          <RevealBlock delay={0.08} className="mt-9 grid grid-cols-3 gap-3 rounded-[24px] border border-black/[0.08] bg-white/80 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.03)] backdrop-blur">
-            {[["90+", "Leads reviewed"], ["48h", "Audit turnaround"], ["5-12", "Follow-up touches"]].map(([value, label]) => (
-              <div key={label} className="rounded-2xl bg-[#FAFAFA] p-4">
-                <p className="font-heading text-2xl font-bold tracking-[-0.025em] text-[#0A1628] md:text-3xl">{value}</p>
-                <p className="mt-1 text-xs font-semibold uppercase leading-5 tracking-[0.12em] text-[#4A5568]">{label}</p>
-              </div>
-            ))}
-          </RevealBlock>
         </RevealBlock>
 
-        <div className="relative mx-auto w-full max-w-[620px] rounded-[32px] border border-black/[0.08] bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(245,245,245,0.78))] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.03)] md:p-6">
-          <div className="absolute -right-8 -top-8 -z-10 size-40 rounded-full bg-[#C9A84C]/20 blur-3xl" />
-          {customerNotes.map((note, index) => (
-            <RevealBlock key={note.quote} delay={index * 0.08}>
-              <article
-                className={`relative rounded-[24px] border border-black/[0.08] bg-white p-5 shadow-[0_6px_18px_rgba(0,0,0,0.025)] ${index === 1 ? "mt-[-10px] ml-0 md:ml-10" : ""} ${index === 2 ? "mt-[-10px] ml-0 md:ml-20" : ""}`}
-              >
-                <div className="absolute inset-y-5 left-0 w-1 rounded-r-full bg-[#C9A84C]" />
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="grid size-11 place-items-center rounded-full border border-[#C9A84C]/25 bg-[#C9A84C]/10 text-xs font-bold text-[#9A7B24]">D</div>
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#9A7B24]">{note.tag}</p>
-                      <p className="mt-1 text-sm font-semibold text-[#4A5568]">{note.role}</p>
-                    </div>
-                  </div>
-                  <span className="hidden rounded-full bg-[#F5F5F5] px-3 py-1 text-xs font-semibold text-[#4A5568] sm:block">Internal note</span>
-                </div>
-                <p className="mt-5 text-[17px] leading-[1.65] tracking-[-0.005em] text-[#0A1628]">"{note.quote}"</p>
-              </article>
+        <div className="mx-auto mt-10 grid max-w-[980px] gap-4 md:mt-12 md:grid-cols-2 md:gap-5">
+          {intakeRealityQuotes.map((quote, index) => (
+            <RevealBlock key={quote} delay={index * 0.08}>
+              <figure className="relative h-full rounded-[20px] border border-black/[0.06] bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.025)] md:p-7">
+                <span className="mb-7 block text-2xl font-semibold leading-none text-[#C9A84C]/45">/</span>
+                <blockquote className="text-[18px] font-medium leading-[1.55] tracking-[-0.01em] text-[#0A1628] md:text-[21px]">
+                  {quote}
+                </blockquote>
+              </figure>
             </RevealBlock>
           ))}
-          <RevealBlock delay={0.24} className="mt-4 rounded-[22px] border border-[#C9A84C]/25 bg-[#C9A84C]/10 p-5 shadow-[inset_0_1px_8px_rgba(0,0,0,0.025)]">
-            <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#9A7B24]">Pattern detected</p>
-            <p className="mt-2 text-[16px] leading-[1.65] tracking-[-0.005em] text-[#0A1628]">Response delay, no follow-up owner, no closed-loop reporting.</p>
-          </RevealBlock>
         </div>
       </Container>
     </AnimatedSection>
@@ -180,16 +143,27 @@ function InvisibleLeak() {
 
 function MathSection() {
   return (
-    <AnimatedSection id="calculator" className="bg-[#0A1628] py-[60px] md:py-[100px]">
-      <Container>
+    <AnimatedSection
+  id="calculator"
+  className="relative isolate overflow-hidden bg-[#0A1628] py-24 md:py-32"
+>
+     <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+  <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[#9a7b24]/20 rounded-full blur-[120px] animate-blob1" />
+  <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#fcb61f]/20 rounded-full blur-[120px] animate-blob2" />
+
+  {/* optional subtle grid */}
+  <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
+</div>
+      <div className="mx-auto w-full max-w-7xl px-6">
         <RevealBlock className="mb-12 max-w-3xl">
-          <Eyebrow dark>Run Your Numbers</Eyebrow>
-          <h2 className={darkSectionHeading}>See Exactly What Your Intake Gap Is Costing You.</h2>
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-white/80">Run Your Numbers</p>
+          <h2 className="mt-4 font-heading text-[34px] font-bold leading-[1.12] tracking-[-0.025em] text-white md:text-[48px] lg:text-[58px]">Most PI firms don’t lose cases. They leak them.</h2>
+          <p className="mt-5 max-w-2xl text-[17px] leading-[1.7] tracking-[-0.005em] text-white/70">Run your own numbers below. We’ve pre-filled realistic defaults based on PI intake patterns.</p>
         </RevealBlock>
         <RevealBlock delay={0.08}>
           <MathCalculator />
         </RevealBlock>
-      </Container>
+      </div>
     </AnimatedSection>
   );
 }
