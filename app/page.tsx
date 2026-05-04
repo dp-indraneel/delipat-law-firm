@@ -26,6 +26,58 @@ const steps = [
   ["Full Visibility", "Track every lead from inquiry to signed, or understand exactly why they didn't."],
 ];
 
+const founderNoteParagraphs = [
+  "I’m Rajesh Chatterjee. I founded DeliPat fifteen years ago.",
+  "I’m not a lawyer. My team isn’t either. We’re Salesforce CRM specialists, and for most of the last decade we’ve been helping US businesses fix the gap between “lead arrives” and “deal closes.”",
+  "I started looking at personal injury firms about two years ago. What I found surprised me. Every PI firm I sat down with was sharp on the legal work. Most were sharp on the marketing. But somewhere between the inquiry coming in and the retainer being signed, the system fell apart. Calls missed at 7pm. Follow-ups depending on whether someone remembered. Pipeline reports built from three different spreadsheets. Managing partners who couldn’t tell me how many leads converted last month, because nobody actually knew.",
+  "Most owners I talked to felt it but couldn’t name it. They thought they had a marketing problem. They didn’t. They had an intake problem wearing a marketing costume.",
+  "That’s what we fix. Not by selling you software you’ll never use. By auditing what’s actually broken, building the system to close it, and making sure your team uses what we ship.",
+  "The audit is free. It’s a real diagnosis, not a pitch. You’ll get a written report in 48 hours showing exactly where leads are leaking and what it’s costing you. If we’re a fit, we’ll talk about working together. If we’re not, the report is yours to keep. No pitch. Just answers.",
+];
+
+const faqItems = [
+  [
+    "Are you lawyers?",
+    "No. We’re Salesforce CRM specialists. We don’t advise on cases, settlements, or litigation strategy. Our work is the system between leads coming in and signed cases going out: intake response, follow-up cadence, pipeline tracking, reporting. Your legal practice stays your legal practice.",
+  ],
+  [
+    "We already use Lawmatics / Lead Docket / Captorra / Clio Grow. Why do we need you?",
+    "Most firms running these tools tell us the tool covers part of the job well, usually lead capture or basic intake. The gap is what happens after the form is filled out: structured follow-up across 5 to 12 touch points, after-hours response, pipeline visibility for partners, and reporting that ties spend to signed cases. We build the layer that connects what you already have. We don’t replace it.",
+  ],
+  [
+    "We’re a small firm. We can’t afford enterprise software.",
+    "You don’t need enterprise software. You need a system that fits your firm size. Our typical engagements are with 2 to 20-attorney firms, and pricing flexes against scope. The audit will tell you what’s worth fixing first and what can wait. If the math doesn’t work, we’ll tell you.",
+  ],
+  [
+    "How is the free audit actually free? What’s the catch?",
+    "There isn’t one. We do roughly 6 to 8 audits a month. Half lead to engagements. Half don’t, and we send the firm the written report anyway. The audit is how we figure out if we can help you. It’s also how you figure out if we’re worth working with. The report is yours to keep either way.",
+  ],
+  [
+    "What happens during the audit?",
+    "A 30-minute call to walk through your current intake setup: how leads come in, what happens after, who handles what, and where the visibility gaps sit. We’ll ask for view-only access to your existing CRM or a recent lead-tracking export if you have one. Within 48 hours, you get a written report with the leak points, the dollar impact, and what we’d fix first if we worked together.",
+  ],
+  [
+    "We’re based in the US. Are you?",
+    "We’re based in Durgapur, India, and we work US business hours. Our 50-person team handles implementations across 4 continents, and a meaningful share of our work is with US law firms. If after-hours support is part of what we build for you, we set that up to run in your time zone, not ours.",
+  ],
+  [
+    "How long does implementation take?",
+    "Depends on scope. Most PI firm engagements run 6 to 12 weeks from kickoff to a system your team is using daily. We don’t believe in “go live and good luck.” Adoption is part of the work. We stay involved until the system is actually being used, not just installed.",
+  ],
+  [
+    "Will we have to switch CRMs?",
+    "Probably not. We work inside whatever case management tool you already run, Filevine, Litify, CASEpeer, MyCase, Clio. Salesforce is our specialty for the intake and pipeline layer that connects to your existing case management. The audit will tell you whether anything in your current stack is actually worth replacing.",
+  ],
+  [
+    "What if we’re not running paid ads yet?",
+    "Then we’re probably not the right fit yet. Our work is most useful for firms with active lead-gen spend: Google Ads, LSAs, lead vendors, paid referrals. If you’re running on word-of-mouth and referrals only, you don’t have the leak we fix. Happy to stay in touch if that changes.",
+  ],
+  [
+    "What if we book the audit and decide we don’t want to work with you?",
+    "Then we don’t work together. You keep the report. We don’t run a “stay-on-the-list” sequence. If anything changes in 6 or 12 months and you want a follow-up, you reach out. That’s it.",
+  ],
+];
+
 const sectionHeading = "mt-4 font-heading text-[32px] font-bold leading-[1.18] tracking-[-0.025em] text-[#0A1628] md:text-[40px] lg:text-[46px]";
 const darkSectionHeading = `${sectionHeading} text-white`;
 const bodyText = "text-[17px] leading-[1.7] tracking-[-0.005em] text-[#4A5568]";
@@ -38,12 +90,14 @@ export default function Home() {
       <RealityCheck />
       <InvisibleLeak />
       <MathSection />
-      <Reframe />
+      <FounderNoteSection />
+      {/* <Reframe />
       <Solution />
       <HowItWorks />
       <Proof />
       <WhoItsFor />
-      <FinalCTA />
+      <FAQSection />
+      <FinalCTA /> */}
       <Footer />
     </main>
   );
@@ -90,7 +144,7 @@ function Hero() {
 
 function RealityCheck() {
   return (
-    <AnimatedSection id="problem" className="py-[60px] md:py-[100px] bg-[#F5F5F5]">
+    <AnimatedSection id="problem" className="py-[60px] md:py-[100px] bg-[#FAF6EC]">
       <Container>
         <RevealBlock className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9A7B24]">Intake Reality Check</p>
@@ -164,6 +218,63 @@ function MathSection() {
           <MathCalculator />
         </RevealBlock>
       </div>
+    </AnimatedSection>
+  );
+}
+
+function FounderNoteSection() {
+  return (
+    <AnimatedSection id="founder" className="relative isolate overflow-hidden bg-[#FAF6EC] py-[70px] md:py-[110px]">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_16%_18%,rgba(201,168,76,0.16),transparent_26%),radial-gradient(circle_at_86%_18%,rgba(10,22,40,0.05),transparent_22%)]" />
+      <Container>
+        <RevealBlock className="mx-auto max-w-3xl text-center">
+          <Eyebrow>WHY I BUILT THIS</Eyebrow>
+          <p className="mx-auto mt-5 font-heading text-[34px] font-semibold leading-[1.06] tracking-[-0.04em] text-[#0A1628] md:text-[42px]">
+            The intake leak most firms mistake for bad marketing.
+          </p>
+        </RevealBlock>
+      </Container>
+      <Container className="mt-12 grid items-start gap-12 lg:grid-cols-[0.4fr_0.6fr]">
+        <RevealBlock className="mx-auto w-full max-w-[400px] lg:sticky lg:top-28 lg:max-w-none">
+          {/* TODO: real Rajesh photo required before launch. Do not use stock or AI image. */}
+          <div className="relative overflow-hidden rounded-[32px] border border-[#C9A84C]/25 bg-[#EEDDB7] shadow-[0_22px_50px_rgba(10,22,40,0.12)]">
+            <div className="absolute inset-x-6 top-6 z-10 flex items-center justify-between rounded-full border border-white/35 bg-[#0A1628]/78 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80 backdrop-blur-sm">
+              <span>Founder</span>
+              <span>DeliPat</span>
+            </div>
+            <div className="relative aspect-[3/5] w-full">
+              <Image
+                src="/founder.avif"
+                alt="Rajesh Chatterjee, Founder and CEO of DeliPat"
+                fill
+                sizes="(max-width: 1024px) 280px, 40vw"
+                className="object-cover object-center"
+                priority
+              />
+            </div>
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/86 to-transparent px-6 pb-6 pt-20 text-white">
+              <div className="rounded-[22px] border border-white/12 bg-white/8 p-4 backdrop-blur-sm">
+                <p className="font-heading text-[24px] font-semibold tracking-[-0.03em]">Rajesh Chatterjee</p>
+                <p className="mt-1 text-sm tracking-[-0.005em] text-white/74">Founder &amp; CEO, DeliPat</p>
+                <p className="mt-3 border-t border-white/12 pt-3 text-[12px] font-medium leading-[1.6] tracking-[0.02em] text-white/78">
+                  Salesforce Ridge Partner · 15 years in CRM · 150+ implementations
+                </p>
+              </div>
+            </div>
+          </div>
+        </RevealBlock>
+        <div className="">
+          <div className="space-y-2">
+            {founderNoteParagraphs.map((paragraph, index) => (
+              <RevealBlock key={paragraph} delay={index * 0.06}>
+                <p className="text-[17px] leading-[1.8] tracking-[-0.01em] text-[#233247] md:text-[18px]">
+                  {paragraph}
+                </p>
+              </RevealBlock>
+            ))}
+          </div>
+        </div>
+      </Container>
     </AnimatedSection>
   );
 }
@@ -243,7 +354,7 @@ function IntakeDashboard() {
 
 function HowItWorks() {
   return (
-    <AnimatedSection id="process" className="bg-[#F5F5F5] py-[60px] md:py-[100px]">
+    <AnimatedSection id="process" className="bg-[#FAF6EC] py-[60px] md:py-[100px]">
       <Container>
         <RevealBlock className="max-w-2xl">
           <Eyebrow>The Process</Eyebrow>
@@ -307,6 +418,46 @@ function WhoItsFor() {
         <RevealBlock delay={0.24} className="mt-8">
           <a href="#final-cta" className="inline-flex w-full items-center justify-center rounded-full bg-[#C9A84C] px-7 py-4 text-sm font-bold text-[#0A1628] transition hover:-translate-y-0.5 sm:w-auto">This sounds like us - let's talk</a>
         </RevealBlock>
+      </Container>
+    </AnimatedSection>
+  );
+}
+
+function FAQSection() {
+  return (
+    <AnimatedSection id="faq" className="bg-white py-[70px] md:py-[110px]">
+      <Container>
+        <RevealBlock className="mx-auto max-w-[720px] text-center">
+          <Eyebrow>BEFORE YOU BOOK THE AUDIT</Eyebrow>
+          <h2 className={sectionHeading}>Questions PI Firm Owners Usually Ask</h2>
+        </RevealBlock>
+        <div className="mx-auto mt-12 max-w-[720px]">
+          {faqItems.map(([question, answer], index) => (
+            <RevealBlock key={question} delay={index * 0.04}>
+              <details
+                className="group border-b border-black/[0.08] py-1"
+                open={index === 3}
+              >
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-left marker:hidden">
+                  <span className="font-heading text-[21px] font-semibold leading-[1.35] tracking-[-0.02em] text-[#0A1628] md:text-[24px]">
+                    {question}
+                  </span>
+                  <span className="mt-1 grid size-7 shrink-0 place-items-center rounded-full text-[#C9A84C]">
+                    <span className="text-2xl font-light leading-none group-open:hidden">+</span>
+                    <span className="hidden text-[26px] font-light leading-none group-open:block">−</span>
+                  </span>
+                </summary>
+                <div className="grid grid-rows-[0fr] transition-[grid-template-rows,opacity] duration-300 ease-out group-open:grid-rows-[1fr]">
+                  <div className="overflow-hidden">
+                    <p className="pb-5 pr-12 text-[16px] leading-[1.8] tracking-[-0.005em] text-[#4A5568] md:text-[17px]">
+                      {answer}
+                    </p>
+                  </div>
+                </div>
+              </details>
+            </RevealBlock>
+          ))}
+        </div>
       </Container>
     </AnimatedSection>
   );
