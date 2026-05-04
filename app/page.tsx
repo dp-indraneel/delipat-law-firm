@@ -38,12 +38,12 @@ export default function Home() {
       <RealityCheck />
       <InvisibleLeak />
       <MathSection />
-      {/* <Reframe />
+      <Reframe />
       <Solution />
       <HowItWorks />
       <Proof />
       <WhoItsFor />
-      <FinalCTA /> */}
+      <FinalCTA />
       <Footer />
     </main>
   );
@@ -59,10 +59,10 @@ function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?:
 
 function Hero() {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden pt-28 md:pt-36">
-      <div className="absolute inset-0 -z-20 bg-[linear-gradient(rgba(10,22,40,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(10,22,40,0.035)_1px,transparent_1px)] bg-[size:42px_42px]" />
+    <section className="relative isolate overflow-hidden pt-28 md:pt-36">
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(rgba(10,22,40,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(10,22,40,0.015)_1px,transparent_1px)] bg-[size:42px_42px]" />
       <div className="hero-gradient-glow absolute left-1/2 top-10 -z-10 h-[520px] w-[min(92vw,980px)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,168,76,0.26),rgba(243,222,145,0.11)_38%,transparent_70%)] blur-2xl" />
-      <div className="mx-auto w-full px-5 pb-20 pt-8 md:pb-32">
+      <div className="mx-auto w-full px-5 pb-10 pt-12 md:pb-48">
         <div className="mx-auto max-w-[980px] text-center">
           <div className="hero-reveal hero-reveal-1">
             <Eyebrow>For PI Firms Running Paid Ads</Eyebrow>

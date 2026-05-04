@@ -180,7 +180,7 @@ export default function MathCalculator() {
 
   return (
     <div ref={calculatorRef} className="grid items-start gap-6 lg:grid-cols-2 lg:gap-8">
-      <div className="space-y-4">
+      <div className="space-y-6">
         <RevealBlock delay={0.02}>
           <CalculatorSlider
             label="What you pay per lead"
@@ -307,10 +307,7 @@ export default function MathCalculator() {
           >
             See the full breakdown
           </a>
-          <p className="mt-4 text-center text-sm font-semibold text-white/60">30-minute audit. We map every leak point in your intake. Free.</p>
-          <p className="mt-6 text-xs leading-5 text-white/60">
-            Estimates based on industry-average conversion rates for plaintiff-side personal injury firms. Your actual leak may be higher or lower; the audit will tell you exactly.
-          </p>
+
         </div>
       </RevealBlock>
     </div>
