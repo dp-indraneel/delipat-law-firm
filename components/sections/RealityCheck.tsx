@@ -26,8 +26,8 @@ export default function RealityCheck() {
           {intakeRealityQuotes.map((quote, index) => (
             <RevealBlock key={quote} delay={index * 0.08}>
               <figure className="relative h-full rounded-[20px] border border-black/[0.06] bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.025)] md:p-7">
-                <span className="mb-7 block text-2xl font-semibold leading-none text-[#C9A84C]/45">/</span>
-                <blockquote className="text-[18px] font-medium leading-[1.55] tracking-[-0.01em] text-[#0A1628] md:text-[21px]">
+                <span className="absolute left-4 top-4 block text-[120px] font-semibold leading-none text-[#C9A84C]/45">“</span>
+                <blockquote className="text-[18px] font-medium leading-[1.55] tracking-[-0.01em] mt-4 z-10 relative text-[#0A1628] md:text-[21px]">
                   {quote}
                 </blockquote>
               </figure>
