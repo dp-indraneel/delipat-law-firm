@@ -33,7 +33,7 @@ export default function Reframe() {
               <div className="flex w-full items-center justify-center lg:h-full">
                 <div className="flex flex-col items-center justify-center gap-3 lg:gap-4">
                   <div className="hidden h-10 w-px bg-[linear-gradient(180deg,rgba(10,22,40,0.08),rgba(201,168,76,0.28),rgba(10,22,40,0.08))] lg:block" />
-                  <div className="inline-flex items-center gap-3 rounded-full border border-[rgba(10,22,40,0.08)] bg-white/82 px-4 py-2 shadow-[0_8px_24px_rgba(10,22,40,0.04)] backdrop-blur-sm">
+                  <div className="inline-flex items-center gap-3">
                     <span className="h-px w-6 bg-[linear-gradient(90deg,rgba(10,22,40,0.18),rgba(201,168,76,0.8))] lg:w-7" />
                     <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9A7B24]">Reframe</span>
                     <span className="text-[#C9A84C] lg:translate-x-[1px]">→</span>
