@@ -8,7 +8,9 @@ import Reframe from "@/components/sections/Reframe";
 import Solution from "@/components/sections/Solution";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Proof from "@/components/sections/Proof";
+import WhoThisIsFor from "@/components/sections/WhoThisIsFor";
 import FAQSection from "@/components/sections/FAQSection";
+import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
 
 export default function Home() {
@@ -25,6 +27,8 @@ export default function Home() {
       <HowItWorks />
       <Proof />
       <FAQSection />
+      {/* <WhoThisIsFor /> */}
+      <FinalCTA />
       <Footer />
     </main>
   );
