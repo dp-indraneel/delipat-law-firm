@@ -18,10 +18,10 @@ export default function Home() {
       <Navbar />
       <Hero />
       <RealityCheck />
-      <Reframe />
       <InvisibleLeak />
       <MathSection />
       <FounderNoteSection />
+      <Reframe />
       <Solution />
       <HowItWorks />
       <Proof />
