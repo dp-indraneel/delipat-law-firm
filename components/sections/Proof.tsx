@@ -11,7 +11,7 @@ const stats = [
   },
   {
     value: "$31K",
-    text: "Average monthly leak we find in firms running $20K+/month in paid acquisition. Lead spend wasted plus expected case fees lost.",
+    text: "verage monthly leak we find in firms running $20K+/month in paid acquisition. Lead spend wasted plus expected case fees lost.",
   },
   {
     value: "18 → 34%",
@@ -29,7 +29,7 @@ export default function Proof() {
             Patterns from the last twelve months.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-[16px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] sm:text-[17px] md:text-[18px]">
-            We don’t have a wall of logos yet. We do have data from every PI firm we’ve audited so far.
+           We don’t have a wall of logos yet. We do have data from every PI firm we’ve audited so far.
           </p>
         </RevealBlock>
 

@@ -5,23 +5,23 @@ import { motion } from "framer-motion";
 const timelineSteps = [
   {
     number: "01",
-    title: "Lead comes in",
-    body: "Call, form, or chat.",
+    title: "Instant lead response",
+    body: "Every inquiry, call, form, chat, after-hours, gets logged, qualified, and routed in under sixty seconds. No more voicemails sitting in someone’s queue until Monday.",
   },
   {
     number: "02",
-    title: "Immediate response",
-    body: "The lead gets contacted right away.",
+    title: "Structured follow-up",
+    body: "Five to twelve touch points per lead. Built once, runs every time. Stops depending on whether your intake coordinator remembered to follow up after lunch.",
   },
   {
     number: "03",
-    title: "Follow-up continues",
-    body: "Structured follow-up across 5 to 12 touches.",
+    title: "Pipeline you can actually see",
+    body: "One dashboard. How many leads came in this week. How many are still in play. Which ones converted and which ones leaked. Your managing partner can answer it in thirty seconds, not three meetings.",
   },
   {
     number: "04",
-    title: "Full visibility",
-    body: "You see every lead from inquiry to signed or lost.",
+    title: "Reporting that ties spend to signed cases",
+    body: "Cost per signed case by channel. Intake conversion by source. Partner-level case mix. The numbers you’ve been guessing at, finally on a dashboard.",
   },
 ];
 

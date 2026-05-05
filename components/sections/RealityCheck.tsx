@@ -4,9 +4,9 @@ import { Container, sectionHeading, sectionPadding } from "./shared";
 
 const intakeRealityQuotes = [
   "“She called Friday at 9pm. Signed elsewhere by Monday.”",
-  "“Half our paid leads never get a callback.”",
-  "“We’re spending thousands on Google, but can’t trace signed cases.”",
-  "“By the time we follow up, they’ve already hired someone else.”",
+  "“We're spending thousands on Google. Can't trace one signed case back to a campaign.”",
+  "“My intake girl leaves at 5. After that, the phone rolls to voicemail and that's it”",
+  "“Half our paid leads never get a callback. I find out at the quarterly review.”",
 ];
 
 export default function RealityCheck() {
@@ -15,10 +15,10 @@ export default function RealityCheck() {
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_22%,rgba(10,22,40,0.03),transparent_28%),radial-gradient(circle_at_78%_36%,rgba(201,168,76,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.45),rgba(250,250,250,0.96))]" />
       <Container>
         <RevealBlock className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9A7B24]">Intake Reality Check</p>
-          <h2 className={sectionHeading}>What We Hear Every Week</h2>
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9A7B24]">INTAKE REALITY CHECK</p>
+          <h2 className={sectionHeading}>What we hear every week.</h2>
           <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 tracking-[-0.005em] text-[#4A5568] md:text-[16px]">
-            Real patterns from PI firms losing cases before intake even starts.
+           Real patterns from PI firms losing cases before intake even starts.
           </p>
         </RevealBlock>
 

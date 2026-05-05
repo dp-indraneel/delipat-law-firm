@@ -9,23 +9,20 @@ export default function Hero() {
       <div className="mx-auto w-full px-5 pb-10 pt-12 md:pb-48">
         <div className="mx-auto max-w-[980px] text-center">
           <div className="hero-reveal hero-reveal-1">
-            <Eyebrow>For PI Firms Running Paid Ads</Eyebrow>
+            <Eyebrow>FOR PI FIRMS RUNNING PAID ADS</Eyebrow>
           </div>
           <h1 className="hero-reveal hero-reveal-2 mx-auto mt-6 max-w-4xl font-heading text-[40px] font-bold leading-[1.08] tracking-[-0.03em] text-[#0A1628] sm:text-[42px] md:text-[58px] lg:text-[64px]">
-            The Case You Didn't Call Back Was a $50,000 Fee.
+            The case you didn’t call back was a $50,000 fee.
           </h1>
           <p className={`hero-reveal hero-reveal-3 mx-auto mt-6 max-w-2xl text-lg md:text-xl ${bodyText}`}>
-            Most PI firms lose high-value cases before intake even begins. We fix that.
+            Most PI firms lose high-value cases before intake even begins. Not because of bad leads. Because of broken intake.
           </p>
           <div className="hero-reveal hero-reveal-4 mx-auto mt-9 flex max-w-[460px] flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
             <a href="#calculator" className="inline-flex items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition hover:-translate-y-0.5 hover:bg-[#172941]">
-              See What You're Losing
-            </a>
-            <a href="#process" className="inline-flex items-center justify-center rounded-full border border-black/[0.08] bg-white px-7 py-4 text-sm font-bold text-[#0A1628] shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition hover:-translate-y-0.5 hover:border-[#C9A84C]/50">
-              How It Works
+              Book your free diagnostic
             </a>
           </div>
-          <p className="hero-reveal hero-reveal-4 mt-5 text-sm font-medium tracking-[-0.005em] text-[#4A5568]">Free audit · No pitch · Clear numbers in 48 hours</p>
+          <p className="hero-reveal hero-reveal-4 mt-5 text-sm font-medium tracking-[-0.005em] text-[#4A5568]">30-minute call · No pitch · Just answers</p>
         </div>
       </div>
     </section>

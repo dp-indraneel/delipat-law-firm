@@ -3,13 +3,22 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import RevealBlock from "@/components/RevealBlock";
 import { Container, Eyebrow, sectionGap, sectionHeading, sectionPadding } from "./shared";
 
+function numberToWords(num: number): string {
+  const words = [
+    "zero","one","two","three","four",
+    "five","six","seven","eight","nine","ten"
+  ];
+  return words[num] || num.toString();
+}
+
 const founderNoteParagraphs = [
-  "I’m Rajesh Chatterjee. I founded DeliPat fifteen years ago.",
+  `I’m Rajesh Chatterjee. I founded DeliPat ${numberToWords(new Date().getFullYear() - 2019)} years ago.`,
   "I’m not a lawyer. My team isn’t either. We’re Salesforce CRM specialists, and for most of the last decade we’ve been helping US businesses fix the gap between “lead arrives” and “deal closes.”",
-  "I started looking at personal injury firms about two years ago. What I found surprised me. Every PI firm I sat down with was sharp on the legal work. Most were sharp on the marketing. But somewhere between the inquiry coming in and the retainer being signed, the system fell apart. Calls missed at 7pm. Follow-ups depending on whether someone remembered. Pipeline reports built from three different spreadsheets. Managing partners who couldn’t tell me how many leads converted last month, because nobody actually knew.",
+  "I started looking at personal injury firms about two years ago. What I found surprised me.",
+  "Every PI firm I sat down with was sharp on the legal work. Most were sharp on the marketing. But somewhere between the inquiry coming in and the retainer being signed, the system fell apart. Calls missed at 7pm. Follow-ups depending on whether someone remembered. Pipeline reports built from three different spreadsheets. Managing partners who couldn’t tell me how many leads converted last month, because nobody actually knew.",
   "Most owners I talked to felt it but couldn’t name it. They thought they had a marketing problem. They didn’t. They had an intake problem wearing a marketing costume.",
   "That’s what we fix. Not by selling you software you’ll never use. By auditing what’s actually broken, building the system to close it, and making sure your team uses what we ship.",
-  "The audit is free. It’s a real diagnosis, not a pitch. You’ll get a written report in 48 hours showing exactly where leads are leaking and what it’s costing you. If we’re a fit, we’ll talk about working together. If we’re not, the report is yours to keep. No pitch. Just answers.",
+  "The first conversation is free. It’s a real diagnosis, not a pitch. Thirty minutes. We walk through your intake setup, name the leaks, and you decide what to do with that. If we’re a fit, we’ll talk about working together. If not, you’ll have a clearer picture of what to fix."
 ];
 
 export default function FounderNoteSection() {
@@ -19,7 +28,7 @@ export default function FounderNoteSection() {
       <Container>
         <RevealBlock className="mx-auto max-w-3xl text-center">
           <Eyebrow>WHY I BUILT THIS</Eyebrow>
-          <p className={sectionHeading}>The intake leak most firms mistake for bad marketing.</p>
+          {/* <p className={sectionHeading}>The intake leak most firms mistake for bad marketing.</p> */}
         </RevealBlock>
       </Container>
       <Container className={`mt-12 grid items-start ${sectionGap} lg:grid-cols-[0.4fr_0.6fr]`}>
@@ -43,14 +52,14 @@ export default function FounderNoteSection() {
               <div className="rounded-[22px] border border-white/12 bg-white/8 p-4 backdrop-blur-sm">
                 <p className="font-heading text-[24px] font-semibold tracking-[-0.03em]">Rajesh Chatterjee</p>
                 <p className="mt-1 text-sm tracking-[-0.005em] text-white/74">Founder &amp; CEO, DeliPat</p>
-                <p className="mt-3 border-t border-white/12 pt-3 text-[12px] font-medium leading-[1.6] tracking-[0.02em] text-white/78">
-                  Salesforce Ridge Partner · 15 years in CRM · 150+ implementations
+                <p className="mt-3 border-t border-white/12 pt-3 text-[12px] font-medium leading-[1.6] tracking-[0.02em] text-white/78">                
+                  Salesforce Ridge Partner · {new Date().getFullYear() - 2019} years in CRM · 150+ implementations
                 </p>
               </div>
             </div>
           </div>
         </RevealBlock>
-        <div className="space-y-2">
+        <div className="space-y-1 flex flex-col justify-center h-full">
           {founderNoteParagraphs.map((paragraph, index) => (
             <RevealBlock key={paragraph} delay={index * 0.06}>
               <p className="text-[17px] leading-[1.8] tracking-[-0.01em] text-[#233247] md:text-[18px]">
@@ -58,6 +67,9 @@ export default function FounderNoteSection() {
               </p>
             </RevealBlock>
           ))}
+          <p className="text-[17px] leading-[1.8] tracking-[-0.01em] text-[#233247] md:text-[18px] font-bold">
+                No pitch. Just answers.
+              </p>
         </div>
       </Container>
     </AnimatedSection>

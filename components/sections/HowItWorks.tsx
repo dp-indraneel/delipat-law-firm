@@ -8,11 +8,11 @@ export default function HowItWorks() {
     <AnimatedSection id="process" className={`relative isolate overflow-hidden bg-[#FAF6EC] ${sectionPadding}`}>
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_22%,rgba(10,22,40,0.03),transparent_28%),radial-gradient(circle_at_78%_36%,rgba(201,168,76,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.45),rgba(250,250,250,0.96))]" />
       <Container>
-        <RevealBlock className="mx-auto max-w-3xl text-center">
-          <Eyebrow>How It Works</Eyebrow>
-          <h2 className={sectionHeading}>From first inquiry to signed case — without the gaps.</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-[16px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] sm:text-[17px] md:text-[18px]">
-            Four simple steps. Every lead gets handled, followed up, and tracked.
+        <RevealBlock className="mx-auto max-w-[768px] text-center">
+          <Eyebrow>WHAT THE FIX LOOKS LIKE</Eyebrow>
+          <h2 className={sectionHeading}>Four moving parts. Built into one system your team actually uses.</h2>
+          <p className="mx-auto mt-5 max-w-[1024px] text-[16px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] sm:text-[17px] md:text-[18px]">
+          We work inside the case management tools you already pay for. Filevine, Litify, CASEpeer, MyCase, Clio. Salesforce sits on top, handling the intake and pipeline layer.
           </p>
         </RevealBlock>
         <div className="mt-12 sm:mt-14 md:mt-16">

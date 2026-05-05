@@ -14,12 +14,12 @@ export default function MathSection() {
       </div>
       <Container>
         <RevealBlock className="mb-12 max-w-3xl">
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#9A7B24]">Run Your Numbers</p>
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#9A7B24]">RUN YOUR NUMBERS</p>
           <h2 className="mt-4 font-heading text-[24px] font-bold leading-[1.06] tracking-[-0.05em] text-[#0A1628] sm:text-[36px] md:text-[42px]">
             Most PI firms don’t lose cases. They leak them.
           </h2>
           <p className="mt-5 max-w-2xl text-[17px] leading-[1.7] tracking-[-0.005em] text-[#4A5568]">
-            Run your own numbers below. We’ve pre-filled realistic defaults based on PI intake patterns.
+            Run your own numbers below. We’ve pre-filled defaults from real PI intake patterns.
           </p>
         </RevealBlock>
         <RevealBlock delay={0.08}>

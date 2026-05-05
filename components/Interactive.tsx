@@ -55,10 +55,10 @@ export default function MathCalculator() {
   const calculatorRef = useRef<HTMLDivElement | null>(null);
   const changedFieldsRef = useRef<Set<string>>(new Set());
   const engagementTrackedRef = useRef(false);
-  const [costPerLead, setCostPerLead] = useState(250);
-  const [monthlyLeads, setMonthlyLeads] = useState(60);
-  const [leakageRate, setLeakageRate] = useState(18);
-  const [caseFeeInput, setCaseFeeInput] = useState("8000");
+  const [costPerLead, setCostPerLead] = useState(300);
+  const [monthlyLeads, setMonthlyLeads] = useState(75);
+  const [leakageRate, setLeakageRate] = useState(22);
+  const [caseFeeInput, setCaseFeeInput] = useState("12000");
 
   const averageCaseFee = useMemo(() => {
     const parsed = Number(caseFeeInput);
@@ -179,7 +179,7 @@ export default function MathCalculator() {
 
   return (
     <div ref={calculatorRef} className="grid items-start gap-6 lg:grid-cols-2 lg:gap-8">
-      <div className="space-y-6">
+      <div className="space-y-8">
         <RevealBlock delay={0.02}>
           <CalculatorSlider
             label="What you pay per lead"
@@ -285,7 +285,7 @@ export default function MathCalculator() {
       <RevealBlock delay={0.12} className="lg:sticky lg:top-28">
         <div className="rounded-[28px] border border-[rgba(10,22,40,0.08)] bg-white/82 p-6 shadow-[0_18px_60px_rgba(10,22,40,0.075)] backdrop-blur-lg transition duration-300 hover:scale-[1.01] md:p-8">
           <p className="text-xs font-bold uppercase text-[#9A7B24]">Intake Leak Estimate</p>
-          <h3 className="mt-4 max-w-xl font-heading text-[24px] font-semibold leading-[1.2] text-[#0A1628] md:text-[30px]">
+          <h3 className="mt-2 max-w-xl font-heading text-[24px] font-semibold leading-[1.2] text-[#0A1628] md:text-[30px]">
             You're losing approximately{" "}
             <span className="block pt-3 font-heading text-[38px] font-bold leading-none text-[#C9A84C] md:text-[56px] lg:text-[64px]">
               {formatMoney(animatedTotal)}
@@ -304,9 +304,9 @@ export default function MathCalculator() {
             onClick={handleCtaClick}
             className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_10px_30px_rgba(10,22,40,0.12)] transition hover:-translate-y-0.5 hover:bg-[#13243A]"
           >
-            See the full breakdown
+             Map my leaks  →  Free diagnostic
           </a>
-
+<p className="text-sm text-center mt-2 text-[#4A5568] w-[90%] m-auto">{`30-minute call. We walk through your intake setup and tell you where it’s leaking. No pitch.`}</p>
         </div>
       </RevealBlock>
     </div>
@@ -317,7 +317,7 @@ function BreakdownLine({ value, label, strong = false }: { value: string; label:
   return (
     <div className="flex flex-col gap-1 rounded-2xl bg-[#FAFAFA] px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-5">
       <p className={`font-heading text-xl font-bold text-[#0A1628] ${strong ? "md:text-2xl" : ""}`}>{value}</p>
-      <p className="text-sm leading-6 text-[#4A5568] sm:max-w-[260px] sm:text-right">{label}</p>
+      <p className="text-sm leading-6 text-[#4A5568] sm:max-w-[360px] sm:text-right">{label}</p>
     </div>
   );
 }
