@@ -2,7 +2,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useMotionTemplate, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import RevealBlock from "@/components/RevealBlock";
 
 function formatMoney(value: number) {
@@ -230,17 +229,17 @@ export default function MathCalculator() {
         </RevealBlock>
 
         <RevealBlock delay={0.2}>
-          <div className="rounded-2xl border border-white/[0.12] bg-white/[0.08] p-5 shadow-[0_12px_40px_rgba(0,0,0,0.2)] backdrop-blur-md transition duration-300 hover:scale-[1.01] md:p-6">
+          <div className="rounded-2xl border border-[rgba(10,22,40,0.08)] bg-white/80 p-5 shadow-[0_12px_40px_rgba(10,22,40,0.055)] backdrop-blur-md transition duration-300 hover:scale-[1.01] md:p-6">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <label htmlFor="average-case-fee" className="font-heading text-lg font-semibold text-white/90">Your average case fee</label>
-                <p className="mt-1 text-sm leading-6 text-white/60">Typical attorney fee per signed PI case</p>
+                <label htmlFor="average-case-fee" className="font-heading text-lg font-semibold text-[#0A1628]">Your average case fee</label>
+                <p className="mt-1 text-sm leading-6 text-[#4A5568]">Typical attorney fee per signed PI case</p>
               </div>
-              <div className="flex items-center rounded-full border border-white/[0.14] bg-white/[0.10] p-1">
+              <div className="flex items-center rounded-full border border-[rgba(10,22,40,0.1)] bg-[#FAFAFA] p-1">
                 <button
                   type="button"
                   aria-label="Decrease average case fee"
-                  className="grid size-9 place-items-center rounded-full text-lg font-semibold text-white transition hover:bg-white/10"
+                  className="grid size-9 place-items-center rounded-full text-lg font-semibold text-[#0A1628] transition hover:bg-[#C9A84C]/12"
                   onClick={() => {
                     const next = clamp(averageCaseFee - 500, 2000, 75000);
                     setCaseFeeInput(String(next));
@@ -251,7 +250,7 @@ export default function MathCalculator() {
                 </button>
                 <input
                   id="average-case-fee"
-                  className="h-9 w-28 bg-transparent text-center text-sm font-bold text-white outline-none"
+                  className="h-9 w-28 bg-transparent text-center text-sm font-bold text-[#0A1628] outline-none"
                   inputMode="numeric"
                   value={caseFeeInput === "" ? "" : formatMoney(averageCaseFee)}
                   onChange={(event) => {
@@ -268,7 +267,7 @@ export default function MathCalculator() {
                 <button
                   type="button"
                   aria-label="Increase average case fee"
-                  className="grid size-9 place-items-center rounded-full text-lg font-semibold text-white transition hover:bg-white/10"
+                  className="grid size-9 place-items-center rounded-full text-lg font-semibold text-[#0A1628] transition hover:bg-[#C9A84C]/12"
                   onClick={() => {
                     const next = clamp(averageCaseFee + 500, 2000, 75000);
                     setCaseFeeInput(String(next));
@@ -284,17 +283,17 @@ export default function MathCalculator() {
       </div>
 
       <RevealBlock delay={0.12} className="lg:sticky lg:top-28">
-        <div className="rounded-[28px] border border-white/[0.15] bg-white/[0.12] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.25)] backdrop-blur-lg transition duration-300 hover:scale-[1.01] md:p-8">
-          <p className="text-xs font-bold uppercase text-white/80">Intake Leak Estimate</p>
-          <h3 className="mt-4 max-w-xl font-heading text-[24px] font-semibold leading-[1.2] text-white md:text-[30px]">
+        <div className="rounded-[28px] border border-[rgba(10,22,40,0.08)] bg-white/82 p-6 shadow-[0_18px_60px_rgba(10,22,40,0.075)] backdrop-blur-lg transition duration-300 hover:scale-[1.01] md:p-8">
+          <p className="text-xs font-bold uppercase text-[#9A7B24]">Intake Leak Estimate</p>
+          <h3 className="mt-4 max-w-xl font-heading text-[24px] font-semibold leading-[1.2] text-[#0A1628] md:text-[30px]">
             You're losing approximately{" "}
-            <span className="block pt-3 font-heading text-[38px] font-bold leading-none text-[#fcb61f] md:text-[56px] lg:text-[64px]">
+            <span className="block pt-3 font-heading text-[38px] font-bold leading-none text-[#C9A84C] md:text-[56px] lg:text-[64px]">
               {formatMoney(animatedTotal)}
             </span>
             <span className="mt-3 block text-[24px] md:text-[30px]">every month.</span>
           </h3>
 
-          <div className="mt-8 space-y-3 border-y border-white/[0.12] py-5">
+          <div className="mt-8 space-y-3 border-y border-[rgba(10,22,40,0.08)] py-5">
             <BreakdownLine value={formatMoney(roundTo(totals.monthlyLeakedSpend, 100))} label="in paid lead spend you can't recover" />
             <BreakdownLine value={formatMoney(roundTo(totals.monthlyLeakedRevenue, 100))} label="in case fees walking to your competitor" />
             <BreakdownLine value={formatMoney(totals.annualTotal)} label="over 12 months" strong />
@@ -303,7 +302,7 @@ export default function MathCalculator() {
           <a
             href="#audit"
             onClick={handleCtaClick}
-            className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#fcb61f] px-7 py-4 text-sm font-bold text-[#0A1628] shadow-[0_10px_30px_rgba(252,182,31,0.25)] transition hover:-translate-y-0.5 hover:bg-[#ffc542]"
+            className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_10px_30px_rgba(10,22,40,0.12)] transition hover:-translate-y-0.5 hover:bg-[#13243A]"
           >
             See the full breakdown
           </a>
@@ -316,9 +315,9 @@ export default function MathCalculator() {
 
 function BreakdownLine({ value, label, strong = false }: { value: string; label: string; strong?: boolean }) {
   return (
-    <div className="flex flex-col gap-1 rounded-2xl bg-white/[0.07] px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-5">
-      <p className={`font-heading text-xl font-bold text-white ${strong ? "md:text-2xl" : ""}`}>{value}</p>
-      <p className="text-sm leading-6 text-white/80 sm:max-w-[260px] sm:text-right">{label}</p>
+    <div className="flex flex-col gap-1 rounded-2xl bg-[#FAFAFA] px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-5">
+      <p className={`font-heading text-xl font-bold text-[#0A1628] ${strong ? "md:text-2xl" : ""}`}>{value}</p>
+      <p className="text-sm leading-6 text-[#4A5568] sm:max-w-[260px] sm:text-right">{label}</p>
     </div>
   );
 }
@@ -345,13 +344,13 @@ function CalculatorSlider({
   const progress = ((value - min) / (max - min)) * 100;
 
   return (
-    <label className="block rounded-2xl border border-white/[0.12] bg-white/[0.08] p-5 shadow-[0_12px_40px_rgba(0,0,0,0.2)] backdrop-blur-md transition duration-300 hover:scale-[1.01] md:p-6">
+    <label className="block rounded-2xl border border-[rgba(10,22,40,0.08)] bg-white/80 p-5 shadow-[0_12px_40px_rgba(10,22,40,0.055)] backdrop-blur-md transition duration-300 hover:scale-[1.01] md:p-6">
       <span className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <span>
-          <span className="block font-heading text-lg font-semibold text-white/90">{label}</span>
-          <span className="mt-1 block text-sm leading-6 text-white/60">{helper}</span>
+          <span className="block font-heading text-lg font-semibold text-[#0A1628]">{label}</span>
+          <span className="mt-1 block text-sm leading-6 text-[#4A5568]">{helper}</span>
         </span>
-        <span className="rounded-full border border-white/[0.14] bg-white/[0.10] px-4 py-2 text-sm font-bold text-white">{display}</span>
+        <span className="rounded-full border border-[rgba(10,22,40,0.1)] bg-[#FAFAFA] px-4 py-2 text-sm font-bold text-[#0A1628]">{display}</span>
       </span>
       <input
         className="diagnostic-slider mt-6 w-full"
@@ -360,7 +359,7 @@ function CalculatorSlider({
         max={max}
         step={step}
         value={value}
-        style={{ background: `linear-gradient(90deg, #fcb61f ${progress}%, rgba(255,255,255,0.2) ${progress}%)` }}
+        style={{ background: `linear-gradient(90deg, #C9A84C ${progress}%, rgba(10,22,40,0.12) ${progress}%)` }}
         onChange={(event) => onChange(Number(event.target.value))}
       />
     </label>
