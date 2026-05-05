@@ -43,66 +43,62 @@ export default function HowItWorksTimeline() {
           const isLeft = index % 2 === 0;
 
           return (
-          <motion.div
-            key={step.number}
-            initial={{ opacity: 0, x: isLeft ? -28 : 28, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.32 }}
-            transition={{
-              duration: 0.75,
-              delay: 0.16 + index * 0.12,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="grid grid-cols-[56px_minmax(0,1fr)] items-center gap-4 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-5 md:grid-cols-[1fr_72px_1fr] md:gap-8"
-          >
-            <div className={`hidden md:block ${isLeft ? "" : "order-3"}`}>
-              {isLeft ? (
-                <TimelineCard step={step} align="right" />
-              ) : null}
-            </div>
+            <motion.div
+              key={step.number}
+              initial={{ opacity: 0, x: isLeft ? -28 : 28, y: 20 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true, amount: 0.32 }}
+              transition={{
+                duration: 0.75,
+                delay: 0.16 + index * 0.12,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="grid grid-cols-[56px_minmax(0,1fr)] items-center gap-4 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-5 md:grid-cols-[1fr_72px_1fr] md:gap-8"
+            >
+              <div className="hidden md:block">
+                {isLeft ? <TimelineCard step={step} align="right" /> : null}
+              </div>
 
-            <div className="relative order-1 flex min-h-[132px] items-center justify-center md:order-2 md:min-h-[154px]">
-              <div className="pointer-events-none absolute left-1/2 top-1/2 h-px w-6 -translate-x-1/2 -translate-y-1/2 bg-[linear-gradient(90deg,rgba(201,168,76,0.55),rgba(201,168,76,0.08))] md:hidden" />
-              <div
-                className={`pointer-events-none absolute top-1/2 hidden h-px w-[calc(100%-0.75rem)] -translate-y-1/2 md:block ${
-                  isLeft
-                    ? "right-1/2 bg-[linear-gradient(90deg,rgba(201,168,76,0.08),rgba(201,168,76,0.52))]"
-                    : "left-1/2 bg-[linear-gradient(90deg,rgba(201,168,76,0.52),rgba(201,168,76,0.08))]"
-                }`}
-              />
-              <motion.span
-                initial={{ scale: 0.84, boxShadow: "0 0 0 rgba(201,168,76,0)" }}
-                whileInView={{
-                  scale: [0.84, 1.12, 1],
-                  boxShadow: [
-                    "0 0 0 rgba(201,168,76,0)",
-                    "0 0 0 10px rgba(201,168,76,0.14)",
-                    "0 0 0 0 rgba(201,168,76,0)",
-                  ],
-                }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{
-                  duration: 0.55,
-                  delay: 0.24 + index * 0.12,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="relative z-10 block h-4 w-4 rounded-full border border-[#C9A84C] bg-white shadow-[0_0_0_3px_rgba(255,255,255,0.95),0_0_18px_rgba(201,168,76,0.16)] sm:h-5 sm:w-5"
-              >
-                <span className="absolute inset-[3px] rounded-full bg-[#C9A84C]/24 sm:inset-[4px]" />
-              </motion.span>
-            </div>
+              <div className="relative flex min-h-[132px] items-center justify-center md:min-h-[154px]">
+                <div className="pointer-events-none absolute left-1/2 top-1/2 h-px w-6 -translate-x-1/2 -translate-y-1/2 bg-[linear-gradient(90deg,rgba(201,168,76,0.55),rgba(201,168,76,0.08))] md:hidden" />
+                <div
+                  className={`pointer-events-none absolute top-1/2 hidden h-px w-[calc(100%-0.75rem)] -translate-y-1/2 md:block ${
+                    isLeft
+                      ? "right-1/2 bg-[linear-gradient(90deg,rgba(201,168,76,0.08),rgba(201,168,76,0.52))]"
+                      : "left-1/2 bg-[linear-gradient(90deg,rgba(201,168,76,0.52),rgba(201,168,76,0.08))]"
+                  }`}
+                />
+                <motion.span
+                  initial={{ scale: 0.84, boxShadow: "0 0 0 rgba(201,168,76,0)" }}
+                  whileInView={{
+                    scale: [0.84, 1.12, 1],
+                    boxShadow: [
+                      "0 0 0 rgba(201,168,76,0)",
+                      "0 0 0 10px rgba(201,168,76,0.14)",
+                      "0 0 0 0 rgba(201,168,76,0)",
+                    ],
+                  }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{
+                    duration: 0.55,
+                    delay: 0.24 + index * 0.12,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="relative z-10 block h-4 w-4 rounded-full border border-[#C9A84C] bg-white shadow-[0_0_0_3px_rgba(255,255,255,0.95),0_0_18px_rgba(201,168,76,0.16)] sm:h-5 sm:w-5"
+                >
+                  <span className="absolute inset-[3px] rounded-full bg-[#C9A84C]/24 sm:inset-[4px]" />
+                </motion.span>
+              </div>
 
-            <div className="order-2 md:hidden">
-              <TimelineCard step={step} align="left" />
-            </div>
-
-            <div className={`hidden md:block ${isLeft ? "order-3" : ""}`}>
-              {!isLeft ? (
+              <div className="md:hidden">
                 <TimelineCard step={step} align="left" />
-              ) : null}
-            </div>
-          </motion.div>
-        );
+              </div>
+
+              <div className="hidden md:block">
+                {!isLeft ? <TimelineCard step={step} align="left" /> : null}
+              </div>
+            </motion.div>
+          );
         })}
       </div>
     </div>

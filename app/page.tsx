@@ -1,11 +1,13 @@
 ﻿/* eslint-disable react/no-unescaped-entities */
 import Image from "next/image";
+import { Fragment } from "react";
 import AIIntakePhone from "@/components/AIIntakePhone";
 import Navbar from "@/components/Navbar";
 import MathCalculator from "@/components/Interactive";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import RevealBlock from "@/components/RevealBlock";
 import HowItWorksTimeline from "@/components/HowItWorksTimeline";
+import ProofCountNumber from "@/components/ProofCountNumber";
 
 const intakeRealityQuotes = [
   "“She called Friday at 9pm. Signed elsewhere by Monday.”",
@@ -90,8 +92,8 @@ export default function Home() {
       <Reframe />
       <Solution />
       <HowItWorks />
-      {/* <Proof />
-      <WhoItsFor />
+      <Proof />
+      {/* <WhoItsFor />
       <FAQSection />
       <FinalCTA /> */}
       <Footer />
@@ -427,7 +429,8 @@ function Solution() {
 
 function HowItWorks() {
   return (
-    <AnimatedSection id="process" className={`bg-[#FAFAFA] ${sectionPadding}`}>
+    <AnimatedSection id="process" className={`relative isolate overflow-hidden bg-[#FAF6EC] ${sectionPadding}`}>
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_22%,rgba(10,22,40,0.03),transparent_28%),radial-gradient(circle_at_78%_36%,rgba(201,168,76,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.45),rgba(250,250,250,0.96))]" />
       <Container>
         <RevealBlock className="mx-auto max-w-3xl text-center">
           <Eyebrow>How It Works</Eyebrow>
@@ -445,26 +448,63 @@ function HowItWorks() {
 }
 
 function Proof() {
-  const stats = [["42%", "of PI inquiries come in after 5pm or on weekends, when most firms aren't answering"], ["3x", "higher conversion rate for firms that respond in under 5 minutes vs. those that wait an hour"], ["45%", "conversion rate at top PI firms - vs. 18-22% industry average"]];
+  const stats = [
+    {
+      value: "42%",
+      text: "Average inbound calls a PI firm misses in the first 90 days we work with them. Almost all of it after-hours and weekends.",
+    },
+    {
+      value: "$31K",
+      text: "Average monthly leak we find in firms running $20K+/month in paid acquisition. Lead spend wasted plus expected case fees lost.",
+    },
+    {
+      value: "18 → 34%",
+      text: "Average intake conversion rate we’ve seen move from baseline to post-implementation in the first six months.",
+    },
+  ] as const;
+
   return (
-    <AnimatedSection id="proof" className={sectionPadding}>
+    <AnimatedSection id="proof" className={`relative isolate overflow-hidden bg-[#ffffff] ${sectionPadding}`}>
       <Container>
-        <RevealBlock className="max-w-3xl">
-          <Eyebrow>Industry Data</Eyebrow>
-          <h2 className={sectionHeading}>The numbers that explain why your competitors are winning cases you should have signed.</h2>
+        <RevealBlock className="mx-auto max-w-3xl text-center">
+          <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#9A7B24]">WHAT WE’VE SEEN</p>
+          <h2 className="mt-4 font-heading text-[30px] font-bold leading-[1.08] tracking-[-0.05em] text-[#0A1628] sm:text-[40px] md:text-[48px]">
+            Patterns from the last twelve months.
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-[16px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] sm:text-[17px] md:text-[18px]">
+            We don’t have a wall of logos yet. We do have data from every PI firm we’ve audited so far.
+          </p>
         </RevealBlock>
-        <div className={`mt-12 grid ${sectionGap} md:grid-cols-3`}>
-          {stats.map(([value, text], index) => (
-            <RevealBlock key={value} delay={index * 0.08} className="relative overflow-hidden rounded-[26px] border border-black/[0.08] bg-white p-7 shadow-[0_10px_30px_rgba(0,0,0,0.03)]">
-              <div className="absolute inset-x-6 bottom-6 flex h-24 items-end gap-2 opacity-15">
-                {[34, 62, 48, 82, 54].map((h, bar) => <span key={bar} className="flex-1 rounded-t-lg bg-[#C9A84C]" style={{ height: `${Math.min(96, h + index * 8)}%` }} />)}
-              </div>
-              <p className="relative font-heading text-5xl font-bold tracking-[-0.035em] md:text-6xl">{value}</p>
-              <p className={`relative mt-5 min-h-28 text-lg ${bodyText}`}>{text}</p>
-              <p className="relative mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-[#9A7B24]">Source: Internal intake audit benchmarks</p>
-            </RevealBlock>
+
+        <div className="mx-auto mt-14 grid max-w-6xl md:mt-18 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-center">
+          {stats.map((stat, index) => (
+            <Fragment key={stat.value}>
+              <RevealBlock
+                delay={0.14 + index * 0.1}
+                className="mx-auto flex min-h-[236px] max-w-[320px] flex-col items-center justify-start px-4 py-9 text-center md:min-h-[280px] md:px-8 md:py-0"
+              >
+                <p className="font-heading text-[36px] font-bold leading-none tracking-[-0.04em] text-[#0A1628] sm:text-[42px]">
+                  <span className="bg-[linear-gradient(180deg,#0A1628_22%,#B28A27_140%)] bg-clip-text text-transparent">
+                    <ProofCountNumber value={stat.value} />
+                  </span>
+                </p>
+                <div className="mt-4 h-px w-10 bg-[#C9A84C]" />
+                <p className="mt-[44px] max-w-[280px] text-[15px] font-medium leading-[1.75] tracking-[-0.01em] text-[#0A1628]/68 sm:text-[16px]">
+                  {stat.text}
+                </p>
+              </RevealBlock>
+              {index < stats.length - 1 ? (
+                <div className="mx-auto h-px w-24 bg-[rgba(10,22,40,0.1)] md:h-[140px] md:w-px" />
+              ) : null}
+            </Fragment>
           ))}
         </div>
+
+        <RevealBlock delay={0.5} className="mx-auto mt-12 max-w-3xl text-center">
+          <p className="text-[12px] font-medium leading-6 tracking-[0.02em] text-[#0A1628]/48">
+            Aggregated across our PI audit and engagement work to date. Sample sizes vary by metric. We’ll show you the underlying breakdown on the call.
+          </p>
+        </RevealBlock>
       </Container>
     </AnimatedSection>
   );
