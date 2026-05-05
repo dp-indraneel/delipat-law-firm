@@ -22,7 +22,7 @@ export default function Navbar() {
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "border-b border-black/[0.08] bg-white/82 shadow-[0_12px_35px_rgba(0,0,0,0.035)] backdrop-blur-xl" : "bg-transparent"}`}>
-      <nav className="mx-auto flex max-w-[1160px] items-center justify-between px-5 py-4 lg:px-0">
+      <nav className="mx-auto flex max-w-[1160px] items-center justify-between px-5 py-4 lg:px-6">
         <a href="#top" className="group flex items-center" aria-label="Delipat home">
           <Image src="/logo.png" alt="Delipat logo" width={170} height={38} priority className="h-auto w-[130px] transition duration-300 group-hover:opacity-85 md:w-[164px]" />
         </a>

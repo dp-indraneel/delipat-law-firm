@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import MathCalculator from "@/components/Interactive";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import RevealBlock from "@/components/RevealBlock";
+import HowItWorksTimeline from "@/components/HowItWorksTimeline";
 
 const intakeRealityQuotes = [
   "“She called Friday at 9pm. Signed elsewhere by Monday.”",
@@ -13,17 +14,10 @@ const intakeRealityQuotes = [
   "“By the time we follow up, they’ve already hired someone else.”",
 ];
 
-const features = [
-  ["Every lead answered instantly", "Day or night, every call and form submission gets an immediate, professional response within 60 seconds."],
-  ["Follow-up that doesn't quit", "We run 5 to 12 structured touches across phone, text, and email until we reach them or exhaust every option."],
-  ["Visibility from first contact to signed", "You see every lead, every stage, every outcome - no more guessing what happened to the leads you paid for."],
-];
-
-const steps = [
-  ["Lead Arrives", "Every call, form, and chat captured in real time."],
-  ["Instant Response", "Professional outreach triggered in under 60 seconds."],
-  ["Structured Follow-Up", "5-12 touches across every channel until contact is made."],
-  ["Full Visibility", "Track every lead from inquiry to signed, or understand exactly why they didn't."],
+const solutionPoints = [
+  ["response", "Instant response even after hours"],
+  ["followup", "Consistent follow-up until the lead signs or is lost"],
+  ["visibility", "Full visibility into every lead"],
 ];
 
 const founderNoteParagraphs = [
@@ -78,9 +72,11 @@ const faqItems = [
   ],
 ];
 
-const sectionHeading = "mt-4 font-heading text-[32px] font-bold leading-[1.18] tracking-[-0.025em] text-[#0A1628] md:text-[40px] lg:text-[46px]";
-const darkSectionHeading = `${sectionHeading} text-white`;
-const bodyText = "text-[17px] leading-[1.7] tracking-[-0.005em] text-[#4A5568]";
+const sectionHeading = "mt-4 font-heading text-[24px] font-bold leading-[1.5] tracking-[-0.05em] text-[#0A1628] sm:text-[36px] md:text-[42px]";
+const darkSectionHeading = "mt-4 font-heading text-[24px] font-bold leading-[1.06] tracking-[-0.05em] text-white sm:text-[36px] md:text-[42px]";
+const bodyText = "text-[17px] leading-[1.8] tracking-[-0.01em] text-[#233247] md:text-[18px]";
+const sectionPadding = "py-16 sm:py-20 md:py-24";
+const sectionGap = "gap-6 sm:gap-8 md:gap-10";
 
 export default function Home() {
   return (
@@ -91,10 +87,10 @@ export default function Home() {
       <InvisibleLeak />
       <MathSection />
       <FounderNoteSection />
-      {/* <Reframe />
+      <Reframe />
       <Solution />
       <HowItWorks />
-      <Proof />
+      {/* <Proof />
       <WhoItsFor />
       <FAQSection />
       <FinalCTA /> */}
@@ -104,7 +100,7 @@ export default function Home() {
 }
 
 function Container({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-[1160px] px-5 lg:px-0 ${className}`}>{children}</div>;
+  return <div className={`mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 ${className}`}>{children}</div>;
 }
 
 function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
@@ -144,7 +140,7 @@ function Hero() {
 
 function RealityCheck() {
   return (
-    <AnimatedSection id="problem" className="py-[60px] md:py-[100px] bg-[#FAF6EC]">
+    <AnimatedSection id="problem" className={`${sectionPadding} bg-[#FAF6EC]`}>
       <Container>
         <RevealBlock className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9A7B24]">Intake Reality Check</p>
@@ -154,7 +150,7 @@ function RealityCheck() {
           </p>
         </RevealBlock>
 
-        <div className="mx-auto mt-10 grid max-w-[980px] gap-4 md:mt-12 md:grid-cols-2 md:gap-5">
+        <div className={`mx-auto mt-10 grid max-w-5xl gap-4 sm:gap-6 md:mt-12 md:grid-cols-2`}>
           {intakeRealityQuotes.map((quote, index) => (
             <RevealBlock key={quote} delay={index * 0.08}>
               <figure className="relative h-full rounded-[20px] border border-black/[0.06] bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.025)] md:p-7">
@@ -173,8 +169,8 @@ function RealityCheck() {
 
 function InvisibleLeak() {
   return (
-    <AnimatedSection className="py-[60px] md:py-[100px]">
-      <Container className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+    <AnimatedSection className={sectionPadding}>
+      <Container className={`grid items-center ${sectionGap} lg:grid-cols-[0.95fr_1.05fr]`}>
         <RevealBlock>
           <AIIntakePhone />
         </RevealBlock>
@@ -199,7 +195,7 @@ function MathSection() {
   return (
     <AnimatedSection
   id="calculator"
-  className="relative isolate overflow-hidden bg-[#0A1628] py-24 md:py-32"
+  className={`relative isolate overflow-hidden bg-[#0A1628] ${sectionPadding}`}
 >
      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
   <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[#9a7b24]/20 rounded-full blur-[120px] animate-blob1" />
@@ -208,33 +204,33 @@ function MathSection() {
   {/* optional subtle grid */}
   <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
 </div>
-      <div className="mx-auto w-full max-w-7xl px-6">
+      <Container>
         <RevealBlock className="mb-12 max-w-3xl">
           <p className="text-sm font-bold uppercase tracking-[0.22em] text-white/80">Run Your Numbers</p>
-          <h2 className="mt-4 font-heading text-[34px] font-bold leading-[1.12] tracking-[-0.025em] text-white md:text-[48px] lg:text-[58px]">Most PI firms don’t lose cases. They leak them.</h2>
+          <h2 className={darkSectionHeading}>Most PI firms don’t lose cases. They leak them.</h2>
           <p className="mt-5 max-w-2xl text-[17px] leading-[1.7] tracking-[-0.005em] text-white/70">Run your own numbers below. We’ve pre-filled realistic defaults based on PI intake patterns.</p>
         </RevealBlock>
         <RevealBlock delay={0.08}>
           <MathCalculator />
         </RevealBlock>
-      </div>
+      </Container>
     </AnimatedSection>
   );
 }
 
 function FounderNoteSection() {
   return (
-    <AnimatedSection id="founder" className="relative isolate overflow-hidden bg-[#FAF6EC] py-[70px] md:py-[110px]">
+    <AnimatedSection id="founder" className={`relative isolate overflow-hidden bg-[#ffffff] ${sectionPadding}`}>
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_16%_18%,rgba(201,168,76,0.16),transparent_26%),radial-gradient(circle_at_86%_18%,rgba(10,22,40,0.05),transparent_22%)]" />
       <Container>
         <RevealBlock className="mx-auto max-w-3xl text-center">
           <Eyebrow>WHY I BUILT THIS</Eyebrow>
-          <p className="mx-auto mt-5 font-heading text-[34px] font-semibold leading-[1.06] tracking-[-0.04em] text-[#0A1628] md:text-[42px]">
+          <p className={sectionHeading}>
             The intake leak most firms mistake for bad marketing.
           </p>
         </RevealBlock>
       </Container>
-      <Container className="mt-12 grid items-start gap-12 lg:grid-cols-[0.4fr_0.6fr]">
+      <Container className={`mt-12 grid items-start ${sectionGap} lg:grid-cols-[0.4fr_0.6fr]`}>
         <RevealBlock className="mx-auto w-full max-w-[400px] lg:sticky lg:top-28 lg:max-w-none">
           {/* TODO: real Rajesh photo required before launch. Do not use stock or AI image. */}
           <div className="relative overflow-hidden rounded-[32px] border border-[#C9A84C]/25 bg-[#EEDDB7] shadow-[0_22px_50px_rgba(10,22,40,0.12)]">
@@ -281,12 +277,91 @@ function FounderNoteSection() {
 
 function Reframe() {
   return (
-    <AnimatedSection className="py-[70px] md:py-[120px]">
+    <AnimatedSection className={`relative isolate overflow-hidden bg-[#FAF6EC] ${sectionPadding}`}>
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_22%,rgba(10,22,40,0.03),transparent_28%),radial-gradient(circle_at_78%_36%,rgba(201,168,76,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.45),rgba(250,250,250,0.96))]" />
       <Container>
-        <RevealBlock className="mx-auto max-w-4xl border-y border-[#C9A84C]/45 py-12 text-center md:py-16">
-          <p className="font-heading text-[34px] font-bold leading-[1.16] tracking-[-0.025em] text-[#0A1628] md:text-[48px] lg:text-[56px]">You don't have a marketing problem.</p>
-          <p className="mt-4 font-heading text-[34px] font-bold leading-[1.16] tracking-[-0.025em] text-[#9A7B24] md:text-[48px] lg:text-[56px]">You have an intake problem.</p>
-        </RevealBlock>
+        <div className="mx-auto max-w-6xl">
+          <RevealBlock className="text-center">
+            <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#9A7B24]">The Reframe</p>
+          </RevealBlock>
+
+          <div className="mt-10 grid items-stretch gap-5 lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
+            <RevealBlock className="h-full">
+              <div className="relative h-full overflow-hidden rounded-[14px] border border-[rgba(10,22,40,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.72))] p-7 shadow-[0_10px_30px_rgba(10,22,40,0.04)] backdrop-blur-sm md:p-8">
+                <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(10,22,40,0.08),transparent)]" />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#6B7280]">What firms think</p>
+                <h3 className="mt-5 font-heading text-[20px] font-semibold leading-[1.08] tracking-[-0.04em] text-[#0A1628] sm:text-[24px] md:text-[28px]">
+                  We need
+                  <br />
+                  more leads
+                </h3>
+                <p className="mt-5 max-w-sm text-[16px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568]">
+                  More ad spend. More agencies. More clicks.
+                </p>
+              </div>
+            </RevealBlock>
+
+            <RevealBlock delay={0.12} className="flex items-center justify-center">
+              <div className="flex w-full items-center justify-center lg:h-full">
+                <div className="flex flex-col items-center justify-center gap-3 lg:gap-4">
+                  <div className="hidden h-10 w-px bg-[linear-gradient(180deg,rgba(10,22,40,0.08),rgba(201,168,76,0.28),rgba(10,22,40,0.08))] lg:block" />
+                  <div className="inline-flex items-center gap-3 rounded-full border border-[rgba(10,22,40,0.08)] bg-white/82 px-4 py-2 shadow-[0_8px_24px_rgba(10,22,40,0.04)] backdrop-blur-sm">
+                    <span className="h-px w-6 bg-[linear-gradient(90deg,rgba(10,22,40,0.18),rgba(201,168,76,0.8))] lg:w-7" />
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9A7B24]">Reframe</span>
+                    <span className="text-[#C9A84C] lg:translate-x-[1px]">→</span>
+                  </div>
+                  <div className="h-10 w-px bg-[linear-gradient(180deg,rgba(10,22,40,0.08),rgba(201,168,76,0.28),rgba(10,22,40,0.08))] lg:hidden" />
+                  <div className="text-[#C9A84C] lg:hidden">↓</div>
+                  <div className="hidden h-10 w-px bg-[linear-gradient(180deg,rgba(10,22,40,0.08),rgba(201,168,76,0.28),rgba(10,22,40,0.08))] lg:block" />
+                </div>
+              </div>
+            </RevealBlock>
+
+            <RevealBlock delay={0.22} className="h-full">
+              <div className="relative h-full overflow-hidden rounded-[14px] border border-[rgba(10,22,40,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(255,255,255,0.82))] p-7 shadow-[0_12px_34px_rgba(10,22,40,0.045)] backdrop-blur-sm md:p-8">
+                <div className="absolute -right-12 top-1/2 -z-10 h-40 w-40 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,168,76,0.22),rgba(201,168,76,0.08)_42%,transparent_74%)] blur-2xl" />
+                <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(201,168,76,0.45),transparent)]" />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#9A7B24]">What's actually happening</p>
+                <h3 className="mt-5 font-heading text-[20px] font-semibold leading-[1.08] tracking-[-0.04em] text-[#0A1628] sm:text-[24px] md:text-[28px]">
+                  Your intake is
+                  <br />
+                  leaking revenue
+                </h3>
+                <p className="mt-5 max-w-sm text-[16px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568]">
+                  Slow response. Weak follow-up. No visibility.
+                </p>
+              </div>
+            </RevealBlock>
+          </div>
+
+          <div className="mx-auto mt-14 max-w-4xl text-center md:mt-18">
+            <RevealBlock delay={0.32}>
+              <h2 className="font-heading text-[24px] font-bold leading-[1.06] tracking-[-0.05em] text-[#0A1628] sm:text-[36px] md:text-[42px]">
+                <span className="block">You don't have a marketing problem.</span>
+                <span className="mt-3 block">
+                  You have an{" "}
+                  <span className="relative isolate inline-block">
+                    <span className="absolute inset-x-[-0.14em] bottom-[0.1em] top-[0.5em] -z-10 rounded-[999px] bg-[linear-gradient(90deg,rgba(201,168,76,0.08),rgba(201,168,76,0.38),rgba(201,168,76,0.08))] blur-[10px]" />
+                    <span className="absolute inset-x-[-0.08em] bottom-[0.14em] top-[0.56em] -z-10 rounded-[999px] bg-[linear-gradient(90deg,rgba(201,168,76,0.18),rgba(201,168,76,0.58),rgba(201,168,76,0.18))]" />
+                    <span className="relative">intake problem.</span>
+                  </span>
+                </span>
+              </h2>
+            </RevealBlock>
+
+            <RevealBlock delay={0.42} className="mx-auto mt-7 max-w-3xl">
+              <p className="text-[17px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] md:text-[19px]">
+                You're already paying for the leads. The leak happens after they reach out.
+              </p>
+            </RevealBlock>
+
+            <RevealBlock delay={0.5} className="mx-auto mt-5 max-w-3xl">
+              <p className="text-[14px] font-medium leading-[1.7] tracking-[-0.005em] text-[#6B7280] md:text-[15px]">
+                Most firms don't lose cases because the ads failed. They lose them between inquiry and follow-up.
+              </p>
+            </RevealBlock>
+          </div>
+        </div>
       </Container>
     </AnimatedSection>
   );
@@ -294,81 +369,75 @@ function Reframe() {
 
 function Solution() {
   return (
-    <AnimatedSection className="py-[60px] md:py-[100px]">
-      <Container className="grid items-center gap-12 lg:grid-cols-[0.98fr_1.02fr]">
-        <div>
-          <RevealBlock>
-            <Eyebrow>What Delipat Does</Eyebrow>
-            <h2 className={sectionHeading}>We make sure every lead is responded to, followed up, and tracked - until they sign or you know why they didn't.</h2>
+    <AnimatedSection className={`relative isolate overflow-hidden bg-[#ffffff] ${sectionPadding}`}>
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_20%_20%,rgba(10,22,40,0.03),transparent_24%),radial-gradient(circle_at_80%_32%,rgba(201,168,76,0.1),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.5),rgba(250,250,250,0.96))]" />
+      <div className="absolute left-[10%] top-24 -z-10 h-28 w-28 rounded-full bg-[rgba(10,22,40,0.035)] blur-3xl" />
+      <div className="absolute right-[12%] top-28 -z-10 h-36 w-36 rounded-full bg-[rgba(201,168,76,0.1)] blur-3xl" />
+      <Container>
+        <div className="mx-auto max-w-5xl">
+          <RevealBlock className="mx-auto max-w-3xl text-center">
+            <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#9A7B24]">The Fix</p>
+            <h2 className={sectionHeading}>
+              Every lead gets handled.
+              <br />
+              Nothing slips through.
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-[17px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] md:text-[19px]">
+              No missed calls. No slow follow-ups. No guessing what happened.
+            </p>
           </RevealBlock>
-          <div className="mt-8 space-y-4">
-            {features.map(([title, body], index) => (
-              <RevealBlock key={title} delay={index * 0.08} className="rounded-2xl border border-black/[0.08] bg-white p-5 shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition hover:-translate-y-1 hover:border-[#C9A84C]/40">
-                <h3 className="font-heading text-xl font-semibold tracking-[-0.02em]">{title}</h3>
-                <p className={`mt-2 ${bodyText}`}>{body}</p>
+
+          <div className="mt-8 grid gap-6 sm:gap-8 md:mt-12 md:grid-cols-3 md:gap-8">
+            {solutionPoints.map(([icon, text], index) => (
+              <RevealBlock key={text} delay={0.18 + index * 0.08} className="h-full" scale={0.98}>
+                <div className="group h-full rounded-[12px] border border-[rgba(10,22,40,0.08)] bg-white/72 p-6 text-center shadow-[0_6px_20px_rgba(10,22,40,0.03)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(10,22,40,0.05)] md:p-7">
+                  <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(10,22,40,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.75))] text-[#C9A84C]">
+                    {icon === "response" ? (
+                      <span className="relative block h-4 w-4">
+                        <span className="absolute inset-0 rounded-full border border-current" />
+                        <span className="absolute left-1/2 top-[3px] h-[5px] w-px -translate-x-1/2 bg-current" />
+                        <span className="absolute left-1/2 top-1/2 h-px w-[5px] bg-current" />
+                      </span>
+                    ) : null}
+                    {icon === "followup" ? (
+                      <span className="relative block h-4 w-4">
+                        <span className="absolute inset-0 rounded-full border border-current border-r-transparent" />
+                        <span className="absolute right-0 top-[1px] h-1.5 w-1.5 rotate-45 border-r border-t border-current" />
+                      </span>
+                    ) : null}
+                    {icon === "visibility" ? (
+                      <span className="relative block h-4 w-5">
+                        <span className="absolute inset-x-0 top-1/2 h-[7px] -translate-y-1/2 rounded-[999px] border border-current" />
+                        <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current" />
+                      </span>
+                    ) : null}
+                  </div>
+                  <p className="mx-auto mt-5 max-w-[16rem] text-[16px] font-medium leading-[1.65] tracking-[-0.01em] text-[#233247]">
+                    {text}
+                  </p>
+                </div>
               </RevealBlock>
             ))}
           </div>
         </div>
-        <RevealBlock delay={0.12}>
-          <IntakeDashboard />
-        </RevealBlock>
       </Container>
     </AnimatedSection>
   );
 }
 
-function IntakeDashboard() {
-  const metrics = [["Response Rate", "97%"], ["Avg Response Time", "48s"], ["Leads Contacted", "100%"], ["Conversion Lift", "+34%"]];
-  return (
-    <div className="rounded-[28px] border border-black/[0.08] bg-white p-6 shadow-[0_12px_35px_rgba(0,0,0,0.035)] md:p-8">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#9A7B24]">Lead Recovery System</p>
-          <h3 className="mt-2 font-heading text-2xl font-semibold tracking-[-0.02em]">Intake health</h3>
-        </div>
-        <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">Healthy</span>
-      </div>
-      <div className="mt-7 grid gap-4 sm:grid-cols-2">
-        {metrics.map(([label, value]) => (
-          <div key={label} className="rounded-2xl border border-black/[0.08] bg-[#FAFAFA] p-5">
-            <p className="text-sm text-[#4A5568]">{label}</p>
-            <p className="mt-2 font-heading text-3xl font-bold tracking-[-0.03em] md:text-4xl">{value}</p>
-          </div>
-        ))}
-      </div>
-      <div className="mt-7 rounded-2xl bg-[#0A1628] p-5 text-white">
-        <p className="text-sm font-semibold text-white/70">Pipeline</p>
-        <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4">
-          {["New Lead", "Contacted", "Qualified", "Signed"].map((stage, index) => (
-            <div key={stage} className="rounded-xl border border-white/10 bg-white/8 p-4">
-              <span className="grid size-8 place-items-center rounded-full bg-[#C9A84C] text-xs font-bold text-[#0A1628]">{index + 1}</span>
-              <p className="mt-3 text-sm font-semibold">{stage}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function HowItWorks() {
   return (
-    <AnimatedSection id="process" className="bg-[#FAF6EC] py-[60px] md:py-[100px]">
+    <AnimatedSection id="process" className={`bg-[#FAFAFA] ${sectionPadding}`}>
       <Container>
-        <RevealBlock className="max-w-2xl">
-          <Eyebrow>The Process</Eyebrow>
-          <h2 className={sectionHeading}>Simple for you. Relentless for your leads.</h2>
+        <RevealBlock className="mx-auto max-w-3xl text-center">
+          <Eyebrow>How It Works</Eyebrow>
+          <h2 className={sectionHeading}>From first inquiry to signed case — without the gaps.</h2>
+          <p className="mx-auto mt-5 max-w-2xl text-[16px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] sm:text-[17px] md:text-[18px]">
+            Four simple steps. Every lead gets handled, followed up, and tracked.
+          </p>
         </RevealBlock>
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map(([title, body], index) => (
-            <RevealBlock key={title} delay={index * 0.08} className="group rounded-[24px] border border-black/[0.08] bg-white p-6 shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition duration-300 hover:-translate-y-1 hover:border-[#C9A84C] hover:shadow-[0_10px_30px_rgba(0,0,0,0.03)]">
-              <p className="font-heading text-4xl font-bold tracking-[-0.035em] text-[#C9A84C]/70">0{index + 1}</p>
-              <div className="my-6 grid size-12 place-items-center rounded-2xl bg-[#0A1628] text-white transition group-hover:bg-[#C9A84C] group-hover:text-[#0A1628]">{index + 1}</div>
-              <h3 className="font-heading text-xl font-semibold tracking-[-0.02em]">{title}</h3>
-              <p className={`mt-3 ${bodyText}`}>{body}</p>
-            </RevealBlock>
-          ))}
+        <div className="mt-12 sm:mt-14 md:mt-16">
+          <HowItWorksTimeline />
         </div>
       </Container>
     </AnimatedSection>
@@ -378,13 +447,13 @@ function HowItWorks() {
 function Proof() {
   const stats = [["42%", "of PI inquiries come in after 5pm or on weekends, when most firms aren't answering"], ["3x", "higher conversion rate for firms that respond in under 5 minutes vs. those that wait an hour"], ["45%", "conversion rate at top PI firms - vs. 18-22% industry average"]];
   return (
-    <AnimatedSection id="proof" className="py-[60px] md:py-[100px]">
+    <AnimatedSection id="proof" className={sectionPadding}>
       <Container>
         <RevealBlock className="max-w-3xl">
           <Eyebrow>Industry Data</Eyebrow>
           <h2 className={sectionHeading}>The numbers that explain why your competitors are winning cases you should have signed.</h2>
         </RevealBlock>
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <div className={`mt-12 grid ${sectionGap} md:grid-cols-3`}>
           {stats.map(([value, text], index) => (
             <RevealBlock key={value} delay={index * 0.08} className="relative overflow-hidden rounded-[26px] border border-black/[0.08] bg-white p-7 shadow-[0_10px_30px_rgba(0,0,0,0.03)]">
               <div className="absolute inset-x-6 bottom-6 flex h-24 items-end gap-2 opacity-15">
@@ -405,13 +474,13 @@ function WhoItsFor() {
   const good = ["2-10 attorney PI firm", "Running Google Ads or LSAs", "20-100+ inbound leads per month", "Owner-operated or partner-led", "Tired of losing cases you already paid to acquire"];
   const bad = ["Large defense firms", "Firms not running paid acquisition", "Teams already converting above 40%", "Attorneys not ready to see the numbers"];
   return (
-    <AnimatedSection className="bg-[#0A1628] py-[60px] md:py-[100px]">
+    <AnimatedSection className={`bg-[#0A1628] ${sectionPadding}`}>
       <Container>
         <RevealBlock className="max-w-3xl">
           <Eyebrow dark>Is This You?</Eyebrow>
           <h2 className={darkSectionHeading}>Delipat is built for one kind of firm.</h2>
         </RevealBlock>
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+        <div className={`mt-12 grid ${sectionGap} lg:grid-cols-2`}>
           <RevealBlock delay={0.08}><FitCard title="Good fit" items={good} positive /></RevealBlock>
           <RevealBlock delay={0.16}><FitCard title="Not a fit" items={bad} /></RevealBlock>
         </div>
@@ -425,7 +494,7 @@ function WhoItsFor() {
 
 function FAQSection() {
   return (
-    <AnimatedSection id="faq" className="bg-white py-[70px] md:py-[110px]">
+    <AnimatedSection id="faq" className={`bg-white ${sectionPadding}`}>
       <Container>
         <RevealBlock className="mx-auto max-w-[720px] text-center">
           <Eyebrow>BEFORE YOU BOOK THE AUDIT</Eyebrow>
@@ -481,11 +550,11 @@ function FitCard({ title, items, positive = false }: { title: string; items: str
 
 function FinalCTA() {
   return (
-    <AnimatedSection id="final-cta" className="relative isolate py-[70px] md:py-[120px]">
+    <AnimatedSection id="final-cta" className={`relative isolate ${sectionPadding}`}>
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_30%,rgba(201,168,76,0.24),transparent_38%)]" />
       <Container>
         <RevealBlock className="mx-auto max-w-4xl rounded-[32px] border border-black/[0.08] bg-white/80 p-8 text-center shadow-[0_10px_30px_rgba(0,0,0,0.03)] backdrop-blur md:p-14">
-          <h2 className="font-heading text-[34px] font-bold leading-[1.16] tracking-[-0.025em] md:text-[48px] lg:text-[56px]">The Case You Didn't Call Back Was a $50,000 Fee.</h2>
+          <h2 className="font-heading text-[24px] font-bold leading-[1.06] tracking-[-0.05em] text-[#0A1628] sm:text-[36px] md:text-[42px]">The Case You Didn't Call Back Was a $50,000 Fee.</h2>
           <p className={`mx-auto mt-6 max-w-2xl text-lg ${bodyText}`}>You've already paid for those leads. Let's make sure you're not giving them to your competitors.</p>
           <a href="mailto:hello@delipat.ai?subject=Free%20Intake%20Audit" className="mt-9 inline-flex w-full items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition hover:-translate-y-0.5 sm:w-auto">See How Many Cases You're Losing Every Month</a>
           <p className="mt-5 text-sm font-medium tracking-[-0.005em] text-[#4A5568]">Free audit · No pitch · Results in 48 hours</p>
@@ -499,7 +568,7 @@ function Footer() {
   return (
     <footer className="border-t border-black/[0.08] bg-white py-14">
       <Container>
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_0.8fr_1fr]">
+        <div className={`grid ${sectionGap} md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_0.8fr_1fr]`}>
           <div>
             <Image src="/logo.png" alt="Delipat logo" width={190} height={43} className="h-auto w-[175px]" />
             <p className={`mt-5 max-w-sm ${bodyText}`}>Delipat helps PI firms capture and convert every lead they pay for.</p>
