@@ -22,7 +22,7 @@ export default function Home() {
       <MathSection />
       <FounderNoteSection />
       <Reframe />
-      <Solution />
+      {/* <Solution /> */}
       <HowItWorks />
       <Proof />
       <FAQSection />
