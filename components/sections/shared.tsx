@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 
-export const sectionHeading = "mt-4 font-heading text-[24px] font-bold leading-[1.5] tracking-[-0.05em] text-[#0A1628] sm:text-[36px] md:text-[42px]";
-export const darkSectionHeading = "mt-4 font-heading text-[24px] font-bold leading-[1.06] tracking-[-0.05em] text-white sm:text-[36px] md:text-[42px]";
+export const sectionHeading = "mt-4 font-heading text-[24px] font-bold leading-[1.12] text-[#0A1628] sm:text-[36px] md:text-[42px]";
+export const darkSectionHeading = "mt-4 font-heading text-[24px] font-bold leading-[1.12] text-white sm:text-[36px] md:text-[42px]";
+export const sectionSubheading = "mx-auto mt-5 text-[16px] font-medium leading-[1.65] text-[#4A5568] sm:text-[17px] md:text-[18px]";
 export const bodyText = "text-[17px] leading-[1.8] tracking-[-0.01em] text-[#233247] md:text-[18px]";
 export const sectionPadding = "py-16 sm:py-20 md:py-24";
 export const sectionGap = "gap-6 sm:gap-8 md:gap-10";

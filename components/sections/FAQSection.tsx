@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { sectionPadding } from "./shared";
+import { sectionHeading, sectionPadding } from "./shared";
 
 const faqItems = [
   [
@@ -78,7 +78,7 @@ export default function FAQSection() {
           <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#C9A84C]">
             BEFORE YOU BOOK THE DIAGNOSTIC
           </p>
-          <h2 className="mt-4 font-heading text-[30px] font-bold leading-[1.08] tracking-[-0.05em] text-[#0A1628] sm:text-[40px] md:text-[48px]">
+          <h2 className={sectionHeading}>
             Questions PI firm owners usually ask.
           </h2>
         </div>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import RevealBlock from "@/components/RevealBlock";
-import { Container, Eyebrow, sectionGap, sectionHeading, sectionPadding } from "./shared";
+import { Container, Eyebrow, sectionGap, sectionPadding } from "./shared";
 
 function numberToWords(num: number): string {
   const words = [
@@ -26,7 +26,7 @@ export default function FounderNoteSection() {
     <AnimatedSection id="founder" className={`relative isolate overflow-hidden bg-[#ffffff] ${sectionPadding}`}>
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_16%_18%,rgba(201,168,76,0.16),transparent_26%),radial-gradient(circle_at_86%_18%,rgba(10,22,40,0.05),transparent_22%)]" />
       <Container>
-        <RevealBlock className="mx-auto max-w-3xl text-center">
+        <RevealBlock className="mx-auto max-w-[1024px] text-center">
           <Eyebrow>WHY I BUILT THIS</Eyebrow>
           {/* <p className={sectionHeading}>The intake leak most firms mistake for bad marketing.</p> */}
         </RevealBlock>

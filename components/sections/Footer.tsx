@@ -8,9 +8,9 @@ export default function Footer() {
         <div className={`grid ${sectionGap} md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_0.8fr_1fr]`}>
           <div>
             <Image src="/logo.png" alt="Delipat logo" width={190} height={43} className="h-auto w-[175px]" />
-            <p className={`mt-5 max-w-sm ${bodyText}`}>Delipat helps PI firms capture and convert every lead they pay for.</p>
+            <p className={`mt-5 max-w-sm ${bodyText}`}>DeliPat helps PI firms convert more of the leads they’re already paying for.</p>
           </div>
-          <FooterColumn title="Product" links={["Intake Audit", "Lead Response", "Follow-Up System", "Reporting"]} />
+          <FooterColumn title="Product" links={["Intake Diagnostic", "Lead Response", "Follow-Up System", "Pipeline & Reporting"]} />
           <FooterColumn title="Company" links={["How It Works", "Pricing", "Contact", "Book Audit"]} />
           <div>
             <p className="font-heading text-lg font-semibold tracking-[-0.02em]">Contact</p>

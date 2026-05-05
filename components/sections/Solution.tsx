@@ -1,6 +1,6 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
 import RevealBlock from "@/components/RevealBlock";
-import { Container, sectionHeading, sectionPadding } from "./shared";
+import { Container, sectionHeading, sectionPadding, sectionSubheading } from "./shared";
 
 const solutionPoints = [
   ["response", "Instant response even after hours"],
@@ -19,7 +19,7 @@ export default function Solution() {
               Every lead gets handled.
               Nothing slips through.
             </h2>
-            <p className="mx-auto mt-2 max-w-[1024px] text-[17px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] md:text-[19px]">
+            <p className={sectionSubheading}>
               No missed calls. No slow follow-ups. No guessing what happened.
             </p>
           </RevealBlock>

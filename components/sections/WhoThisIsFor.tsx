@@ -1,6 +1,6 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
 import RevealBlock from "@/components/RevealBlock";
-import { Container, sectionPadding } from "./shared";
+import { Container, sectionHeading, sectionPadding, sectionSubheading } from "./shared";
 
 const fitPoints = [
   "2 to 10 lawyer PI firm",
@@ -14,12 +14,10 @@ export default function WhoThisIsFor() {
   return (
     <AnimatedSection className={`bg-[#FAFAFA] ${sectionPadding}`}>
       <Container>
-        <RevealBlock className="mx-auto max-w-3xl text-center">
+        <RevealBlock className="mx-auto max-w-[1024px] text-center">
           <p className="text-sm font-bold tracking-[0.12em] text-[#9A7B24]">Who this is for</p>
-          <h2 className="mt-4 font-heading text-[30px] font-bold leading-[1.08] tracking-[-0.05em] text-[#0A1628] sm:text-[40px] md:text-[48px]">
-            Built for PI firms that already have leads — and know they’re losing them.
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-[16px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] sm:text-[17px]">
+          <h2 className={sectionHeading}>Built for PI firms that already have leads — and know they’re losing them.</h2>
+          <p className={sectionSubheading}>
             If this sounds like your setup, you’re in the right place.
           </p>
         </RevealBlock>

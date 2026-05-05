@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { AnimatedSection } from "@/components/AnimatedSection";
 import RevealBlock from "@/components/RevealBlock";
 import { Container, sectionPadding } from "./shared";
@@ -64,7 +63,7 @@ export default function Reframe() {
 
           <div className="mx-auto mt-6 text-center ">
             <RevealBlock delay={0.32}>
-              <h2 className="font-heading text-[24px] font-bold leading-[1.06] tracking-[-0.05em] text-[#0A1628] sm:text-[28px] md:text-[36px]">
+              <h2 className="font-heading text-[24px] font-bold leading-[1.06] text-[#0A1628] sm:text-[28px] md:text-[36px]">
                 <span className="block">You’re not losing cases at the top of the funnel.</span>
                 <span className="mt-3 block">
                   Your ads aren’t broken.{" "}

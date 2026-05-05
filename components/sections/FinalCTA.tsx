@@ -1,21 +1,23 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
 import RevealBlock from "@/components/RevealBlock";
+import { sectionHeading, sectionSubheading } from "./shared";
 
 export default function FinalCTA() {
   return (
     <AnimatedSection id="final-cta" className="relative isolate overflow-hidden bg-[#ffffff] py-28 sm:py-32 md:py-36">
       <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_54%,rgba(201,168,76,0.18),transparent_30%),linear-gradient(180deg,#ffffff,rgba(201,168,76,0.07),#ffffff)]" />
       <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[360px] w-[min(82vw,640px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,168,76,0.16),rgba(201,168,76,0.06)_42%,transparent_72%)] blur-3xl" />
- <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(10,22,40,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(10,22,40,0.015)_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
+
       <div className="mx-auto max-w-[1024px] px-5 text-center sm:px-6">
         <RevealBlock>
           <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#9A7B24]">ONE CONVERSATION</p>
         </RevealBlock>
 
         <RevealBlock delay={0.08}>
-          <h2 className="mx-auto mt-5 max-w-[1024px] font-heading text-[34px] font-bold leading-[1.05] tracking-[-0.05em] text-[#0A1628] sm:text-[48px] md:text-[60px]">
+          <h2 className={`mx-auto max-w-3xl ${sectionHeading}`}>
             Find out where your intake is leaking. In{" "}
             <span className="relative isolate inline-block">
               <span className="relative">30 minutes.</span>
@@ -25,7 +27,7 @@ export default function FinalCTA() {
         </RevealBlock>
 
         <RevealBlock delay={0.16}>
-          <p className="mx-auto mt-7 max-w-[1024px] text-[17px] font-medium leading-[1.75] tracking-[-0.01em] text-[#0A1628]/72 sm:text-[18px]">
+          <p className={sectionSubheading}>
             We’ll walk through your firm’s setup, name the gaps that are costing you the most, and tell you what we’d fix first if we worked together. That’s the whole call.
           </p>
         </RevealBlock>

@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import ProofCountNumber from "@/components/ProofCountNumber";
 import RevealBlock from "@/components/RevealBlock";
-import { Container, sectionPadding } from "./shared";
+import { Container, sectionHeading, sectionPadding, sectionSubheading } from "./shared";
 
 const stats = [
   {
@@ -11,7 +11,7 @@ const stats = [
   },
   {
     value: "$31K",
-    text: "verage monthly leak we find in firms running $20K+/month in paid acquisition. Lead spend wasted plus expected case fees lost.",
+    text: "Average monthly leak we find in firms running $20K+/month in paid acquisition. Lead spend wasted plus expected case fees lost.",
   },
   {
     value: "18 → 34%",
@@ -23,13 +23,11 @@ export default function Proof() {
   return (
     <AnimatedSection id="proof" className={`relative isolate overflow-hidden bg-[#ffffff] ${sectionPadding}`}>
       <Container>
-        <RevealBlock className="mx-auto max-w-3xl text-center">
+        <RevealBlock className="mx-auto max-w-[1024px] text-center">
           <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#9A7B24]">WHAT WE’VE SEEN</p>
-          <h2 className="mt-4 font-heading text-[30px] font-bold leading-[1.08] tracking-[-0.05em] text-[#0A1628] sm:text-[40px] md:text-[48px]">
-            Patterns from the last twelve months.
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-[16px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] sm:text-[17px] md:text-[18px]">
-           We don’t have a wall of logos yet. We do have data from every PI firm we’ve audited so far.
+          <h2 className={sectionHeading}>Patterns from the last twelve months.</h2>
+          <p className={sectionSubheading}>
+            We don’t have a wall of logos yet. We do have data from every PI firm we’ve audited so far.
           </p>
         </RevealBlock>
 

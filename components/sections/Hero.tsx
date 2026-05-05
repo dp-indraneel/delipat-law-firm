@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { bodyText, Eyebrow } from "./shared";
 
 export default function Hero() {

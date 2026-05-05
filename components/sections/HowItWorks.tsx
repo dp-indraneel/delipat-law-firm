@@ -1,7 +1,7 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
 import HowItWorksTimeline from "@/components/HowItWorksTimeline";
 import RevealBlock from "@/components/RevealBlock";
-import { Container, Eyebrow, sectionHeading, sectionPadding } from "./shared";
+import { Container, Eyebrow, sectionHeading, sectionPadding, sectionSubheading } from "./shared";
 
 export default function HowItWorks() {
   return (
@@ -11,8 +11,8 @@ export default function HowItWorks() {
         <RevealBlock className="mx-auto max-w-[768px] text-center">
           <Eyebrow>WHAT THE FIX LOOKS LIKE</Eyebrow>
           <h2 className={sectionHeading}>Four moving parts. Built into one system your team actually uses.</h2>
-          <p className="mx-auto mt-5 max-w-[1024px] text-[16px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] sm:text-[17px] md:text-[18px]">
-          We work inside the case management tools you already pay for. Filevine, Litify, CASEpeer, MyCase, Clio. Salesforce sits on top, handling the intake and pipeline layer.
+          <p className={sectionSubheading}>
+            We work inside the case management tools you already pay for. Filevine, Litify, CASEpeer, MyCase, Clio. Salesforce sits on top, handling the intake and pipeline layer.
           </p>
         </RevealBlock>
         <div className="mt-12 sm:mt-14 md:mt-16">
