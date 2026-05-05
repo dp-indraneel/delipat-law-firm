@@ -17,7 +17,7 @@ export default function Hero() {
             Most PI firms lose high-value cases before intake even begins. Not because of bad leads. Because of broken intake.
           </p>
           <div className="hero-reveal hero-reveal-4 mx-auto mt-9 flex max-w-[460px] flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
-            <a href="#calculator" className="inline-flex items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition hover:-translate-y-0.5 hover:bg-[#172941]">
+            <a href="https://calendly.com/rajesh-chatterjee/30min" target="_blank" className="inline-flex items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_6px_18px_rgba(0,0,0,0.025)] transition hover:-translate-y-0.5 hover:bg-[#172941]">
               Book your free diagnostic
             </a>
           </div>

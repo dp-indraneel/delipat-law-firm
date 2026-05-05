@@ -300,8 +300,8 @@ export default function MathCalculator() {
           </div>
 
           <a
-            href="#audit"
-            onClick={handleCtaClick}
+            href="https://calendly.com/rajesh-chatterjee/30min"
+            target="_blank"
             className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_10px_30px_rgba(10,22,40,0.12)] transition hover:-translate-y-0.5 hover:bg-[#13243A]"
           >
              Map my leaks  →  Free diagnostic
