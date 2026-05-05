@@ -11,19 +11,15 @@ const solutionPoints = [
 export default function Solution() {
   return (
     <AnimatedSection className={`relative isolate overflow-hidden bg-[#ffffff] ${sectionPadding}`}>
-      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_20%_20%,rgba(10,22,40,0.03),transparent_24%),radial-gradient(circle_at_80%_32%,rgba(201,168,76,0.1),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.5),rgba(250,250,250,0.96))]" />
-      <div className="absolute left-[10%] top-24 -z-10 h-28 w-28 rounded-full bg-[rgba(10,22,40,0.035)] blur-3xl" />
-      <div className="absolute right-[12%] top-28 -z-10 h-36 w-36 rounded-full bg-[rgba(201,168,76,0.1)] blur-3xl" />
       <Container>
-        <div className="mx-auto max-w-5xl">
-          <RevealBlock className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-[1024px]">
+          <RevealBlock className="mx-auto max-w-[1024px] text-center">
             <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#9A7B24]">The Fix</p>
             <h2 className={sectionHeading}>
               Every lead gets handled.
-              <br />
               Nothing slips through.
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-[17px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] md:text-[19px]">
+            <p className="mx-auto mt-2 max-w-[1024px] text-[17px] font-medium leading-[1.7] tracking-[-0.01em] text-[#4A5568] md:text-[19px]">
               No missed calls. No slow follow-ups. No guessing what happened.
             </p>
           </RevealBlock>

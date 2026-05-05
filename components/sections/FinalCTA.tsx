@@ -9,13 +9,13 @@ export default function FinalCTA() {
  <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(10,22,40,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(10,22,40,0.015)_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
-      <div className="mx-auto max-w-4xl px-5 text-center sm:px-6">
+      <div className="mx-auto max-w-[1024px] px-5 text-center sm:px-6">
         <RevealBlock>
           <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#9A7B24]">ONE CONVERSATION</p>
         </RevealBlock>
 
         <RevealBlock delay={0.08}>
-          <h2 className="mx-auto mt-5 max-w-3xl font-heading text-[34px] font-bold leading-[1.05] tracking-[-0.05em] text-[#0A1628] sm:text-[48px] md:text-[60px]">
+          <h2 className="mx-auto mt-5 max-w-[1024px] font-heading text-[34px] font-bold leading-[1.05] tracking-[-0.05em] text-[#0A1628] sm:text-[48px] md:text-[60px]">
             Find out where your intake is leaking. In{" "}
             <span className="relative isolate inline-block">
               <span className="relative">30 minutes.</span>
@@ -25,7 +25,7 @@ export default function FinalCTA() {
         </RevealBlock>
 
         <RevealBlock delay={0.16}>
-          <p className="mx-auto mt-7 max-w-[600px] text-[17px] font-medium leading-[1.75] tracking-[-0.01em] text-[#0A1628]/72 sm:text-[18px]">
+          <p className="mx-auto mt-7 max-w-[1024px] text-[17px] font-medium leading-[1.75] tracking-[-0.01em] text-[#0A1628]/72 sm:text-[18px]">
             We’ll walk through your firm’s setup, name the gaps that are costing you the most, and tell you what we’d fix first if we worked together. That’s the whole call.
           </p>
         </RevealBlock>
