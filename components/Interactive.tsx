@@ -56,8 +56,11 @@ export default function MathCalculator() {
   const changedFieldsRef = useRef<Set<string>>(new Set());
   const engagementTrackedRef = useRef(false);
   const [costPerLead, setCostPerLead] = useState(300);
+  const [costPerLeadInput, setCostPerLeadInput] = useState("300");
   const [monthlyLeads, setMonthlyLeads] = useState(75);
+  const [monthlyLeadsInput, setMonthlyLeadsInput] = useState("75");
   const [leakageRate, setLeakageRate] = useState(22);
+  const [leakageRateInput, setLeakageRateInput] = useState("22");
   const [caseFeeInput, setCaseFeeInput] = useState("12000");
 
   const averageCaseFee = useMemo(() => {
@@ -188,9 +191,28 @@ export default function MathCalculator() {
             min={50}
             max={1000}
             step={1}
-            display={`${formatMoney(costPerLead)} / lead`}
+            valueInput={{
+              id: "cost-per-lead",
+              label: "Cost per lead",
+              value: costPerLeadInput,
+              prefix: "$",
+              suffix: "/ lead",
+              onChange: (raw) => {
+                const sanitized = raw.replace(/[^\d]/g, "");
+                setCostPerLeadInput(sanitized);
+                const next = sanitized === "" ? 0 : Number(sanitized);
+                setCostPerLead(next);
+                trackInputChange("cpl", next, { cpl: next });
+              },
+              onBlur: () => {
+                const next = costPerLeadInput === "" ? 300 : Number(costPerLeadInput);
+                setCostPerLead(next);
+                setCostPerLeadInput(String(next));
+              },
+            }}
             onChange={(value) => {
               setCostPerLead(value);
+              setCostPerLeadInput(String(value));
               trackInputChange("cpl", value, { cpl: value });
             }}
           />
@@ -204,9 +226,27 @@ export default function MathCalculator() {
             min={10}
             max={300}
             step={1}
-            display={`${monthlyLeads} leads`}
+            valueInput={{
+              id: "monthly-leads",
+              label: "Monthly leads",
+              value: monthlyLeadsInput,
+              suffix: "leads",
+              onChange: (raw) => {
+                const sanitized = raw.replace(/[^\d]/g, "");
+                setMonthlyLeadsInput(sanitized);
+                const next = sanitized === "" ? 0 : Number(sanitized);
+                setMonthlyLeads(next);
+                trackInputChange("leads", next, { leads: next });
+              },
+              onBlur: () => {
+                const next = monthlyLeadsInput === "" ? 75 : Number(monthlyLeadsInput);
+                setMonthlyLeads(next);
+                setMonthlyLeadsInput(String(next));
+              },
+            }}
             onChange={(value) => {
               setMonthlyLeads(value);
+              setMonthlyLeadsInput(String(value));
               trackInputChange("leads", value, { leads: value });
             }}
           />
@@ -220,9 +260,27 @@ export default function MathCalculator() {
             min={0}
             max={100}
             step={1}
-            display={`${leakageRate}%`}
+            valueInput={{
+              id: "leakage-rate",
+              label: "Cold lead percentage",
+              value: leakageRateInput,
+              suffix: "%",
+              onChange: (raw) => {
+                const sanitized = raw.replace(/[^\d]/g, "");
+                const next = sanitized === "" ? 0 : clamp(Number(sanitized), 0, 100);
+                setLeakageRateInput(sanitized === "" ? "" : String(next));
+                setLeakageRate(next);
+                trackInputChange("leakage", next, { leakage: next });
+              },
+              onBlur: () => {
+                const next = leakageRateInput === "" ? 22 : Number(leakageRateInput);
+                setLeakageRate(next);
+                setLeakageRateInput(String(next));
+              },
+            }}
             onChange={(value) => {
               setLeakageRate(value);
+              setLeakageRateInput(String(value));
               trackInputChange("leakage", value, { leakage: value });
             }}
           />
@@ -248,11 +306,12 @@ export default function MathCalculator() {
                 >
                   -
                 </button>
+                <span className="pl-2 text-sm font-bold text-[#0A1628]" aria-hidden="true">$</span>
                 <input
                   id="average-case-fee"
-                  className="h-9 w-28 bg-transparent text-center text-sm font-bold text-[#0A1628] outline-none"
+                  className="h-9 w-24 bg-transparent text-center text-sm font-bold text-[#0A1628] outline-none"
                   inputMode="numeric"
-                  value={caseFeeInput === "" ? "" : formatMoney(averageCaseFee)}
+                  value={caseFeeInput}
                   onChange={(event) => {
                     const raw = event.target.value.replace(/[^\d]/g, "");
                     setCaseFeeInput(raw);
@@ -302,6 +361,7 @@ export default function MathCalculator() {
           <a
             href="https://calendly.com/rajesh-chatterjee/30min"
             target="_blank"
+            onClick={handleCtaClick}
             className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_10px_30px_rgba(10,22,40,0.12)] transition hover:-translate-y-0.5 hover:bg-[#13243A]"
           >
              Map my leaks  →  Free diagnostic
@@ -330,6 +390,7 @@ function CalculatorSlider({
   max,
   step,
   display,
+  valueInput,
   onChange,
 }: {
   label: string;
@@ -338,30 +399,59 @@ function CalculatorSlider({
   min: number;
   max: number;
   step: number;
-  display: string;
+  display?: string;
+  valueInput?: {
+    id: string;
+    label: string;
+    value: string;
+    prefix?: string;
+    suffix?: string;
+    onChange: (value: string) => void;
+    onBlur?: () => void;
+  };
   onChange: (value: number) => void;
 }) {
-  const progress = ((value - min) / (max - min)) * 100;
+  const boundedValue = clamp(value, min, max);
+  const progress = ((boundedValue - min) / (max - min)) * 100;
 
   return (
-    <label className="block rounded-2xl border border-[rgba(10,22,40,0.08)] bg-white/80 p-5 shadow-[0_12px_40px_rgba(10,22,40,0.055)] backdrop-blur-md transition duration-300 hover:scale-[1.01] md:p-6">
+    <div className="block rounded-2xl border border-[rgba(10,22,40,0.08)] bg-white/80 p-5 shadow-[0_12px_40px_rgba(10,22,40,0.055)] backdrop-blur-md transition duration-300 hover:scale-[1.01] md:p-6">
       <span className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <span>
-          <span className="block font-heading text-lg font-semibold text-[#0A1628]">{label}</span>
+          <label htmlFor={valueInput?.id} className="block font-heading text-lg font-semibold text-[#0A1628]">
+            {label}
+          </label>
           <span className="mt-1 block text-sm leading-6 text-[#4A5568]">{helper}</span>
         </span>
-        <span className="rounded-full border border-[rgba(10,22,40,0.1)] bg-[#FAFAFA] px-4 py-2 text-sm font-bold text-[#0A1628]">{display}</span>
+        {valueInput ? (
+          <span className="flex items-center rounded-full border border-[rgba(10,22,40,0.1)] bg-[#FAFAFA] px-4 py-2 text-sm font-bold text-[#0A1628]">
+            {valueInput.prefix ? <span aria-hidden="true">{valueInput.prefix}</span> : null}
+            <input
+              id={valueInput.id}
+              aria-label={valueInput.label}
+              className="h-6 w-16 bg-transparent text-center font-bold text-[#0A1628] outline-none"
+              inputMode="numeric"
+              value={valueInput.value}
+              onChange={(event) => valueInput.onChange(event.target.value)}
+              onBlur={valueInput.onBlur}
+            />
+            {valueInput.suffix ? <span aria-hidden="true">{valueInput.suffix}</span> : null}
+          </span>
+        ) : (
+          <span className="rounded-full border border-[rgba(10,22,40,0.1)] bg-[#FAFAFA] px-4 py-2 text-sm font-bold text-[#0A1628]">{display}</span>
+        )}
       </span>
       <input
+        aria-label={label}
         className="diagnostic-slider mt-6 w-full"
         type="range"
         min={min}
         max={max}
         step={step}
-        value={value}
+        value={boundedValue}
         style={{ background: `linear-gradient(90deg, #C9A84C ${progress}%, rgba(10,22,40,0.12) ${progress}%)` }}
         onChange={(event) => onChange(Number(event.target.value))}
       />
-    </label>
+    </div>
   );
 }
