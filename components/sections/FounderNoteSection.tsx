@@ -13,7 +13,7 @@ function numberToWords(num: number): string {
 
 const founderNoteParagraphs = [
   `I’m Rajesh Chatterjee. I founded DeliPat ${numberToWords(new Date().getFullYear() - 2019)} years ago.`,
-  "I’m not a lawyer. My team isn’t either. We’re Salesforce CRM specialists, and for most of the last decade we’ve been helping US businesses fix the gap between “lead arrives” and “deal closes.”",
+  "I’m not a lawyer. My team isn’t either. We’re CRM specialists, and for most of the last years we’ve been helping US businesses fix the gap between “lead arrives” and “deal closes.”",
   "I started looking at personal injury firms about two years ago. What I found surprised me.",
   "Every PI firm I sat down with was sharp on the legal work. Most were sharp on the marketing. But somewhere between the inquiry coming in and the retainer being signed, the system fell apart. Calls missed at 7pm. Follow-ups depending on whether someone remembered. Pipeline reports built from three different spreadsheets. Managing partners who couldn’t tell me how many leads converted last month, because nobody actually knew.",
   "Most owners I talked to felt it but couldn’t name it. They thought they had a marketing problem. They didn’t. They had an intake problem wearing a marketing costume.",

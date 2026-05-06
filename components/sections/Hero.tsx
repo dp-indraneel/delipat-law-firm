@@ -6,16 +6,14 @@ export default function Hero() {
       <div className="absolute inset-0 -z-20 bg-[linear-gradient(rgba(10,22,40,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(10,22,40,0.015)_1px,transparent_1px)] bg-[size:42px_42px]" />
       <div className="hero-gradient-glow absolute left-1/2 top-10 -z-10 h-[520px] w-[min(92vw,980px)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,168,76,0.26),rgba(243,222,145,0.11)_38%,transparent_70%)] blur-2xl" />
       <div className="mx-auto w-full px-5 pb-10 pt-12 md:pb-48">
-        <div className="mx-auto max-w-[1160px] text-center">
-          <div className="hero-reveal hero-reveal-1 max-w-[1160px] m-auto">
-            <p className={`hero-reveal hero-reveal-2 mx-auto font-heading text-[28px] font-bold leading-[1.2] tracking-[-0.03em] text-[#0A1628] sm:text-[32px] md:text-[38px] lg:text-[52px] xxl:text-[58px] text-[#233247]`}>
-              The case you didn’t call back was a $50K fee.
-            </p>
+        <div className="mx-auto max-w-[980px] text-center">
+          <div className="hero-reveal hero-reveal-1 max-w-3xl m-auto">
+        <Eyebrow>Faster intake. Better follow-up. More signed cases.</Eyebrow>
           </div>
-          <h1 className="hero-reveal hero-reveal-2 mx-auto mt-6 font-heading text-[24px] font-bold leading-[1.2] tracking-[-0.03em] text-[#0A1628] sm:text-[28px] md:text-[32px] lg:text-[40px] text-[#233247] max-w-[991px] m-auto">
-            We help personal injury law firms respond faster, follow up better, and convert more leads into signed cases.
+          <h1 className="hero-reveal hero-reveal-2 mx-auto mt-6 max-w-4xl font-heading text-[40px] font-bold leading-[1.08] tracking-[-0.03em] text-[#0A1628] sm:text-[42px] md:text-[58px] lg:text-[64px]">
+            The case you didn’t call back was a $50,000 fee.
           </h1>
-          <p className={`hero-reveal hero-reveal-3 mx-auto mt-6 max-w-2xl text-lg! md:text-xl! ${bodyText}`}>
+          <p className={`hero-reveal hero-reveal-3 mx-auto mt-6 max-w-2xl text-lg md:text-xl ${bodyText}`}>
             Most PI firms lose high-value cases before intake even begins. Not because of bad leads. Because of broken intake.
           </p>
           <div className="hero-reveal hero-reveal-4 mx-auto mt-9 flex max-w-[460px] flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
