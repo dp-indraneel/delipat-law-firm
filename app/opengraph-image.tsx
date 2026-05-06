@@ -174,7 +174,7 @@ export default function Image() {
                   textTransform: "uppercase",
                 }}
               >
-                Free intake diagnostic
+                Free intake audit
               </div>
             </div>
 
@@ -202,7 +202,7 @@ export default function Image() {
                 maxWidth: 650,
               }}
             >
-              Find the intake leaks costing your PI firm high-value cases before the first callback.
+              We help personal injury law firms respond faster, follow up better, and convert more leads into signed cases.
             </div>
 
             <div
