@@ -11,6 +11,7 @@ import Proof from "@/components/sections/Proof";
 import FAQSection from "@/components/sections/FAQSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
+import EmailCapturePopup from "@/components/EmailCapturePopup";
 
 export default function Home() {
   const jsonLd = [
@@ -94,6 +95,7 @@ export default function Home() {
         <FinalCTA />
         <Footer />
       </main>
+      <EmailCapturePopup />
     </>
   );
 }

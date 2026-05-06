@@ -10,7 +10,7 @@ export default function Hero() {
           <div className="hero-reveal hero-reveal-1 max-w-3xl m-auto">
         <Eyebrow>Faster intake. Better follow-up. More signed cases.</Eyebrow>
           </div>
-          <h1 className="hero-reveal hero-reveal-2 mx-auto mt-6 max-w-4xl font-heading text-[40px] font-bold leading-[1.08] tracking-[-0.03em] text-[#0A1628] sm:text-[42px] md:text-[58px] lg:text-[64px]">
+          <h1 className="hero-reveal hero-reveal-2 mx-auto mt-6 max-w-4xl font-heading text-[40px] font-bold leading-[1.08] tracking-[-0.01em] text-[#0A1628] sm:text-[42px] md:text-[58px] lg:text-[64px]">
             The case you didn’t call back was a $50,000 fee.
           </h1>
           <p className={`hero-reveal hero-reveal-3 mx-auto mt-6 max-w-2xl text-lg md:text-xl ${bodyText}`}>

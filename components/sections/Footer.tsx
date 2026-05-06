@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { bodyText, Container, sectionGap } from "./shared";
+import FooterSubscribeForm from "../FooterSubscribeForm";
 
 export default function Footer() {
   return (
@@ -10,8 +11,7 @@ export default function Footer() {
             <Image src="/logo.avif" alt="Delipat logo" width={190} height={43} className="h-auto w-[175px]" />
             <p className={`mt-5 max-w-sm ${bodyText}`}>DeliPat helps PI firms convert more of the leads they’re already paying for.</p>
           </div>
-          <FooterColumn title="Product" links={["Intake Diagnostic", "Lead Response", "Follow-Up System", "Pipeline & Reporting"]} />
-          <FooterColumn title="Company" links={["How It Works", "Pricing", "Contact", "Back to Top"]} />
+          <FooterSubscribeForm />
           <div>
             <p className="font-heading text-lg font-semibold tracking-[-0.02em]">Contact</p>
             <div className="mt-4 space-y-3 text-[#4A5568]">
