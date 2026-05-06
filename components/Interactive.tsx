@@ -364,7 +364,7 @@ export default function MathCalculator() {
             onClick={handleCtaClick}
             className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#0A1628] px-7 py-4 text-sm font-bold text-white shadow-[0_10px_30px_rgba(10,22,40,0.12)] transition hover:-translate-y-0.5 hover:bg-[#13243A]"
           >
-             Map my leaks  →  Free diagnostic
+             Map my leaks  →  Free audit
           </a>
 <p className="text-sm text-center mt-2 text-[#4A5568] w-[90%] m-auto">{`30-minute call. We walk through your intake setup and tell you where it’s leaking. No pitch.`}</p>
         </div>
@@ -443,7 +443,7 @@ function CalculatorSlider({
       </span>
       <input
         aria-label={label}
-        className="diagnostic-slider mt-6 w-full"
+        className="audit-slider mt-6 w-full"
         type="range"
         min={min}
         max={max}

@@ -133,14 +133,14 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.025);
 }
 
-.diagnostic-slider {
+.audit-slider {
   height: 8px;
   appearance: none;
   border-radius: 999px;
   outline: none;
 }
 
-.diagnostic-slider::-webkit-slider-thumb {
+.audit-slider::-webkit-slider-thumb {
   width: 22px;
   height: 22px;
   appearance: none;
@@ -152,12 +152,12 @@ input[type="range"]::-moz-range-thumb {
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.diagnostic-slider:active::-webkit-slider-thumb {
+.audit-slider:active::-webkit-slider-thumb {
   cursor: grabbing;
   transform: scale(1.06);
 }
 
-.diagnostic-slider::-moz-range-thumb {
+.audit-slider::-moz-range-thumb {
   width: 22px;
   height: 22px;
   border: 3px solid #fcb61f;
@@ -168,7 +168,7 @@ input[type="range"]::-moz-range-thumb {
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.diagnostic-slider:active::-moz-range-thumb {
+.audit-slider:active::-moz-range-thumb {
   cursor: grabbing;
   transform: scale(1.06);
 }

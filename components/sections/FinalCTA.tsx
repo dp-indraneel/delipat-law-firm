@@ -40,7 +40,7 @@ export default function FinalCTA() {
               target="_blank"
               className="inline-flex items-center justify-center rounded-full bg-[#0A1628] px-8 py-4 text-[15px] font-bold tracking-[-0.005em] text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#13243A]"
             >
-              Book your free diagnostic
+              Book your free audit
             </a>
           </div>
         </RevealBlock>

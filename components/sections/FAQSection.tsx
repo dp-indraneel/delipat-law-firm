@@ -15,14 +15,44 @@ const faqItems = [
   ],
   [
     "We’re a small firm. We can’t afford enterprise software.",
-    "You don’t need enterprise software. You need a system that fits your firm size. Our typical engagements are with 2 to 20-attorney firms, and pricing flexes against scope. The diagnostic will tell you what’s worth fixing first and what can wait. If the math doesn’t work, we’ll tell you.",
+    "You don’t need enterprise software. You need a system that fits your firm size. Our typical engagements are with 2 to 20-attorney firms, and pricing flexes against scope. The audit will tell you what’s worth fixing first and what can wait. If the math doesn’t work, we’ll tell you.",
   ],
   [
-    "How is the free diagnostic actually free? What’s the catch?",
-    "There isn’t one. We do roughly 6 to 8 diagnostics a month. Half lead to engagements. Half don’t, and we send the firm the written report anyway. The diagnostic is how we figure out if we can help you. It’s also how you figure out if we’re worth working with. The report is yours to keep either way.",
+    "How is the free audit actually free? What’s the catch?",
+    `<p class="italic text-gray-500 mb-10">
+    You're losing them in the gap between contact and conversion.
+  </p>
+
+  <div class="relative flex flex-col md:flex-row items-center justify-between gap-6">
+
+    <div class="absolute bg-gray-200 
+                w-[2px] h-full left-1/2 -translate-x-1/2
+                md:h-[2px] md:w-full md:left-0 md:top-1/2 md:-translate-y-1/2 md:translate-x-0">
+    </div>
+
+    <div class="relative z-10 bg-white border border-gray-200 px-5 py-3 rounded-full text-sm shadow-sm">
+      Lead comes in (call, form, LSA)
+    </div>
+
+    <div class="relative z-10 bg-white border border-gray-200 px-5 py-3 rounded-full text-sm shadow-sm">
+      No immediate response
+    </div>
+
+    <div class="relative z-10 bg-white border border-gray-200 px-5 py-3 rounded-full text-sm shadow-sm">
+      No structured follow-up
+    </div>
+
+    <div class="relative z-10 bg-white border border-gray-200 px-5 py-3 rounded-full text-sm shadow-sm">
+      No tracking
+    </div>
+
+  </div>
+  <p class="mt-10 italic text-[#c96f4a]">
+    Result: you never even know what you lost.
+  </p>`
   ],
   [
-    "What happens during the diagnostic?",
+    "What happens during the audit?",
     "A 30-minute call to walk through your current intake setup: how leads come in, what happens after, who handles what, and where the visibility gaps sit. We’ll ask for view-only access to your existing CRM or a recent lead-tracking export if you have one. Within 48 hours, you get a written report with the leak points, the dollar impact, and what we’d fix first if we worked together.",
   ],
   [
@@ -35,17 +65,21 @@ const faqItems = [
   ],
   [
     "Will we have to switch CRMs?",
-    "Probably not. We work inside whatever case management tool you already run, Filevine, Litify, CASEpeer, MyCase, Clio. Salesforce is our specialty for the intake and pipeline layer that connects to your existing case management. The diagnostic will tell you whether anything in your current stack is actually worth replacing.",
+    "Probably not. We work inside whatever case management tool you already run, Filevine, Litify, CASEpeer, MyCase, Clio. Salesforce is our specialty for the intake and pipeline layer that connects to your existing case management. The audit will tell you whether anything in your current stack is actually worth replacing.",
   ],
   [
     "What if we’re not running paid ads yet?",
     "Then we’re probably not the right fit yet. Our work is most useful for firms with active lead-gen spend: Google Ads, LSAs, lead vendors, paid referrals. If you’re running on word-of-mouth and referrals only, you don’t have the leak we fix. Happy to stay in touch if that changes.",
   ],
   [
-    "What if we book the diagnostic and decide we don’t want to work with you?",
+    "What if we book the audit and decide we don’t want to work with you?",
     "Then we don’t work together. You keep the report. We don’t run a “stay-on-the-list” sequence. If anything changes in 6 or 12 months and you want a follow-up, you reach out. That’s it.",
   ],
 ] as const;
+
+function containsHtml(value: string) {
+  return /<\/?[a-z][\s\S]*>/i.test(value);
+}
 
 export default function FAQSection() {
   const [openItems, setOpenItems] = useState(() => new Set([3]));
@@ -76,7 +110,7 @@ export default function FAQSection() {
       <div className="mx-auto w-full max-w-[1024px] px-5 sm:px-6">
         <div className="text-center">
           <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#C9A84C]">
-            BEFORE YOU BOOK THE DIAGNOSTIC
+            BEFORE YOU BOOK THE AUDIT
           </p>
           <h2 className={sectionHeading}>
             Questions PI firm owners usually ask.
@@ -134,9 +168,16 @@ export default function FAQSection() {
                       transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="px-2 pb-8 pr-11 text-[15px] font-normal leading-[1.8] tracking-[-0.005em] text-[#0A1628]/64 sm:px-3 sm:text-[16px]">
-                        {answer}
-                      </p>
+                      {containsHtml(answer) ? (
+                        <div
+                          className="px-2 pb-8 pr-11 text-[15px] font-normal leading-[1.8] tracking-[-0.005em] text-[#0A1628]/64 sm:px-3 sm:text-[16px]"
+                          dangerouslySetInnerHTML={{ __html: answer }}
+                        />
+                      ) : (
+                        <p className="px-2 pb-8 pr-11 text-[15px] font-normal leading-[1.8] tracking-[-0.005em] text-[#0A1628]/64 sm:px-3 sm:text-[16px]">
+                          {answer}
+                        </p>
+                      )}
                     </motion.div>
                   ) : null}
                 </AnimatePresence>

@@ -23,7 +23,7 @@ export default function NotFound() {
           Page Not Found!
         </h1>
         <p className="mx-auto mt-6 max-w-[620px] text-[17px] font-medium leading-[1.75] text-[#4A5568] md:text-[19px]">
-          The link may be broken, moved, or mistyped. Head back to the diagnostic page and keep going.
+          The link may be broken, moved, or mistyped. Head back to the audit page and keep going.
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">

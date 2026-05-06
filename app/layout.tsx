@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "PI firm CRM",
     "legal intake automation",
     "law firm lead follow up",
-    "case intake diagnostic",
+    "case intake audit",
   ],
   authors: [{ name: "Delipat", url: "https://intake.delipat.com" }],
   creator: "Delipat",

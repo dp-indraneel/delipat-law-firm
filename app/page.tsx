@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+﻿import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
 import RealityCheck from "@/components/sections/RealityCheck";
 import InvisibleLeak from "@/components/sections/InvisibleLeak";
@@ -35,8 +35,8 @@ export default function Home() {
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      "@id": "https://intake.delipat.com/#pi-intake-diagnostic",
-      name: "PI Firm Intake Diagnostic",
+      "@id": "https://intake.delipat.com/#pi-intake-audit",
+      name: "PI Firm Intake audit",
       serviceType: "Personal injury law firm intake and CRM systems",
       provider: {
         "@id": "https://intake.delipat.com/#organization",
@@ -50,7 +50,7 @@ export default function Home() {
         audienceType: "Personal injury law firms",
       },
       description:
-        "A 30-minute diagnostic that identifies missed-call, follow-up, pipeline, and reporting leaks in personal injury firm intake systems.",
+        "A 30-minute audit that identifies missed-call, follow-up, pipeline, and reporting leaks in personal injury firm intake systems.",
       offers: {
         "@type": "Offer",
         url: "https://calendly.com/rajesh-chatterjee/30min",
@@ -88,7 +88,7 @@ export default function Home() {
         <FounderNoteSection />
         <Reframe />
         <Solution />
-        <HowItWorks />
+        
         <Proof />
         <FAQSection />
         {/* <WhoThisIsFor /> */}

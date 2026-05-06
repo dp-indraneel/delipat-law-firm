@@ -13,7 +13,7 @@ export default function InvisibleLeak() {
         </RevealBlock>
         <div>
           <RevealBlock>
-            <Eyebrow>Where Your Revenue Actually Goes</Eyebrow>
+            <Eyebrow>WHERE THE LEAK ACTUALLY HAPPENS</Eyebrow>
             <h2 className={sectionHeading}>You're not losing cases at the top of the funnel.</h2>
           </RevealBlock>
           <div className={`mt-7 max-w-xl space-y-5 ${bodyText}`}>
