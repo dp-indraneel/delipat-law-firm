@@ -10,7 +10,8 @@ const solutionPoints = [
 
 export default function Solution() {
   return (
-    <AnimatedSection className={`relative isolate overflow-hidden bg-[#ffffff] ${sectionPadding}`}>
+    <AnimatedSection className={`relative isolate overflow-hidden bg-[#FAF6EC] ${sectionPadding}`}>
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_22%,rgba(10,22,40,0.03),transparent_28%),radial-gradient(circle_at_78%_36%,rgba(201,168,76,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.45),rgba(250,250,250,0.96))]" />
       <Container>
         <div className="mx-auto max-w-[1024px]">
           <RevealBlock className="mx-auto max-w-[1024px] text-center">
