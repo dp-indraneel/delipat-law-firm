@@ -20,18 +20,14 @@ const ctaPoints = [
 export default function FinalCTA() {
   return (
     <AnimatedSection id="final-cta" className="relative isolate overflow-hidden bg-[#fcfaf6] py-24 sm:py-28 md:py-32">
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_20%,rgba(201,168,76,0.14),transparent_28%),linear-gradient(180deg,#fcfaf6,rgba(244,237,219,0.88),#fcfaf6)]" />
+  
       <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[420px] w-[min(88vw,760px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,168,76,0.14),rgba(201,168,76,0.04)_42%,transparent_72%)] blur-3xl" />
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(10,22,40,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(10,22,40,0.015)_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
       <div className="mx-auto max-w-[1120px] px-5 sm:px-6">
-        <div className="relative overflow-hidden rounded-[32px] border border-[rgba(10,22,40,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.94),rgba(255,250,241,0.96))] px-5 py-12 shadow-[0_24px_80px_rgba(10,22,40,0.08)] sm:px-8 md:px-12 md:py-14">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(201,168,76,0.16),transparent_60%)]" />
-          <div className="pointer-events-none absolute -right-16 top-10 h-40 w-40 rounded-full border border-[#C9A84C]/16" />
-          <div className="pointer-events-none absolute -left-12 bottom-8 h-24 w-24 rounded-full bg-[#C96F4A]/6 blur-2xl" />
-
+        <div className="relative overflow-hidden rounded-[32px] px-5 py-12 sm:px-8 md:px-12 md:py-14">
           <div className="relative text-center">
             <RevealBlock>
               <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#9A7B24]">ONE CONVERSATION</p>
@@ -97,7 +93,7 @@ export default function FinalCTA() {
             </RevealBlock>
 
             <RevealBlock delay={0.44}>
-              <p className="mx-auto mt-6 max-w-[620px] text-[15px] font-medium leading-[1.7] tracking-[-0.005em] text-[#0A1628]/58">
+              <p className="mx-auto mt-6 max-w-[620px] text-[15px] font-medium leading-[1.7] tracking-[-0.005em] text-[#0A1628]/58 text-center">
                 If we’re not the right fit, we’ll tell you on the call. You’ll still walk away with a sharper picture
                 than you came in with.
               </p>

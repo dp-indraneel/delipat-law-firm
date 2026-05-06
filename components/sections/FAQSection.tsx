@@ -105,8 +105,8 @@ export default function FAQSection() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-       className={`relative isolate overflow-hidden bg-[#FAF6EC] ${sectionPadding}`}>
-      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_22%,rgba(10,22,40,0.03),transparent_28%),radial-gradient(circle_at_78%_36%,rgba(201,168,76,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.45),rgba(250,250,250,0.96))]" />
+       className={`relative isolate overflow-hidden ${sectionPadding}`}>
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_22%,rgba(10,22,40,0.03),transparent_28%),radial-gradient(circle_at_78%_36%,rgba(201,168,76,0.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,1),rgba(255,255,255,1))]" />
       <div className="mx-auto w-full max-w-[1024px] px-5 sm:px-6">
         <div className="text-center">
           <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-[#C9A84C]">
