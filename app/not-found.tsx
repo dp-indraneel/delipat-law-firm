@@ -29,14 +29,14 @@ export default function NotFound() {
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
             href="/"
-            className="inline-flex min-h-12 items-center justify-center rounded-[12px] bg-[#0A1628] px-7 py-3 text-[15px] font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#13243A]"
+            className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#0A1628] px-7 py-3 text-[15px] font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#13243A]"
           >
             Back to home
           </Link>
           <a
             href="https://calendly.com/rajesh-chatterjee/30min"
             target="_blank"
-            className="inline-flex min-h-12 items-center justify-center rounded-[12px] border border-[#0A1628]/12 bg-white px-7 py-3 text-[15px] font-bold text-[#0A1628] transition duration-200 hover:-translate-y-0.5 hover:border-[#C9A84C]/55"
+            className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#0A1628]/12 bg-white px-7 py-3 text-[15px] font-bold text-[#0A1628] transition duration-200 hover:-translate-y-0.5 hover:border-[#C9A84C]/55"
           >
             Book Audit
           </a>

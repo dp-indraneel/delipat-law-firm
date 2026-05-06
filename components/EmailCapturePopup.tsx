@@ -169,7 +169,7 @@ export default function EmailCapturePopup() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="inline-flex h-13 w-full items-center justify-center rounded-[14px] bg-[#0A1628] px-5 text-[15px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#13243A] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+              className="inline-flex h-13 w-full items-center justify-center rounded-full bg-[#0A1628] px-5 text-[15px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#13243A] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
             >
               {status === "submitting" ? "Subscribing..." : "Subscribe"}
             </button>

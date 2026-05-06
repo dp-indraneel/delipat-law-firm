@@ -34,11 +34,11 @@ export default function FinalCTA() {
 
         <RevealBlock delay={0.25}>
           <div className="relative mx-auto mt-10 inline-flex">
-            <span className="pointer-events-none absolute inset-0 -z-10 rounded-[12px] bg-[#C9A84C]/28 blur-xl" />
+            <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-[#C9A84C]/28 blur-xl" />
             <a
               href="https://calendly.com/rajesh-chatterjee/30min"
               target="_blank"
-              className="inline-flex items-center justify-center rounded-[12px] bg-[#0A1628] px-8 py-4 text-[15px] font-bold tracking-[-0.005em] text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#13243A]"
+              className="inline-flex items-center justify-center rounded-full bg-[#0A1628] px-8 py-4 text-[15px] font-bold tracking-[-0.005em] text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#13243A]"
             >
               Book your free diagnostic
             </a>

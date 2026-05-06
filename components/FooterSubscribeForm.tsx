@@ -48,9 +48,9 @@ export default function FooterSubscribeForm() {
   };
 
   return (
-    <div className="lg:col-span-2">
+    <div className="lg:col-span-2 max-w-[420px] w-full md:m-auto">
       <p className="font-heading text-lg font-semibold tracking-[-0.02em]">Subscribe</p>
-      <form onSubmit={handleSubmit} className="mt-4 max-w-[420px] space-y-3">
+      <form onSubmit={handleSubmit} className="mt-4  space-y-3">
         <label htmlFor="footer-email" className="sr-only">
           Email address
         </label>
@@ -66,7 +66,7 @@ export default function FooterSubscribeForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex h-12 w-full items-center justify-center rounded-[12px] bg-[#0A1628] px-5 text-[14px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#13243A] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 sm:w-auto"
+          className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#0A1628] px-5 text-[14px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#13243A] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 sm:w-auto"
         >
           {status === "submitting" ? "Subscribing..." : "Subscribe"}
         </button>

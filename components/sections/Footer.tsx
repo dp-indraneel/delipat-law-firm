@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-black/[0.08] bg-white py-14">
       <Container>
-        <div className={`grid ${sectionGap} md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_0.8fr_1fr]`}>
+        <div className={`grid ${sectionGap} md:grid-cols-2 lg:grid-cols-4`}>
           <div>
             <Image src="/logo.avif" alt="Delipat logo" width={190} height={43} className="h-auto w-[175px]" />
             <p className={`mt-5 max-w-sm ${bodyText}`}>DeliPat helps PI firms convert more of the leads they’re already paying for.</p>
@@ -31,16 +31,5 @@ export default function Footer() {
         </div>
       </Container>
     </footer>
-  );
-}
-
-function FooterColumn({ title, links }: { title: string; links: string[] }) {
-  return (
-    <div>
-      <p className="font-heading text-lg font-semibold tracking-[-0.02em]">{title}</p>
-      <div className="mt-4 space-y-3 text-[#4A5568]">
-        {links.map((link) => <a key={link} href="#top" className="block transition hover:text-[#0A1628]">{link}</a>)}
-      </div>
-    </div>
   );
 }
