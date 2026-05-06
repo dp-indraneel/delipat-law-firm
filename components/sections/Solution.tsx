@@ -56,6 +56,13 @@ export default function Solution() {
               </RevealBlock>
             ))}
           </div>
+
+          <RevealBlock delay={0.44} className="mx-auto mt-8 max-w-3xl text-center md:mt-10">
+            <p className="text-[15px] italic leading-[1.8] tracking-[-0.01em] text-[#0A1628]/52 sm:text-[16px]">
+              No new CRM. No software you won&apos;t use. We build the layer between what you already have and the
+              cases you should be signing.
+            </p>
+          </RevealBlock>
         </div>
       </Container>
     </AnimatedSection>
