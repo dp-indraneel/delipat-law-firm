@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import RevealBlock from "@/components/RevealBlock";
-import { Container, Eyebrow, sectionGap, sectionPadding } from "./shared";
+import { Container, Eyebrow, sectionGap, sectionHeading, sectionPadding } from "./shared";
 
 function numberToWords(num: number): string {
   const words = [
@@ -28,6 +28,7 @@ export default function FounderNoteSection() {
       <Container>
         <RevealBlock className="mx-auto max-w-[1024px] text-center">
           <Eyebrow>WHY I BUILT THIS</Eyebrow>
+          <h2 className={sectionHeading}>Founder Note</h2>
           {/* <p className={sectionHeading}>The intake leak most firms mistake for bad marketing.</p> */}
         </RevealBlock>
       </Container>

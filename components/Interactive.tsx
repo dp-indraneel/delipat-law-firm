@@ -185,7 +185,7 @@ export default function MathCalculator() {
             label="What you pay per lead"
             helper="Google Ads, LSAs, lead vendors"
             value={costPerLead}
-            min={5}
+            min={50}
             max={1000}
             step={1}
             display={`${formatMoney(costPerLead)} / lead`}
@@ -201,7 +201,7 @@ export default function MathCalculator() {
             label="Leads you receive each month"
             helper="Across all paid sources"
             value={monthlyLeads}
-            min={1}
+            min={10}
             max={300}
             step={1}
             display={`${monthlyLeads} leads`}
@@ -296,7 +296,7 @@ export default function MathCalculator() {
           <div className="mt-8 space-y-3 border-y border-[rgba(10,22,40,0.08)] py-5">
             <BreakdownLine value={formatMoney(roundTo(totals.monthlyLeakedSpend, 100))} label="in paid lead spend you can't recover" />
             <BreakdownLine value={formatMoney(roundTo(totals.monthlyLeakedRevenue, 100))} label="in case fees walking to your competitor" />
-            <BreakdownLine value={formatMoney(totals.annualTotal)} label="over 12 months" strong />
+            <BreakdownLine value={formatMoney(totals.annualTotal)} label="lost over 12 months" strong />
           </div>
 
           <a

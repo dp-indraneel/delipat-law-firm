@@ -7,8 +7,8 @@ export default function Hero() {
       <div className="hero-gradient-glow absolute left-1/2 top-10 -z-10 h-[520px] w-[min(92vw,980px)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,168,76,0.26),rgba(243,222,145,0.11)_38%,transparent_70%)] blur-2xl" />
       <div className="mx-auto w-full px-5 pb-10 pt-12 md:pb-48">
         <div className="mx-auto max-w-[980px] text-center">
-          <div className="hero-reveal hero-reveal-1">
-            <Eyebrow>FOR PI FIRMS RUNNING PAID ADS</Eyebrow>
+          <div className="hero-reveal hero-reveal-1 max-w-3xl m-auto">
+            <Eyebrow>We help personal injury law firms respond faster, follow up better, and convert more leads into signed cases.</Eyebrow>
           </div>
           <h1 className="hero-reveal hero-reveal-2 mx-auto mt-6 max-w-4xl font-heading text-[40px] font-bold leading-[1.08] tracking-[-0.03em] text-[#0A1628] sm:text-[42px] md:text-[58px] lg:text-[64px]">
             The case you didn’t call back was a $50,000 fee.
