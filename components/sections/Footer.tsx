@@ -5,7 +5,7 @@ import FooterSubscribeForm from "../FooterSubscribeForm";
 export default function Footer() {
   return (
     <footer className="border-t border-black/[0.08] bg-white py-14">
-      <Container>
+      <Container className="max-w-[1160px] mx-auto">
         <div className={`grid ${sectionGap} md:grid-cols-2 lg:grid-cols-4`}>
           <div>
             <Image src="/logo.avif" alt="Delipat logo" width={190} height={43} className="h-auto w-[175px]" />

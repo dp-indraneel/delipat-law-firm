@@ -2,20 +2,20 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import RevealBlock from "@/components/RevealBlock";
 import { sectionHeading, sectionSubheading } from "./shared";
 
-const ctaPoints = [
-  {
-    lead: "Every lead responded to instantly.",
-    supporting: "No 7pm calls going to voicemail. No Friday inquiries lost by Monday.",
-  },
-  {
-    lead: "Every lead followed up consistently.",
-    supporting: "Five to twelve structured touches across call, text, and email until the lead is signed or marked lost.",
-  },
-  {
-    lead: "Every lead tracked from inquiry to signed case.",
-    supporting: "You see where the money goes. You see which campaigns actually pay.",
-  },
-] as const;
+// const ctaPoints = [
+//   {
+//     lead: "Every lead responded to instantly.",
+//     supporting: "No 7pm calls going to voicemail. No Friday inquiries lost by Monday.",
+//   },
+//   {
+//     lead: "Every lead followed up consistently.",
+//     supporting: "Five to twelve structured touches across call, text, and email until the lead is signed or marked lost.",
+//   },
+//   {
+//     lead: "Every lead tracked from inquiry to signed case.",
+//     supporting: "You see where the money goes. You see which campaigns actually pay.",
+//   },
+// ] as const;
 
 export default function FinalCTA() {
   return (
@@ -51,7 +51,7 @@ export default function FinalCTA() {
             </RevealBlock>
           </div>
 
-          <div className="relative mx-auto mt-10 grid max-w-5xl gap-4 md:mt-12 md:grid-cols-3">
+          {/* <div className="relative mx-auto mt-10 grid max-w-5xl gap-4 md:mt-12 md:grid-cols-3">
             {ctaPoints.map((point, index) => (
               <RevealBlock key={point.lead} delay={0.22 + index * 0.06} className="h-full">
                 <div className="group h-full rounded-[24px] border border-[rgba(10,22,40,0.08)] bg-white/86 p-5 text-left shadow-[0_10px_30px_rgba(10,22,40,0.04)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[#C9A84C]/32 hover:shadow-[0_18px_40px_rgba(10,22,40,0.08)] md:p-6">
@@ -70,7 +70,7 @@ export default function FinalCTA() {
                 </div>
               </RevealBlock>
             ))}
-          </div>
+          </div> */}
 
           <div className="relative mx-auto mt-10 flex max-w-3xl flex-col items-center md:mt-12">
             <RevealBlock delay={0.32}>

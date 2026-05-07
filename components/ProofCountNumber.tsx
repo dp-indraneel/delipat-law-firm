@@ -44,7 +44,7 @@ export default function ProofCountNumber({ value }: ProofCountNumberProps) {
   if (value.startsWith("18")) {
     return (
       <span ref={ref}>
-        <span></span>{Math.round(18 * progress)} <span className="mx-1 text-[#C9A84C]/55">{">"}</span>{" "}
+        <span></span>{Math.round(18 * progress)}% <span className="mx-1 text-[#C9A84C]/55">{"🡢"}</span>{" "}
         {Math.round(34 * progress)}%
       </span>
     );

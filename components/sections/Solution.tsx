@@ -2,11 +2,26 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import RevealBlock from "@/components/RevealBlock";
 import { Container, sectionHeading, sectionPadding, sectionSubheading } from "./shared";
 
-const solutionPoints = [
-  ["response", "Instant response even after hours"],
-  ["followup", "Consistent follow-up until the lead signs or is lost"],
-  ["visibility", "Full visibility into every lead"],
-];
+// const solutionPoints = [
+//   ["response", "Instant response even after hours"],
+//   ["followup", "Consistent follow-up until the lead signs or is lost"],
+//   ["visibility", "Full visibility into every lead"],
+// ];
+
+const ctaPoints = [
+  {
+    lead: "Every lead responded to instantly.",
+    supporting: "No 7pm calls going to voicemail. No Friday inquiries lost by Monday.",
+  },
+  {
+    lead: "Every lead followed up consistently.",
+    supporting: "Five to twelve structured touches across call, text, and email until the lead is signed or marked lost.",
+  },
+  {
+    lead: "Every lead tracked from inquiry to signed case.",
+    supporting: "You see where the money goes. You see which campaigns actually pay.",
+  },
+] as const;
 
 export default function Solution() {
   return (
@@ -25,7 +40,7 @@ export default function Solution() {
             </p>
           </RevealBlock>
 
-          <div className="mt-8 grid gap-6 sm:gap-8 md:mt-12 md:grid-cols-3 md:gap-8">
+          {/* <div className="mt-8 grid gap-6 sm:gap-8 md:mt-12 md:grid-cols-3 md:gap-8">
             {solutionPoints.map(([icon, text], index) => (
               <RevealBlock key={text} delay={0.18 + index * 0.08} className="h-full" scale={0.98}>
                 <div className="group h-full rounded-[12px] border border-[rgba(10,22,40,0.08)] bg-white/72 p-6 text-center shadow-[0_6px_20px_rgba(10,22,40,0.03)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(10,22,40,0.05)] md:p-7">
@@ -56,7 +71,29 @@ export default function Solution() {
                 </div>
               </RevealBlock>
             ))}
-          </div>
+          </div> */}
+
+          <div className="relative mx-auto mt-10 grid max-w-5xl gap-4 md:mt-12 md:grid-cols-3">
+                      {ctaPoints.map((point, index) => (
+                        <RevealBlock key={point.lead} delay={0.22 + index * 0.06} className="h-full">
+                          <div className="group h-full rounded-[24px] border border-[rgba(10,22,40,0.08)] bg-white/86 p-5 text-left shadow-[0_10px_30px_rgba(10,22,40,0.04)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[#C9A84C]/32 hover:shadow-[0_18px_40px_rgba(10,22,40,0.08)] md:p-6">
+                            <div className="mb-4 flex items-center gap-3">
+                              <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[#C96F4A]/10 text-[#C96F4A]">
+                                <span className="text-[16px] font-semibold leading-none">✓</span>
+                              </span>
+                              <div className="h-px flex-1 bg-[linear-gradient(90deg,rgba(201,168,76,0.38),rgba(201,168,76,0))]" />
+                            </div>
+                            <p className="text-[17px] font-bold leading-[1.42] tracking-[-0.015em] text-[#0A1628] sm:text-[18px]">
+                              {point.lead}
+                            </p>
+                            <p className="mt-2 text-[15px] leading-[1.75] tracking-[-0.005em] text-[#0A1628]/64 sm:text-[16px]">
+                              {point.supporting}
+                            </p>
+                          </div>
+                        </RevealBlock>
+                      ))}
+                    </div>
+          
 
           <RevealBlock delay={0.44} className="mx-auto mt-8 max-w-3xl text-center md:mt-10">
             <p className="text-[15px] italic leading-[1.8] tracking-[-0.01em] text-[#0A1628]/52 sm:text-[16px]">

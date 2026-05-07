@@ -19,37 +19,7 @@ const faqItems = [
   ],
   [
     "How is the free audit actually free? What’s the catch?",
-    `<p class="italic text-gray-500 mb-10">
-    You're losing them in the gap between contact and conversion.
-  </p>
-
-  <div class="relative flex flex-col md:flex-row items-center justify-between gap-6">
-
-    <div class="absolute bg-gray-200 
-                w-[2px] h-full left-1/2 -translate-x-1/2
-                md:h-[2px] md:w-full md:left-0 md:top-1/2 md:-translate-y-1/2 md:translate-x-0">
-    </div>
-
-    <div class="relative z-10 bg-white border border-gray-200 px-5 py-3 rounded-full text-sm shadow-sm">
-      Lead comes in (call, form, LSA)
-    </div>
-
-    <div class="relative z-10 bg-white border border-gray-200 px-5 py-3 rounded-full text-sm shadow-sm">
-      No immediate response
-    </div>
-
-    <div class="relative z-10 bg-white border border-gray-200 px-5 py-3 rounded-full text-sm shadow-sm">
-      No structured follow-up
-    </div>
-
-    <div class="relative z-10 bg-white border border-gray-200 px-5 py-3 rounded-full text-sm shadow-sm">
-      No tracking
-    </div>
-
-  </div>
-  <p class="mt-10 italic text-[#c96f4a]">
-    Result: you never even know what you lost.
-  </p>`
+    `There isn’t one. We do roughly 6 to 8 diagnostics a month. Half lead to engagements. Half don’t, and we send the firm the written report anyway. The diagnostic is how we figure out if we can help you. It’s also how you figure out if we’re worth working with. The report is yours to keep either way.`
   ],
   [
     "What happens during the audit?",

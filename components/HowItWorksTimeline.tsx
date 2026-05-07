@@ -5,22 +5,22 @@ import { motion } from "framer-motion";
 const timelineSteps = [
   {
     number: "01",
-    title: "Instant lead response",
+    title: "Lead comes in (call, form, LSA)",
     body: "Every inquiry, call, form, chat, after-hours, gets logged, qualified, and routed in under sixty seconds. No more voicemails sitting in someone’s queue until Monday.",
   },
   {
     number: "02",
-    title: "Structured follow-up",
+    title: "No immediate response",
     body: "Five to twelve touch points per lead. Built once, runs every time. Stops depending on whether your intake coordinator remembered to follow up after lunch.",
   },
   {
     number: "03",
-    title: "Pipeline you can actually see",
+    title: "No structured follow-up",
     body: "One dashboard. How many leads came in this week. How many are still in play. Which ones converted and which ones leaked. Your managing partner can answer it in thirty seconds, not three meetings.",
   },
   {
     number: "04",
-    title: "Reporting that ties spend to signed cases",
+    title: "No tracking",
     body: "Cost per signed case by channel. Intake conversion by source. Partner-level case mix. The numbers you’ve been guessing at, finally on a dashboard.",
   },
 ];
@@ -38,7 +38,7 @@ export default function HowItWorksTimeline() {
         className="pointer-events-none absolute bottom-6 left-7 top-3 w-px origin-top bg-[linear-gradient(180deg,rgba(201,168,76,0.12),rgba(201,168,76,0.92),rgba(201,168,76,0.12))] md:left-1/2 md:-translate-x-1/2"
       />
 
-      <div className="space-y-6 sm:space-y-8 md:space-y-10">
+      <div className="">
         {timelineSteps.map((step, index) => {
           const isLeft = index % 2 === 0;
 
@@ -59,7 +59,7 @@ export default function HowItWorksTimeline() {
                 {isLeft ? <TimelineCard step={step} align="right" /> : null}
               </div>
 
-              <div className="relative flex min-h-[132px] items-center justify-center md:min-h-[154px]">
+              <div className="relative flex min-h-[72px] items-center justify-center md:min-h-[74px]">
                 <div className="pointer-events-none absolute left-1/2 top-1/2 h-px w-6 -translate-x-1/2 -translate-y-1/2 bg-[linear-gradient(90deg,rgba(201,168,76,0.55),rgba(201,168,76,0.08))] md:hidden" />
                 <div
                   className={`pointer-events-none absolute top-1/2 hidden h-px w-[calc(100%-0.75rem)] -translate-y-1/2 md:block ${
@@ -129,9 +129,9 @@ function TimelineCard({
       <h3 className="mt-3 font-heading text-[20px] font-semibold leading-[1.12] tracking-[-0.03em] text-[#0A1628] sm:text-[22px]">
         {step.title}
       </h3>
-      <p className="mt-2 text-[15px] font-medium leading-[1.65] tracking-[-0.01em] text-[#4A5568] sm:text-[16px]">
+      {/* <p className="mt-2 text-[15px] font-medium leading-[1.65] tracking-[-0.01em] text-[#4A5568] sm:text-[16px]">
         {step.body}
-      </p>
+      </p> */}
     </div>
   );
 }

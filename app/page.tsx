@@ -12,6 +12,7 @@ import FAQSection from "@/components/sections/FAQSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
 import EmailCapturePopup from "@/components/EmailCapturePopup";
+import HowItWorks from "@/components/sections/HowItWorks";
 
 export default function Home() {
   const jsonLd = [
@@ -83,7 +84,8 @@ export default function Home() {
         <Navbar />
         <Hero />
         <RealityCheck />
-        <InvisibleLeak />
+        <HowItWorks />
+        {/* <InvisibleLeak /> */}
         <MathSection />
         <FounderNoteSection />
         {/* <Reframe /> */}

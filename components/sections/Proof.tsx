@@ -14,7 +14,7 @@ const stats = [
     text: "Average monthly leak we find in firms running $20K+/month in paid acquisition. Lead spend wasted plus expected case fees lost.",
   },
   {
-    value: "18 → 34%",
+    value: "18 > 34%",
     text: "Average intake conversion rate we’ve seen move from baseline to post-implementation in the first six months.",
   },
 ] as const;
