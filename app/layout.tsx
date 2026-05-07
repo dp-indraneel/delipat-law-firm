@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Poppins } from "next/font/google";
+import Script from "next/script";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
@@ -93,6 +94,15 @@ export default function RootLayout({
       <body className="min-h-full bg-[#ffffff] font-body">
         <SmoothScroll>{children}</SmoothScroll>
       </body>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-8JFBKHYHQD" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-8JFBKHYHQD');
+        `}
+      </Script>
     </html>
   );
 }
