@@ -3,6 +3,16 @@ import nodemailer from "nodemailer";
 
 const RECIPIENT_EMAIL = "rajesh@delipat.com";
 const STORAGE_KEY = "delipat:intake-popup:v1";
+const SALESFORCE_API_VERSION = process.env.SALESFORCE_API_VERSION || "v60.0";
+const SALESFORCE_SUBSCRIBER_OBJECT = process.env.SALESFORCE_SUBSCRIBER_OBJECT || "Subscriber__c";
+
+let salesforceTokenCache:
+  | {
+      accessToken: string;
+      instanceUrl: string;
+      expiresAt: number;
+    }
+  | undefined;
 
 type IntakeLeadPayload = {
   email?: unknown;
@@ -20,6 +30,18 @@ type IntakeLeadRecord = {
   localStorageKey: string;
   userAgent: string;
   ip: string;
+};
+
+type SalesforceTokenResponse = {
+  access_token?: string;
+  instance_url?: string;
+  expires_in?: number;
+};
+
+type SalesforceErrorResponse = {
+  message?: string;
+  error?: string;
+  error_description?: string;
 };
 
 function isValidEmail(email: string) {
@@ -42,6 +64,112 @@ function parseEmailList(value: string | undefined) {
         .map((email) => email.trim())
         .filter(Boolean)
     : undefined;
+}
+
+function normalizeIsoDate(value: string) {
+  const date = new Date(value);
+
+  return Number.isNaN(date.getTime()) ? new Date().toISOString() : date.toISOString();
+}
+
+async function parseJsonSafely<T>(response: Response): Promise<T | undefined> {
+  try {
+    return (await response.json()) as T;
+  } catch {
+    return undefined;
+  }
+}
+
+function createSalesforceError(prefix: string, response: Response, body?: SalesforceErrorResponse | SalesforceErrorResponse[]) {
+  const firstError = Array.isArray(body) ? body[0] : body;
+  const message = firstError?.message || firstError?.error_description || firstError?.error || response.statusText;
+
+  return new Error(`${prefix}: ${message}`);
+}
+
+async function getSalesforceAccessToken() {
+  if (salesforceTokenCache && salesforceTokenCache.expiresAt > Date.now() + 30_000) {
+    return salesforceTokenCache;
+  }
+
+  const tokenUrl = process.env.SALESFORCE_TOKEN_URL;
+  const clientId = process.env.SALESFORCE_CLIENT_ID;
+  const clientSecret = process.env.SALESFORCE_CLIENT_SECRET;
+console.log(tokenUrl, clientId, clientSecret);
+
+  if (!tokenUrl || !clientId || !clientSecret) {
+    throw new Error("Salesforce settings are not configured.");
+  }
+
+  const response = await fetch(tokenUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({
+      grant_type: "client_credentials",
+      client_id: clientId,
+      client_secret: clientSecret,
+    }),
+  });
+
+  const body = await parseJsonSafely<SalesforceTokenResponse & SalesforceErrorResponse>(response);
+
+  if (!response.ok) {
+    throw createSalesforceError("Unable to get Salesforce access token", response, body);
+  }
+
+  if (!body?.access_token) {
+    throw new Error("Salesforce token response did not include an access token.");
+  }
+
+  const instanceUrl = body.instance_url || process.env.SALESFORCE_INSTANCE_URL;
+
+  if (!instanceUrl) {
+    throw new Error("Salesforce token response did not include an instance URL.");
+  }
+
+  salesforceTokenCache = {
+    accessToken: body.access_token,
+    instanceUrl,
+    expiresAt: Date.now() + (body.expires_in || 900) * 1000,
+  };
+
+  return salesforceTokenCache;
+}
+
+async function createSalesforceSubscriber(lead: IntakeLeadRecord) {
+  const { accessToken, instanceUrl } = await getSalesforceAccessToken();
+  const response = await fetch(
+    `${instanceUrl}/services/data/${SALESFORCE_API_VERSION}/sobjects/${SALESFORCE_SUBSCRIBER_OBJECT}/`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Email__c: lead.email,
+        IP_Address__c: lead.ip,
+        Local_Storage_Key__c: lead.localStorageKey,
+        Source_Page__c: lead.pageUrl,
+        Status__c: "New",
+        Timezone__c: lead.timezone,
+        User_Agent__c: lead.userAgent,
+        Submitted_At__c: normalizeIsoDate(lead.submittedAt),
+      }),
+    },
+  );
+
+  const body = await parseJsonSafely<SalesforceErrorResponse | SalesforceErrorResponse[]>(response);
+
+  if (!response.ok) {
+    if (response.status === 401) {
+      salesforceTokenCache = undefined;
+    }
+
+    throw createSalesforceError("Unable to create Salesforce subscriber", response, body);
+  }
 }
 
 function createEmailBody(lead: IntakeLeadRecord) {
@@ -120,10 +248,8 @@ function createEmailBody(lead: IntakeLeadRecord) {
   };
 }
 
-async function persistLeadForDatabaseLater(lead: IntakeLeadRecord) {
-  void lead;
-  // Database write belongs here when the project has a DB connection.
-  // Keep the IntakeLeadRecord shape stable so this route can be wired to a table later.
+async function persistLeadToSalesforce(lead: IntakeLeadRecord) {
+  await createSalesforceSubscriber(lead);
 }
 
 async function sendLeadEmail(lead: IntakeLeadRecord) {
@@ -180,7 +306,7 @@ export async function POST(request: Request) {
   const lead: IntakeLeadRecord = {
     email,
     pageUrl: typeof payload.pageUrl === "string" ? payload.pageUrl : "Unknown",
-    submittedAt: typeof payload.submittedAt === "string" ? payload.submittedAt : new Date().toISOString(),
+    submittedAt: normalizeIsoDate(typeof payload.submittedAt === "string" ? payload.submittedAt : new Date().toISOString()),
     timezone: typeof payload.timezone === "string" ? payload.timezone : "Unknown",
     localStorageKey: typeof payload.localStorageKey === "string" ? payload.localStorageKey : STORAGE_KEY,
     userAgent: request.headers.get("user-agent") || "Unknown",
@@ -188,7 +314,7 @@ export async function POST(request: Request) {
   };
 
   try {
-    await persistLeadForDatabaseLater(lead);
+    await persistLeadToSalesforce(lead);
     await sendLeadEmail(lead);
   } catch (error) {
     return NextResponse.json(
