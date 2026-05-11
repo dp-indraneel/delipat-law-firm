@@ -108,11 +108,11 @@ export default function RootLayout({
           window.DelipatChatbotConfig = {
             title: "Talk to Delipat",
             subtitle: "Ask us anything about our services.",
-            webhookUrl: "http://localhost:5001/api/v1/chatbot/message"
+            webhookUrl: "https://server.delipatcrm.com/api/v1/chatbot/message"
           };
         `}
       </Script>
-      <Script src="http://localhost:5173/chatbot-widget.js?v=3" crossOrigin="anonymous" defer />
+      <Script src="https://staging.delipatcrm.com/chatbot-widget.js?v=3" crossOrigin="anonymous" defer />
     </html>
   );
 }
